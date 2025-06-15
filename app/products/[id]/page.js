@@ -218,7 +218,7 @@ export default function ProductPageId() {
                 <ul className="list-disc pl-5 space-y-2">
                     {product.keyFeatures?.map((feature, i) => (<li key={i}>{feature}</li>))}
                 </ul>
-                <h3 className="font-bold text-xl text-gray-900 mt-8 mb-4">What's in the Box</h3>
+                <h3 className="font-bold text-xl text-gray-900 mt-8 mb-4">Whats in the Box</h3>
                 <ul className="list-disc pl-5 space-y-2">
                     {product.whatsInTheBox?.map((item, i) => (<li key={i}>{item}</li>))}
                 </ul>

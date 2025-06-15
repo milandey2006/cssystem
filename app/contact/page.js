@@ -7,7 +7,7 @@ import {
   FaClock,
   FaChevronDown,
   FaChevronUp,
-} from "react-icons/fa"; // Uncomment if you want to use icons
+} from "react-icons/fa";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
@@ -21,7 +21,8 @@ import {
 import { Label } from "@/components/ui/label";
 import { useForm } from "react-hook-form";
 
-const page = () => {
+// Change 'page' to 'Page'
+const Page = () => {
   const contactCards = [
     {
       icon: FaMapMarkerAlt,
@@ -45,7 +46,7 @@ const page = () => {
       icon: FaEnvelope,
       title: "Email Us",
       content: [
-        // "Sales: sales@securevision.com",
+        // "Sales: sales@securevision.com", // This line is commented out but if uncommented, make sure it's valid
         "Support: cctvservices@gmail.com",
         "Info: info@championsecuritysystem.com",
       ],
@@ -270,7 +271,7 @@ const page = () => {
               <div className="aspect-video w-full rounded-lg overflow-hidden">
                 <div className="w-full h-full bg-gray-200 flex items-center justify-center">
                   <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d396.2326147966675!2d72.84663797966506!3d19.12426868836465!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7ce22f2c547b5%3A0x8cbc117b429754f9!2sChampion%20Security%20System%2C%20Honeywell%2C%20Matrix%2C%20Panasonic%20CCTV%20Camera%20%26%20VDP%20Installation%20and%20services%20in%20mumbai%20And%20Local%20Area!5e0!3m2!1sen!2sin!4v1749404213115!5m2!1sen!2sin"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d396.2326147966675!2d72.84663797966506!3d19.12426868836465!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7ce22f2c547b5%3A0x8cbc117b429754f9!2sChampion%20Security%20System%2C%20Honeywell%2C%20Matrix%2C%20Panasonic%20CCTV%20Camera%20%26%20VDP%20Installation%20and%20services%20in%20mumbai%20And%20Local%20Area!5e0!3m2!1sen!2sin!4v1749404213115!5m2!1sen!2sin" // This URL is likely incorrect for a working map. Consider a proper Google Maps embed URL.
                     width="100%"
                     height="450"
                     style={{ border: 0 }}
@@ -373,4 +374,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page; // Also export the capitalized 'Page'

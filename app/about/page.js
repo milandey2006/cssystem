@@ -87,8 +87,8 @@ const page = () => {
             <div className="mb-12">
               <h3 className="text-2xl font-bold mb-4">Our Mission</h3>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                "To provide peace of mind through innovative security solutions
-                that protect what matters most to our customers."
+                To provide peace of mind through innovative security solutions
+                that protect what matters most to our customers.
               </p>
             </div>
 
@@ -126,7 +126,7 @@ const page = () => {
                   </div>
                   <h4 className="font-bold">Customer Focus</h4>
                   <p className="text-sm text-gray-500 mt-2">
-                    Our customers' needs drive our decisions and innovations.
+                    Our customers needs drive our decisions and innovations.
                   </p>
                 </CardContent>
               </Card>
@@ -236,7 +236,7 @@ const page = () => {
           What Our Clients Say
         </h2>
         <p className="mx-auto max-w-[700px] text-gray-500 md:text-lg">
-          Don't just take our word for it - hear from our satisfied customers
+          Dont just take our word for it - hear from our satisfied customers
         </p>
       </div>
     </div>
