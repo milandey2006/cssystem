@@ -156,9 +156,9 @@ export default function ProductPageId() {
               </span>
             </div>
             <div className="flex items-baseline gap-2">
-               <span className="text-3xl font-bold text-gray-900">${product.price?.toFixed(2)}</span>
+               <span className="text-3xl font-bold text-gray-900">{product.price?.toFixed(2)}</span>
                {product.oldPrice && (
-                 <span className="text-xl text-gray-500 line-through">${product.oldPrice.toFixed(2)}</span>
+                 <span className="text-xl text-gray-500 line-through">{product.oldPrice.toFixed(2)}</span>
                )}
                {product.oldPrice && (
                  <Badge variant="outline" className="text-green-600 border-green-500 bg-green-50">
@@ -168,8 +168,8 @@ export default function ProductPageId() {
             </div>
             <p className="text-gray-700">{product.description}</p>
             <div className="flex items-center gap-2 text-sm font-medium">
-               <Check className="h-5 w-5 text-green-600" />
-               <span className="text-green-600">In stock ({product.stock} available)</span>
+               <Check className="h-5 w-5 text-red-600" />
+               <span className="text-red-600">In stock ({product.stock} available)</span>
             </div>
             <Separator className="my-2" />
             <div className="space-y-4">
@@ -184,16 +184,16 @@ export default function ProductPageId() {
                 </ul>
             </div>
             <div className="mt-6 flex flex-col gap-4 sm:flex-row">
-              <Button size="lg" className="flex-1 bg-black text-white hover:bg-gray-800">Add to Cart</Button>
-              <Button size="lg" variant="outline" className="flex-1 border-gray-400 hover:bg-gray-100">Buy Now</Button>
+              <Link href="/contact" passHref><Button size="lg" className="flex-1 bg-black text-white hover:bg-gray-800">Get Price</Button></Link>
+              <Link href="/contact" passHref><Button size="lg" variant="outline" className="flex-1 border-gray-400 hover:bg-gray-100">Buy Now</Button></Link>
             </div>
             <div className="mt-4 flex flex-col gap-4 rounded-lg border border-gray-200 p-4">
                <div className="flex items-start gap-3">
-                 <Truck className="h-6 w-6 text-gray-600 mt-1" />
+                 {/* <Truck className="h-6 w-6 text-gray-600 mt-1" />
                  <div>
                    <h4 className="font-semibold">Free shipping</h4>
                    <p className="text-sm text-gray-500">Free standard shipping on orders over $100</p>
-                 </div>
+                 </div> */}
                </div>
                <div className="flex items-start gap-3">
                  <Shield className="h-6 w-6 text-gray-600 mt-1" />
@@ -208,9 +208,9 @@ export default function ProductPageId() {
         <div className="mt-12 lg:mt-16">
           <Tabs defaultValue="description" className="w-full">
              <TabsList className="border-b border-gray-200 w-full justify-start rounded-none bg-transparent p-0">
-               <TabsTrigger value="description" className="px-4 py-2 -mb-px border-b-2 border-transparent data-[state=active]:border-black data-[state=active]:text-black rounded-none font-semibold">Description</TabsTrigger>
-               <TabsTrigger value="specifications" className="px-4 py-2 -mb-px border-b-2 border-transparent data-[state=active]:border-black data-[state=active]:text-black rounded-none font-semibold">Specifications</TabsTrigger>
-               <TabsTrigger value="reviews" className="px-4 py-2 -mb-px border-b-2 border-transparent data-[state=active]:border-black data-[state=active]:text-black rounded-none font-semibold">Reviews</TabsTrigger>
+               <TabsTrigger value="description" className="px-4 py-2 -mb-px border-b-1 border-transparent data-[state=active]:border-black data-[state=active]:text-black rounded-none font-semibold">Description</TabsTrigger>
+               <TabsTrigger value="specifications" className="px-4 py-2 -mb-px border-b-1 border-transparent data-[state=active]:border-black data-[state=active]:text-black rounded-none font-semibold">Specifications</TabsTrigger>
+               <TabsTrigger value="reviews" className="px-4 py-2 -mb-px border-b-1 border-transparent data-[state=active]:border-black data-[state=active]:text-black rounded-none font-semibold">Reviews</TabsTrigger>
              </TabsList>
              <TabsContent value="description" className="pt-8 prose prose-gray max-w-none">
                 <p>{product.longDescription}</p>

@@ -25,7 +25,7 @@ export default async function ProductsPage() {
               )}
               <h2 className="text-xl font-semibold truncate">{product.name}</h2>
               <p className="text-gray-600 text-sm line-clamp-2 mb-2">{product.description}</p>
-              <p className="font-bold text-lg">₹{product.price?.toLocaleString()}</p>
+              {/* <p className="font-bold text-lg">₹{product.price?.toLocaleString()}</p> */}
             </div>
           </Link>
         ))}

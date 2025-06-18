@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { FaShieldAlt, FaAward, FaUsers, FaClock } from "react-icons/fa";
+import { FaShieldAlt, FaAward, FaUsers, FaClock, FaBullseye } from "react-icons/fa";
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import handShake from "@/public/handshake.jpg"
@@ -66,87 +66,94 @@ const page = () => {
         </div>
       </section>
 
-      <section className="w-full py-12 md:py-24 bg-gray-50 flex items-center justify-center">
-        <div className="w-full max-w-6xl px-4 md:px-6">
-          <div className="flex flex-col items-center justify-center space-y-4 text-center">
-            <div className="space-y-2">
-              <div className="inline-block rounded-lg bg-gray-100 px-3 py-1 text-sm">
-                Our Purpose
-              </div>
-              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">
-                Mission & Values
-              </h2>
-              <p className="mx-auto max-w-[700px] text-gray-500 md:text-lg">
-                Our mission guides everything we do, and our values define how
-                we do it
-              </p>
-            </div>
+      <section className="w-full py-16 md:py-24 bg-gray-50">
+      <div className="w-full max-w-6xl mx-auto px-4 md:px-6">
+        {/* Section Header */}
+        <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12">
+          <div className="inline-block rounded-lg bg-gray-100 px-3 py-1 text-sm font-medium text-gray-700">
+            Our Purpose
           </div>
+          <h2 className="text-3xl font-bold tracking-tighter text-gray-900 sm:text-4xl">
+            Mission & Values
+          </h2>
+          <p className="mx-auto max-w-[700px] text-gray-600 md:text-lg">
+            Our mission guides everything we do, and our values define how we do it.
+          </p>
+        </div>
 
-          <div className="mx-auto mt-12 text-center">
-            <div className="mb-12">
-              <h3 className="text-2xl font-bold mb-4">Our Mission</h3>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                To provide peace of mind through innovative security solutions
-                that protect what matters most to our customers.
-              </p>
+        {/* Our Mission - Unified Card Style */}
+        <div className="mb-16 flex justify-center">
+          <div className="w-full max-w-3xl bg-white rounded-xl shadow-lg border border-gray-100 p-8 text-center flex flex-col items-center">
+            <div className="flex h-16 w-16 items-center justify-center rounded-full bg-blue-100 text-blue-600 mb-6">
+              <FaBullseye className="h-8 w-8" /> 
             </div>
-
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4 justify-center">
-              <Card>
-                <CardContent className="p-6 flex flex-col items-center text-center">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary mb-4">
-                    <FaShieldAlt className="h-6 w-6" />
-                  </div>
-                  <h4 className="font-bold">Integrity</h4>
-                  <p className="text-sm text-gray-500 mt-2">
-                    We operate with honesty and transparency in all our
-                    dealings.
-                  </p>
-                </CardContent>
-              </Card>
-
-              <Card>
-                <CardContent className="p-6 flex flex-col items-center text-center">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary mb-4">
-                    <FaAward className="h-6 w-6" />
-                  </div>
-                  <h4 className="font-bold">Excellence</h4>
-                  <p className="text-sm text-gray-500 mt-2">
-                    We strive for excellence in every product and service we
-                    provide.
-                  </p>
-                </CardContent>
-              </Card>
-
-              <Card>
-                <CardContent className="p-6 flex flex-col items-center text-center">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary mb-4">
-                    <FaUsers className="h-6 w-6" />
-                  </div>
-                  <h4 className="font-bold">Customer Focus</h4>
-                  <p className="text-sm text-gray-500 mt-2">
-                    Our customers needs drive our decisions and innovations.
-                  </p>
-                </CardContent>
-              </Card>
-
-              <Card>
-                <CardContent className="p-6 flex flex-col items-center text-center">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary mb-4">
-                    <FaClock className="h-6 w-6" />
-                  </div>
-                  <h4 className="font-bold">Reliability</h4>
-                  <p className="text-sm text-gray-500 mt-2">
-                    We deliver on our promises and stand behind our products and
-                    services.
-                  </p>
-                </CardContent>
-              </Card>
-            </div>
+            <h3 className="text-3xl font-bold text-gray-900 mb-4">Our Mission</h3>
+            <p className="text-xl text-gray-700 max-w-2xl leading-relaxed">
+              To provide peace of mind through innovative security solutions
+              that protect what matters most to our customers.
+            </p>
           </div>
         </div>
-      </section>
+
+        {/* Our Values - Existing Card Grid (slightly refined for consistency) */}
+        <div className="text-center">
+          <h3 className="text-3xl font-bold text-gray-900 mb-8">Our Core Values</h3> {/* Changed heading */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            {/* Value Card 1: Integrity */}
+            <Card className="rounded-xl shadow-md border border-gray-100 hover:shadow-lg transition-shadow duration-200">
+              <CardContent className="p-6 flex flex-col items-center text-center">
+                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-purple-100 text-purple-600 mb-4">
+                  <FaShieldAlt className="h-6 w-6" />
+                </div>
+                <h4 className="font-bold text-lg text-gray-900">Integrity</h4>
+                <p className="text-sm text-gray-600 mt-2">
+                  We operate with honesty and transparency in all our dealings.
+                </p>
+              </CardContent>
+            </Card>
+
+            {/* Value Card 2: Excellence */}
+            <Card className="rounded-xl shadow-md border border-gray-100 hover:shadow-lg transition-shadow duration-200">
+              <CardContent className="p-6 flex flex-col items-center text-center">
+                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-green-100 text-green-600 mb-4">
+                  <FaAward className="h-6 w-6" />
+                </div>
+                <h4 className="font-bold text-lg text-gray-900">Excellence</h4>
+                <p className="text-sm text-gray-600 mt-2">
+                  We strive for excellence in every product and service we provide.
+                </p>
+              </CardContent>
+            </Card>
+
+            {/* Value Card 3: Customer Focus */}
+            <Card className="rounded-xl shadow-md border border-gray-100 hover:shadow-lg transition-shadow duration-200">
+              <CardContent className="p-6 flex flex-col items-center text-center">
+                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-yellow-100 text-yellow-600 mb-4">
+                  <FaUsers className="h-6 w-6" />
+                </div>
+                <h4 className="font-bold text-lg text-gray-900">Customer Focus</h4>
+                <p className="text-sm text-gray-600 mt-2">
+                  Our customers&apos; needs drive our decisions and innovations.
+                </p>
+              </CardContent>
+            </Card>
+
+            {/* Value Card 4: Reliability */}
+            <Card className="rounded-xl shadow-md border border-gray-100 hover:shadow-lg transition-shadow duration-200">
+              <CardContent className="p-6 flex flex-col items-center text-center">
+                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-red-100 text-red-600 mb-4">
+                  <FaClock className="h-6 w-6" />
+                </div>
+                <h4 className="font-bold text-lg text-gray-900">Reliability</h4>
+                <p className="text-sm text-gray-600 mt-2">
+                  We deliver on our promises and stand behind our products and services.
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </div>
+    </section>
 
       <section className="w-full min-h-screen flex items-center justify-center bg-white py-12 md:py-24">
         <div className="container max-w-4xl px-4 md:px-6">
@@ -245,20 +252,20 @@ const page = () => {
     <div className="mx-auto grid max-w-5xl grid-cols-1 gap-6 md:grid-cols-2 mt-12">
       {[
         {
-          quote: `"SecureVision transformed our security infrastructure. Their team was professional from start to finish, and the system they installed has already prevented several potential incidents."`,
-          name: "- Robert Johnson, Small Business Owner",
+          quote: `"Exceptional professionalism from start to finish. The administrative staff, the owner, and the CCTV security camera engineers were courteous and knowledgeable. The engineers took the time to discuss optimal camera positioning, meticulously programmed our devices, and executed a clean installation with neatly concealed wires. The service provided by this team is not only top-notch but also offers great value for money when compared to other quotes. Highly recommended!"`,
+          name: "- Mukesh Soni",
         },
         {
-          quote: `"As a property manager, I've worked with many security companies. SecureVision stands out for their attention to detail and ongoing support. They don't just sell you a system and disappear."`,
-          name: "- Sarah Williams, Property Manager",
+          quote: `"The team exhibited exceptional courtesy, and their prompt response to my call was truly commendable. The immediate and efficient service they provided reflects their dedication to customer satisfaction. I am highly impressed and would confidently recommend their services. In a world where reliable service matters, they've certainly set a commendable standard."`,
+          name: "- Ajay Shinde",
         },
         {
-          quote: `"The peace of mind that comes with our SecureVision system is priceless. The mobile app makes it easy to check on our home when we're away, and the customer service is exceptional."`,
-          name: "- James and Maria Garcia, Homeowners",
+          quote: `"Appreciate Champion Security system commitment to continuous improvement. They keep us updated on new features and upgrades for our CCTV system.Their support team is efficient and helpful."`,
+          name: "- Kajal",
         },
         {
-          quote: `"We needed a complex security solution for multiple retail locations. SecureVision designed a custom system that integrated perfectly with our existing infrastructure. Highly recommended!"`,
-          name: "- David Chen, Retail Chain Director",
+          quote: `"I recently had a CCTV system installed by Champion Security Systems and I am extremely satisfied with the results. The Installation process was quick and hassle-free and the technicians were professional and knowledgeable. I appreciate the thoroughness of their work and would highly recommend this company to those in need of reliable and effective security solutions."`,
+          name: "- Pralhad Joglekar",
         },
       ].map((item, idx) => (
         <div

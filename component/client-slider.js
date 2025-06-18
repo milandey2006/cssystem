@@ -269,15 +269,16 @@ export default function CSSClientsSlider() {
         <div className="flex flex-wrap justify-center items-center gap-4 md:gap-8 text-md text-gray-600">
           <div className="flex items-center space-x-2">
             <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-            <span>500+ Satisfied Clients</span>
-          </div>
-          <div className="flex items-center space-x-2">
-            <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+
             <span>15+ Technology Partners</span>
           </div>
           <div className="flex items-center space-x-2">
-            <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
+            <div className="w-2 h-2 bg-green-500 rounded-full"></div>
             <span>Since 2005</span>
+          </div>
+          <div className="flex items-center space-x-2">
+            <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
+            <span>500+ Satisfied Clients</span>
           </div>
         </div>
       </div>
