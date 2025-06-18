@@ -215,6 +215,7 @@ const Page = () => {
                     required
                   />
                 </div>
+                <div className="grid gap-4 sm:grid-cols-2">
                 <div className="space-y-2">
                   <Label htmlFor="phone">Phone</Label>
                   <Input
@@ -240,6 +241,7 @@ const Page = () => {
                       <SelectItem value="other">Other</SelectItem>
                     </SelectContent>
                   </Select>
+                </div>
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="message">Message</Label>
@@ -271,7 +273,7 @@ const Page = () => {
               <div className="aspect-video w-full rounded-lg overflow-hidden">
                 <div className="w-full h-full bg-gray-200 flex items-center justify-center">
                   <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d396.2326147966675!2d72.84663797966506!3d19.12426868836465!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7ce22f2c547b5%3A0x8cbc117b429754f9!2sChampion%20Security%20System%2C%20Honeywell%2C%20Matrix%2C%20Panasonic%20CCTV%20Camera%20%26%20VDP%20Installation%20and%20services%20in%20mumbai%20And%20Local%20Area!5e0!3m2!1sen!2sin!4v1749404213115!5m2!1sen!2sin" // This URL is likely incorrect for a working map. Consider a proper Google Maps embed URL.
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d396.2326147966675!2d72.84663797966506!3d19.12426868836465!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7ce22f2c547b5%3A0x8cbc117b429754f9!2sChampion%20Security%20System%2C%20Honeywell%2C%20Matrix%2C%20Panasonic%20CCTV%20Camera%20%26%20VDP%20Installation%20and%20services%20in%20mumbai%20And%20Local%20Area!5e0!3m2!1sen!2sin!4v1749404213115!5m2!1sen!2sin"
                     width="100%"
                     height="450"
                     style={{ border: 0 }}
@@ -285,19 +287,15 @@ const Page = () => {
                 <h3 className="font-bold text-lg">Why Choose Champion Security System?</h3>
                 <div className="space-y-2 text-gray-600">
                   <div className="flex items-start gap-2">
-                    {/* <CheckCircle className="h-5 w-5 text-primary mt-0.5" /> */}
                     Expert consultation tailored to your specific security needs
                   </div>
                   <div className="flex items-start gap-2">
-                    {/* <CheckCircle className="h-5 w-5 text-primary mt-0.5" /> */}
                     Professional installation by certified technicians
                   </div>
                   <div className="flex items-start gap-2">
-                    {/* <CheckCircle className="h-5 w-5 text-primary mt-0.5" /> */}
                     Ongoing support and maintenance services
                   </div>
                   <div className="flex items-start gap-2">
-                    {/* <CheckCircle className="h-5 w-5 text-primary mt-0.5" /> */}
                     Competitive pricing with flexible payment options
                   </div>
                 </div>

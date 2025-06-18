@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 import networkCameraImage from "@/public/network-camera.jpg";
 import videoDoorPhoneImage from "@/public/video-door-phone.png";
@@ -89,10 +90,13 @@ const FeaturedProducts = () => {
         </div>
         
         <div className="mt-16 flex justify-center">
+          <Link href="/products" passHref>
             <Button variant="outline" size="lg" className="bg-white">
                 View All Products
                 <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
+          </Link>
+
         </div>
       </div>
     </section>

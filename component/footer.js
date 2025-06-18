@@ -57,7 +57,9 @@ const Footer = () => {
               <li><Link href="#" className="text-gray-400 hover:text-white">Services</Link></li>
               <li><Link href="#" className="text-gray-400 hover:text-white">About Us</Link></li>
               <li><Link href="#" className="text-gray-400 hover:text-white">Contact</Link></li>
-              <li><Link href="#" className="text-gray-400 hover:text-white">Company Profile</Link></li>
+              <li><a href='/public/documents/profile.pdf' target="_blank" rel="noopener noreferrer" download="profile.pdf" className="text-blue-500 hover:underline">
+          View My Profile (PDF)
+        </a></li>
             </ul>
           </div>
 
