@@ -10,6 +10,7 @@ import networkCameraImage from "@/public/network-camera.jpg";
 import videoDoorPhoneImage from "@/public/video-door-phone.png";
 import biometricImage from "@/public/biometric-access.jpg";
 import wirelessCameraImage from "@/public/wireless-camera.jpg";
+import digitalDoorLockImage from "@/public/yale.jpg"; 
 
 const products = [
     {
@@ -44,6 +45,14 @@ const products = [
         image: wirelessCameraImage,
         alt: "Wireless Camera"
     },
+    {
+        category: "Digital Door Locks",
+        title: "Smart Digital Door Lock",
+        description: "Keyless entry with fingerprint, password, and remote access",
+        badge: "Popular",
+        image: digitalDoorLockImage,
+        alt: "Digital Door Lock"
+    },
 ];
 
 const FeaturedProducts = () => {
@@ -59,7 +68,7 @@ const FeaturedProducts = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8">
           {products.map((product, index) => (
             <Card key={index} className="overflow-hidden flex flex-col">
               <div className="relative aspect-square w-full">

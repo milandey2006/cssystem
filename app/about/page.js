@@ -12,7 +12,7 @@ const page = () => {
     <div>
       <section className="bg-gray-900 text-white py-20 px-4">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">About US</h2>
+          <h2 className="text-4xl md:text-5xl font-bold mb-4">About Us</h2>
           <p className="text-lg md:text-xl text-gray-300 mb-8">
             Champion Security System has been at the forefront of security technology,
             providing innovative solutions to protect homes and businesses for

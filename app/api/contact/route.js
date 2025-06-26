@@ -12,7 +12,7 @@ export async function POST(req) {
 
     const data = await resend.emails.send({
       from: 'Champion Security System <onboarding@resend.dev>',
-      to: ['deymilan066@gmail.com'], // <--- YAHAN TU APNA EMAIL DALEGA
+      to: ['deyr5598@gmail.com'], // <--- YAHAN TU APNA EMAIL DALEGA
       subject: `New Inquiry from ${firstName} ${lastName}`,
       html: `
         <p><strong>Name:</strong> ${firstName} ${lastName}</p>
