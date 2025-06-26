@@ -19,7 +19,7 @@ const Footer = () => {
             <Button variant="outline" className="bg-white text-gray-900 hover:bg-gray-200">
               Get a Quote
             </Button>
-            <Button className="bg-white text-gray-900 hover:bg-gray-200">
+            <Button variant="outline" className="bg-white text-gray-900 hover:bg-gray-200">
               Contact Sales
             </Button>
           </div>
