@@ -38,7 +38,7 @@ const Page = () => {
       title: "Call Us",
       content: [
         "Sales: +91 8080806288",
-        "Support: +91 8080808109",
+        // "Support: +91 8080808109",
         "Landline: 022-31476838",
       ],
     },
@@ -83,19 +83,19 @@ const Page = () => {
         "Yes, we provide 24/7 emergency service for our maintenance plan customers. For non-plan customers, emergency services are available at an additional fee.",
     },
     {
-      question: "What areas do you service?",
+      question: "Which areas do you service?",
       answer:
         "We currently service the greater metropolitan area and surrounding suburbs within a 50-mile radius of our main office. For locations outside this area, please contact us for special arrangements.",
     },
     {
       question: "Do you offer free consultations?",
       answer:
-        "Yes, we offer free on-site security consultations for both residential and commercial properties. Our security experts will assess your needs and provide recommendations tailored to your specific situation.",
+        "Yes, if you are satisfied with the quotation we offer free on-site security consultations for both residential and commercial properties. Our security experts will assess your needs and provide recommendations tailored to your specific situation.",
     },
     {
       question: "What payment methods do you accept?",
       answer:
-        "We accept all major credit cards, checks, and electronic bank transfers. We also offer financing options for larger installations with approved credit.",
+        "We accept all types of cheques, UPI and electronic bank transfers.",
     },
     {
       question: "Do your systems require a monthly subscription?",

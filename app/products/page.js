@@ -354,10 +354,10 @@ export default function ProductsPage() {
             <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-5">
               {filteredProducts.map(product => (
                 <Link href={`/products/${product._id}`} key={product._id}>
-                  <Card className="group hover:shadow-lg transition-all duration-200 hover:-translate-y-1 overflow-hidden">
+                  <Card className="group hover:shadow-lg transition-all duration-200 hover:-translate-y-1 overflow-hidden h-90">
                     {/* Product Badge */}
                     {product.badge && (
-                      <div className="absolute top-2 right-2 z-10">
+                      <div className="absolute top-2 right-2 z-2">
                         <span className="inline-block px-2 py-1 text-xs font-semibold bg-black text-white rounded">
                           {product.badge}
                         </span>
