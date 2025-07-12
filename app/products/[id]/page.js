@@ -78,7 +78,7 @@ export default function ProductPageId() {
       const result = await res.json();
       
       if (result.success) {
-        alert("Price request submitted successfully! We'll get back to you soon.");
+        alert("Price request submitted successfully! Well get back to you soon.");
         setDialogOpen(false);
         setFormData({
           name: "",
@@ -302,7 +302,7 @@ export default function ProductPageId() {
                     <DialogHeader>
                       <DialogTitle>Request Price Quote</DialogTitle>
                       <DialogDescription>
-                        Fill out the form below and we'll get back to you with pricing information.
+                        Fill out the form below and well get back to you with pricing information.
                       </DialogDescription>
                     </DialogHeader>
                     <div className="grid gap-4 py-4">
@@ -446,7 +446,7 @@ export default function ProductPageId() {
 
                   <div>
                     <h3 className="font-bold text-xl text-gray-900 mb-4">
-                      What's in the Box
+                      Whats in the Box
                     </h3>
                     <ul className="space-y-2">
                       {product.whatsInTheBox?.map((item, i) => (
