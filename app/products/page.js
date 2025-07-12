@@ -366,11 +366,11 @@ export default function ProductsPage() {
                     
                     {/* Product Image */}
                     {product.imageUrl && (
-                      <div className="relative w-full h-48 overflow-hidden bg-gray-100">
+                      <div className="relative w-full md:h-48 sm:90 overflow-hidden bg-white aspect-square">
                         <img 
                           src={product.imageUrl} 
                           alt={product.name} 
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-200"
+                          className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-200"
                           loading="lazy"
                         />
                       </div>
