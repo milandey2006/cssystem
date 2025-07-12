@@ -239,17 +239,17 @@ const page = () => {
         <div className="inline-block rounded-lg bg-gray-100 px-3 py-1 text-sm text-gray-700">
           Testimonials
         </div>
-        <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">
+        {/* <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">
           What Our Clients Say
         </h2>
         <p className="mx-auto max-w-[700px] text-gray-500 md:text-lg">
           Dont just take our word for it - hear from our satisfied customers
-        </p>
+        </p> */}
       </div>
     </div>
 
     {/* Testimonials Grid */}
-    <div className="mx-auto grid max-w-5xl grid-cols-1 gap-6 md:grid-cols-2 mt-12">
+    {/* <div className="mx-auto grid max-w-5xl grid-cols-1 gap-6 md:grid-cols-2 mt-12">
       {[
         {
           quote: `"Exceptional professionalism from start to finish. The administrative staff, the owner, and the CCTV security camera engineers were courteous and knowledgeable. The engineers took the time to discuss optimal camera positioning, meticulously programmed our devices, and executed a clean installation with neatly concealed wires. The service provided by this team is not only top-notch but also offers great value for money when compared to other quotes. Highly recommended!"`,
@@ -274,7 +274,6 @@ const page = () => {
         >
           <div className="flex items-start space-x-4">
             <div className="rounded-full bg-gray-100 p-2">
-              {/* <Shield className="h-6 w-6 text-gray-600" /> */}
             </div>
             <div>
               <p className="text-gray-500 italic mb-4">{item.quote}</p>
@@ -283,7 +282,10 @@ const page = () => {
           </div>
         </div>
       ))}
-    </div>
+    </div> */}
+
+     <script src="https://static.elfsight.com/platform/platform.js" data-use-service-core defer></script>
+                <div className="elfsight-app-13ffe455-64fd-42a5-8966-7153d87beb9a" data-elfsight-app-lazy></div>
   </div>
 </section>
     </div>

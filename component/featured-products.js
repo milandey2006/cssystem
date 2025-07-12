@@ -68,6 +68,7 @@ const FeaturedProducts = () => {
           </p>
         </div>
 
+<Link href="/products" passHref>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8">
           {products.map((product, index) => (
             <Card key={index} className="overflow-hidden flex flex-col">
@@ -97,6 +98,7 @@ const FeaturedProducts = () => {
             </Card>
           ))}
         </div>
+        </Link>
         
         <div className="mt-16 flex justify-center">
           <Link href="/products" passHref>

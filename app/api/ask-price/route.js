@@ -10,8 +10,8 @@ export async function POST(req) {
 
     // Admin Email
 const adminEmail = await resend.emails.send({
-  from: 'Champion Security System <onboarding@resend.dev>',
-  to: ['csscctvcam@gmail.com'],
+  from: 'Champion Security System <info@championsecuritysystem.com>',
+  to: ['info@championsecuritysystem.com'],
   replyTo: [email], // OPTIONAL: makes replies go to customer
   subject: `Price Request - ${productName}`,
   html: `
