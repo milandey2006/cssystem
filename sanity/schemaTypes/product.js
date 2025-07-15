@@ -29,7 +29,7 @@ export default {
       name: 'longDescription',
       title: 'Long Description',
       type: 'text',
-      validation: Rule => Rule.required()
+      // validation: Rule => Rule.required()
     },
     {
       name: 'price',
@@ -64,25 +64,25 @@ export default {
       name: 'stock',
       title: 'Stock',
       type: 'number',
-      validation: Rule => Rule.required().min(0)
+      // validation: Rule => Rule.required().min(0)
     },
     {
       name: 'sku',
       title: 'SKU',
       type: 'string',
-      validation: Rule => Rule.required()
+      // validation: Rule => Rule.required()
     },
     {
       name: 'rating',
       title: 'Rating',
       type: 'number',
-      validation: Rule => Rule.required().min(0).max(5)
+      // validation: Rule => Rule.required().min(0).max(5)
     },
     {
       name: 'reviewCount',
       title: 'Review Count',
       type: 'number',
-      validation: Rule => Rule.required().min(0)
+      // validation: Rule => Rule.required().min(0)
     },
     {
       name: 'keyFeatures',
@@ -96,7 +96,7 @@ export default {
       title: 'What\'s in the Box',
       type: 'array',
       of: [{ type: 'string' }],
-      validation: Rule => Rule.required()
+      // validation: Rule => Rule.required()
     },
     {
       name: 'specifications',
