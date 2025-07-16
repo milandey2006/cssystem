@@ -20,6 +20,8 @@ import {
 } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
 import { useForm } from "react-hook-form";
+import Image from "next/image";
+import banner from "@/public/contact/banner.jpg"
 
 // Change 'page' to 'Page'
 const Page = () => {
@@ -131,14 +133,21 @@ const Page = () => {
   };
   return (
     <div>
-      <section className="bg-gray-900 text-white py-20 px-4">
-        <div className="max-w-4xl mx-auto text-center">
+
+
+      <section className="relative bg-gray-900 text-white py-20 px-4">
+        <Image
+          src={banner}
+          className="absolute inset-0 object-cover w-full h-full z-0"
+          alt="Security services banner"
+        />
+        <div className="absolute inset-0 bg-black/30 z-10"></div>
+        <div className="relative z-20 max-w-4xl mx-auto text-center">
           <h2 className="text-4xl md:text-5xl font-bold mb-4">Get In Touch</h2>
           <p className="text-lg md:text-xl text-gray-300 mb-8">
             Have questions or need a quote? Our team is here to help with all
             your security needs.
           </p>
-          <div className="flex justify-center gap-4"></div>
         </div>
       </section>
 
@@ -216,32 +225,36 @@ const Page = () => {
                   />
                 </div>
                 <div className="grid gap-4 sm:grid-cols-2">
-                <div className="space-y-2">
-                  <Label htmlFor="phone">Phone</Label>
-                  <Input
-                    id="phone"
-                    {...register("phone")}
-                    placeholder="(555) 123-4567"
-                    type="tel"
-                  />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="inquiryType">Inquiry Type</Label>
-                  <Select onValueChange={(val) => setValue("inquiryType", val)}>
-                    <SelectTrigger id="inquiryType">
-                      <SelectValue placeholder="Select an inquiry type" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="sales">Sales Inquiry</SelectItem>
-                      <SelectItem value="support">Technical Support</SelectItem>
-                      <SelectItem value="installation">
-                        Installation Services
-                      </SelectItem>
-                      <SelectItem value="quote">Request a Quote</SelectItem>
-                      <SelectItem value="other">Other</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="phone">Phone</Label>
+                    <Input
+                      id="phone"
+                      {...register("phone")}
+                      placeholder="(555) 123-4567"
+                      type="tel"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="inquiryType">Inquiry Type</Label>
+                    <Select
+                      onValueChange={(val) => setValue("inquiryType", val)}
+                    >
+                      <SelectTrigger id="inquiryType">
+                        <SelectValue placeholder="Select an inquiry type" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="sales">Sales Inquiry</SelectItem>
+                        <SelectItem value="support">
+                          Technical Support
+                        </SelectItem>
+                        <SelectItem value="installation">
+                          Installation Services
+                        </SelectItem>
+                        <SelectItem value="quote">Request a Quote</SelectItem>
+                        <SelectItem value="other">Other</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="message">Message</Label>
@@ -284,7 +297,9 @@ const Page = () => {
                 </div>
               </div>
               <div className="space-y-4">
-                <h3 className="font-bold text-lg">Why Choose Champion Security System?</h3>
+                <h3 className="font-bold text-lg">
+                  Why Choose Champion Security System?
+                </h3>
                 <div className="space-y-2 text-gray-600">
                   <div className="flex items-start gap-2">
                     Expert consultation tailored to your specific security needs
