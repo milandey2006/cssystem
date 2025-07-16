@@ -1,8 +1,10 @@
+
 import "./globals.css";
 import { Inter } from 'next/font/google'
 
 import Header from "../component/header";
 import Footer from "../component/footer";
+// import GlobalMouseFollower from "@/component/GlobalMouseFollower";
 const inter = Inter({ subsets: ["latin"] })
 
 
@@ -58,12 +60,16 @@ export const metadata = {
 
 
 export default function RootLayout({ children }) {
+  
   return (
     <html lang="en">
+      <head>
+      </head>
       <body
         className={inter.className}
       >
         <div className="relative flex min-h-screen flex-col">
+          {/* <GlobalMouseFollower /> */}
             <Header />
             <main className="flex-1">{children}</main>
             <Footer />

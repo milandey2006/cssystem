@@ -7,6 +7,8 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Card, CardContent } from "@/components/ui/card"
+import Image from 'next/image'
+import banner from '@/public/products/banner.jpg'
 
 // Main Products Page Component
 export default function ProductsPage() {
@@ -288,8 +290,27 @@ export default function ProductsPage() {
   )
 
   return (
+    <>
+      <section className="relative bg-gray-900 text-white py-20 px-4">
+              <Image
+                src={banner}
+                className="absolute inset-0 object-cover w-full h-full z-0"
+                alt="Security services banner"
+              />
+              <div className="absolute inset-0 bg-black/30 z-10"></div>
+              <div className="relative z-20 max-w-4xl mx-auto text-center">
+                <h2 className="text-4xl md:text-5xl font-bold mb-4">
+                  Our Product
+                </h2>
+                <p className="text-lg md:text-xl text-gray-300 mb-8">
+                 Champion Security System has been at the forefront of security technology,
+            providing innovative solutions to protect homes and businesses for
+            over 17 years
+                </p>
+              </div>
+            </section>
     <div className="container mx-auto py-6 lg:py-12 px-4">
-      <h1 className="text-3xl font-bold mb-8">Our Products</h1>
+      
       
       <div className="flex flex-col lg:flex-row gap-8">
         {/* Mobile Filter Button */}
@@ -448,5 +469,6 @@ export default function ProductsPage() {
         </div>
       </div>
     </div>
+    </>
   )
 }

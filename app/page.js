@@ -6,6 +6,8 @@ import Testimonials from '@/component/testimonials';
 import HeroSection from '@/component/hero';
 import CSSClientsSlider from '@/component/client-slider';
 
+
+
 export default function Home() {
   return (
     <div>
