@@ -53,6 +53,18 @@ export default {
       name: 'category',
       title: 'Category',
       type: 'string',
+      options: {
+        list: [
+          { title: 'WIFI Camera', value: 'Wifi Camera' },
+          { title: 'Network Video Recorder', value: 'Network Video Recorder' },
+          { title: 'Network Camera', value: 'Network Camera' },
+          { title: 'Biometrics', value: 'Biometrics' },
+          { title: 'Access Control', value: 'Access Control' },
+          { title: 'Digital Door Lock', value: 'Digital Door Lock' },
+          { title: 'SIP Phone', value: 'SIP Phone' },
+          { title: 'Video Door Phone', value: 'Video Door Phone' },
+        ],
+      },
       validation: Rule => Rule.required()
     },
     {

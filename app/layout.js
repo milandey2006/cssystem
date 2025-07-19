@@ -4,6 +4,7 @@ import { Inter } from 'next/font/google'
 
 import Header from "../component/header";
 import Footer from "../component/footer";
+import WhatsAppButton from "@/component/WhatsAppButton";
 // import GlobalMouseFollower from "@/component/GlobalMouseFollower";
 const inter = Inter({ subsets: ["latin"] })
 
@@ -73,6 +74,10 @@ export default function RootLayout({ children }) {
             <Header />
             <main className="flex-1">{children}</main>
             <Footer />
+            <WhatsAppButton
+            phoneNumber="+918080806288" // Replace with your actual WhatsApp number
+            message="Hello! I'm interested in your services."
+            />
           </div>
       </body>
     </html>

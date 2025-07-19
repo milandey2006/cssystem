@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { client } from '@/lib/sanity'
-import { Search, X, Filter } from 'lucide-react'
+import { Search, X, Filter, ChevronLeft, ChevronRight } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Checkbox } from "@/components/ui/checkbox"
@@ -18,6 +18,10 @@ export default function ProductsPage() {
   const [filteredProducts, setFilteredProducts] = useState([])
   const [loading, setLoading] = useState(true)
   const [isMobileFilterOpen, setIsMobileFilterOpen] = useState(false)
+  
+  // Pagination states
+  const [currentPage, setCurrentPage] = useState(1)
+  const productsPerPage = 10 // 2 rows × 5 columns = 10 products per page
   
   // Filter states
   const [selectedCategories, setSelectedCategories] = useState([])
@@ -50,6 +54,18 @@ export default function ProductsPage() {
     '4K / 8MP'
   ]
 
+  // Function to normalize category names
+  const normalizeCategory = (category) => {
+    if (!category) return ''
+    return category
+      .toLowerCase()
+      .trim()
+      .replace(/\s+/g, ' ') // Replace multiple spaces with single space
+      .split(' ')
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(' ')
+  }
+
   // Fetch products and categories
   useEffect(() => {
     const fetchData = async () => {
@@ -71,12 +87,22 @@ export default function ProductsPage() {
           }
         `)
         
-        // Extract unique categories
-        const uniqueCategories = [...new Set(productsData.map(product => product.category).filter(Boolean))].sort()
+        // Normalize categories for each product
+        const normalizedProducts = productsData.map(product => ({
+          ...product,
+          normalizedCategory: normalizeCategory(product.category)
+        }))
         
-        setProducts(productsData)
+        // Extract unique normalized categories
+        const uniqueCategories = [...new Set(
+          normalizedProducts
+            .map(product => product.normalizedCategory)
+            .filter(Boolean)
+        )].sort()
+        
+        setProducts(normalizedProducts)
         setAllCategories(uniqueCategories)
-        setFilteredProducts(productsData)
+        setFilteredProducts(normalizedProducts)
         setLoading(false)
       } catch (error) {
         console.error('Error fetching products:', error)
@@ -102,7 +128,7 @@ export default function ProductsPage() {
     // Category filter
     if (selectedCategories.length > 0) {
       filtered = filtered.filter(product => 
-        selectedCategories.includes(product.category)
+        selectedCategories.includes(product.normalizedCategory)
       )
     }
 
@@ -130,7 +156,34 @@ export default function ProductsPage() {
     }
 
     setFilteredProducts(filtered)
+    // Reset to first page when filters change
+    setCurrentPage(1)
   }, [searchTerm, selectedCategories, selectedPriceRanges, selectedFeatures, selectedResolutions, products])
+
+  // Calculate pagination
+  const totalPages = Math.ceil(filteredProducts.length / productsPerPage)
+  const startIndex = (currentPage - 1) * productsPerPage
+  const endIndex = startIndex + productsPerPage
+  const currentProducts = filteredProducts.slice(startIndex, endIndex)
+
+  // Pagination handlers
+  const handlePageChange = (page) => {
+    setCurrentPage(page)
+    // Scroll to top of products section
+    window.scrollTo({ top: 400, behavior: 'smooth' })
+  }
+
+  const handlePrevPage = () => {
+    if (currentPage > 1) {
+      handlePageChange(currentPage - 1)
+    }
+  }
+
+  const handleNextPage = () => {
+    if (currentPage < totalPages) {
+      handlePageChange(currentPage + 1)
+    }
+  }
 
   // Filter handlers
   const handleCategoryChange = (category, checked) => {
@@ -171,6 +224,7 @@ export default function ProductsPage() {
     setSelectedFeatures([])
     setSelectedResolutions([])
     setSearchTerm('')
+    setCurrentPage(1)
   }
 
   const hasActiveFilters = selectedCategories.length > 0 || selectedPriceRanges.length > 0 || 
@@ -289,6 +343,92 @@ export default function ProductsPage() {
     </div>
   )
 
+  // Pagination Component
+  const Pagination = () => {
+    if (totalPages <= 1) return null
+
+    const getPageNumbers = () => {
+      const pages = []
+      const maxVisible = 5
+
+      if (totalPages <= maxVisible) {
+        for (let i = 1; i <= totalPages; i++) {
+          pages.push(i)
+        }
+      } else {
+        if (currentPage <= 3) {
+          for (let i = 1; i <= 4; i++) {
+            pages.push(i)
+          }
+          pages.push('...')
+          pages.push(totalPages)
+        } else if (currentPage >= totalPages - 2) {
+          pages.push(1)
+          pages.push('...')
+          for (let i = totalPages - 3; i <= totalPages; i++) {
+            pages.push(i)
+          }
+        } else {
+          pages.push(1)
+          pages.push('...')
+          pages.push(currentPage - 1)
+          pages.push(currentPage)
+          pages.push(currentPage + 1)
+          pages.push('...')
+          pages.push(totalPages)
+        }
+      }
+
+      return pages
+    }
+
+    return (
+      <div className="flex items-center justify-center gap-2 mt-8">
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={handlePrevPage}
+          disabled={currentPage === 1}
+          className="flex items-center gap-1"
+        >
+          <ChevronLeft size={16} />
+          Previous
+        </Button>
+
+        <div className="flex items-center gap-1">
+          {getPageNumbers().map((page, index) => (
+            page === '...' ? (
+              <span key={index} className="px-3 py-1 text-muted-foreground">
+                ...
+              </span>
+            ) : (
+              <Button
+                key={index}
+                variant={currentPage === page ? "default" : "outline"}
+                size="sm"
+                onClick={() => handlePageChange(page)}
+                className="w-10 h-10 p-0"
+              >
+                {page}
+              </Button>
+            )
+          ))}
+        </div>
+
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={handleNextPage}
+          disabled={currentPage === totalPages}
+          className="flex items-center gap-1"
+        >
+          Next
+          <ChevronRight size={16} />
+        </Button>
+      </div>
+    )
+  }
+
   return (
     <>
       <section className="relative bg-gray-900 text-white py-20 px-4">
@@ -366,92 +506,104 @@ export default function ProductsPage() {
           </div>
 
           {/* Results Info */}
-          <div className="mb-6 text-muted-foreground">
-            <p>Showing {filteredProducts.length} of {products.length} products</p>
+          <div className="mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+            <p className="text-muted-foreground">
+              Showing {startIndex + 1}-{Math.min(endIndex, filteredProducts.length)} of {filteredProducts.length} products
+            </p>
+            {totalPages > 1 && (
+              <p className="text-sm text-muted-foreground">
+                Page {currentPage} of {totalPages}
+              </p>
+            )}
           </div>
 
           {/* Products Grid */}
-          {filteredProducts.length > 0 ? (
-            <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-5">
-              {filteredProducts.map(product => (
-                <Link href={`/products/${product._id}`} key={product._id}>
-                  <Card className="group hover:shadow-lg transition-all duration-200 hover:-translate-y-1 overflow-hidden h-90">
-                    {/* Product Badge */}
-                    {product.badge && (
-                      <div className="absolute top-2 right-2 z-2">
-                        <span className="inline-block px-2 py-1 text-xs font-semibold bg-black text-white rounded">
-                          {product.badge}
-                        </span>
-                      </div>
-                    )}
-                    
-                    {/* Product Image */}
-                    {product.imageUrl && (
-                      <div className="relative w-full md:h-48 sm:90 overflow-hidden bg-white aspect-square">
-                        <img 
-                          src={product.imageUrl} 
-                          alt={product.name} 
-                          className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-200"
-                          loading="lazy"
-                        />
-                      </div>
-                    )}
-                    
-                    <CardContent className="p-4">
-                      {/* Category */}
-                      <p className="text-xs text-muted-foreground uppercase tracking-wide mb-2">
-                        {product.category}
-                      </p>
-                      
-                      {/* Product Name */}
-                      <h2 className="text-lg font-semibold line-clamp-2 group-hover:text-primary transition-colors mb-2">
-                        {product.name}
-                      </h2>
-                      
-                      {/* Description */}
-                      <p className="text-sm text-muted-foreground line-clamp-2 mb-3">
-                        {product.description}
-                      </p>
-                      
-                      {/* Price */}
-                      {product.price && (
-                        <div className="flex items-center gap-2 mb-2">
-                          <p className="font-bold text-lg">
-                            ₹{product.price.toLocaleString()}
-                          </p>
-                          {product.oldPrice && product.oldPrice > product.price && (
-                            <p className="text-sm text-muted-foreground line-through">
-                              ₹{product.oldPrice.toLocaleString()}
-                            </p>
-                          )}
-                        </div>
-                      )}
-                      
-                      {/* Rating */}
-                      {product.rating && (
-                        <div className="flex items-center gap-1">
-                          <div className="flex">
-                            {[...Array(5)].map((_, i) => (
-                              <span
-                                key={i}
-                                className={`text-sm ${
-                                  i < Math.floor(product.rating) ? 'text-yellow-400' : 'text-muted-foreground/30'
-                                }`}
-                              >
-                                ★
-                              </span>
-                            ))}
-                          </div>
-                          <span className="text-sm text-muted-foreground">
-                            ({product.reviewCount || 0})
+          {currentProducts.length > 0 ? (
+            <>
+              <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-5">
+                {currentProducts.map(product => (
+                  <Link href={`/products/${product._id}`} key={product._id}>
+                    <Card className="group hover:shadow-lg transition-all duration-200 hover:-translate-y-1 overflow-hidden h-90">
+                      {/* Product Badge */}
+                      {product.badge && (
+                        <div className="absolute top-2 right-2 z-2">
+                          <span className="inline-block px-2 py-1 text-xs font-semibold bg-black text-white rounded">
+                            {product.badge}
                           </span>
                         </div>
                       )}
-                    </CardContent>
-                  </Card>
-                </Link>
-              ))}
-            </div>
+                      
+                      {/* Product Image */}
+                      {product.imageUrl && (
+                        <div className="relative w-full md:h-48 sm:90 overflow-hidden bg-white aspect-square">
+                          <img 
+                            src={product.imageUrl} 
+                            alt={product.name} 
+                            className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-200"
+                            loading="lazy"
+                          />
+                        </div>
+                      )}
+                      
+                      <CardContent className="p-4">
+                        {/* Category */}
+                        <p className="text-xs text-muted-foreground uppercase tracking-wide mb-2">
+                          {product.normalizedCategory}
+                        </p>
+                        
+                        {/* Product Name */}
+                        <h2 className="text-lg font-semibold line-clamp-2 group-hover:text-primary transition-colors mb-2">
+                          {product.name}
+                        </h2>
+                        
+                        {/* Description */}
+                        <p className="text-sm text-muted-foreground line-clamp-2 mb-3">
+                          {product.description}
+                        </p>
+                        
+                        {/* Price */}
+                        {product.price && (
+                          <div className="flex items-center gap-2 mb-2">
+                            <p className="font-bold text-lg">
+                              ₹{product.price.toLocaleString()}
+                            </p>
+                            {product.oldPrice && product.oldPrice > product.price && (
+                              <p className="text-sm text-muted-foreground line-through">
+                                ₹{product.oldPrice.toLocaleString()}
+                              </p>
+                            )}
+                          </div>
+                        )}
+                        
+                        {/* Rating */}
+                        {product.rating && (
+                          <div className="flex items-center gap-1">
+                            <div className="flex">
+                              {[...Array(5)].map((_, i) => (
+                                <span
+                                  key={i}
+                                  className={`text-sm ${
+                                    i < Math.floor(product.rating) ? 'text-yellow-400' : 'text-muted-foreground/30'
+                                  }`}
+                                >
+                                  ★
+                                </span>
+                              ))}
+                            </div>
+                            <span className="text-sm text-muted-foreground">
+                              ({product.reviewCount || 0})
+                            </span>
+                          </div>
+                        )}
+                      </CardContent>
+                    </Card>
+                  </Link>
+                ))}
+              </div>
+
+              {/* Pagination */}
+              <Pagination />
+            </>
           ) : (
             <div className="text-center py-12">
               <div className="max-w-md mx-auto">
