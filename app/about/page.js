@@ -1,47 +1,51 @@
 "use client";
 
 import React from "react";
-import { FaShieldAlt, FaAward, FaUsers, FaClock, FaBullseye } from "react-icons/fa";
+import {
+  FaShieldAlt,
+  FaAward,
+  FaUsers,
+  FaClock,
+  FaBullseye,
+} from "react-icons/fa";
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import handShake from "@/public/handshake.jpg"
+import handShake from "@/public/handshake.jpg";
 import Image from "next/image";
+import banner from "@/public/about/banner.jpg";
 
 const page = () => {
   return (
     <div>
-      <section className="bg-gray-900 text-white py-20 px-4">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">About Us</h2>
+      <section className="relative bg-gray-900 text-white py-20 px-4">
+        <Image
+          src={banner}
+          className="absolute inset-0 object-cover w-full h-full z-0"
+          alt="Security services banner"
+        />
+        <div className="absolute inset-0 bg-black/50 z-10"></div>
+        <div className="relative z-20 max-w-4xl mx-auto text-center">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4">About US</h2>
           <p className="text-lg md:text-xl text-gray-300 mb-8">
-            Champion Security System has been at the forefront of security technology,
-            providing innovative solutions to protect homes and businesses for
-            over 17 years
+            Champion Security System has been at the forefront of security
+            technology, providing innovative solutions to protect homes and
+            businesses for over 17 years
           </p>
-          <div className="flex justify-center gap-4">
-            {/* <button className="bg-white text-gray-900 font-semibold py-3 px-8 rounded-md hover:bg-gray-200 transition duration-300">
-            Explore Services
-          </button>
-          <button className="bg-gray-700 text-white font-semibold py-3 px-8 rounded-md hover:bg-gray-600 transition duration-300">
-            Get a Quote
-          </button> */}
-          </div>
         </div>
       </section>
 
       <section className="w-full py-12 md:py-24 bg-white">
         <div className="max-w-6xl mx-auto px-4 md:px-6">
           <div className="grid gap-10 lg:grid-cols-2 items-center">
-            
             <div className="order-2 lg:order-1 flex justify-center">
               <div className="w-full max-w-[480px] aspect-square bg-gray-100 rounded-xl flex items-center justify-center shadow-lg">
                 <Image
-                src={handShake}
-                alt="Hero Image"
-                className="object-cover rounded-lg"
-                width={500}
-                height={500}
-              />
+                  src={handShake}
+                  alt="Hero Image"
+                  className="object-cover rounded-lg"
+                  width={500}
+                  height={500}
+                />
               </div>
             </div>
             {/* Text content */}
@@ -53,13 +57,34 @@ const page = () => {
                 From Humble Beginnings
               </h2>
               <p className="text-gray-500 md:text-lg">
-                Founded in 2008 by Rajesh Dey, Champion Security System began with a clear mission: to deliver reliable and quality-driven security solutions across India. What started as a humble venture quickly scaled up with the opening of a dedicated office and a growing team by 2010. 
+                Founded in 2008 by Rajesh Dey, Champion Security System began
+                with a clear mission: to deliver reliable and quality-driven
+                security solutions across India. What started as a humble
+                venture quickly scaled up with the opening of a dedicated office
+                and a growing team by 2010.
               </p>
               <p className="text-gray-500 md:text-lg">
-                 By 2014, the company had taken a major step forward by officially registering under its current name, solidifying its commitment to professionalism and structured growth. Over the years, Champion Security System has consistently aligned itself with large-scale enterprises and complex infrastructure projects, showcasing technical expertise and operational excellence. From enabling advanced security frameworks across retail chains to designing robust networking solutions for critical institutions, the company has built a reputation for innovation and dependability.
+                By 2014, the company had taken a major step forward by
+                officially registering under its current name, solidifying its
+                commitment to professionalism and structured growth. Over the
+                years, Champion Security System has consistently aligned itself
+                with large-scale enterprises and complex infrastructure
+                projects, showcasing technical expertise and operational
+                excellence. From enabling advanced security frameworks across
+                retail chains to designing robust networking solutions for
+                critical institutions, the company has built a reputation for
+                innovation and dependability.
               </p>
               <p className="text-gray-500 md:text-lg">
-                Even amidst the unprecedented challenges of the Covid-19 pandemic, Champion stepped up to deliver vital surveillance infrastructure for healthcare and civic bodies, earning accolades for its resilience and contribution. Today, with its involvement in metro-scale smart city developments, the company continues to evolve — integrating modern technologies like voice-enabled systems and IoT-based solutions and AI based security solutions — while staying grounded in its core values of service, safety, and trust.
+                Even amidst the unprecedented challenges of the Covid-19
+                pandemic, Champion stepped up to deliver vital surveillance
+                infrastructure for healthcare and civic bodies, earning
+                accolades for its resilience and contribution. Today, with its
+                involvement in metro-scale smart city developments, the company
+                continues to evolve — integrating modern technologies like
+                voice-enabled systems and IoT-based solutions and AI based
+                security solutions — while staying grounded in its core values
+                of service, safety, and trust.
               </p>
             </div>
           </div>
@@ -67,93 +92,109 @@ const page = () => {
       </section>
 
       <section className="w-full py-16 md:py-24 bg-gray-50">
-      <div className="w-full max-w-6xl mx-auto px-4 md:px-6">
-        {/* Section Header */}
-        <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12">
-          <div className="inline-block rounded-lg bg-gray-100 px-3 py-1 text-sm font-medium text-gray-700">
-            Our Purpose
-          </div>
-          <h2 className="text-3xl font-bold tracking-tighter text-gray-900 sm:text-4xl">
-            Mission & Values
-          </h2>
-          <p className="mx-auto max-w-[700px] text-gray-600 md:text-lg">
-            Our mission guides everything we do, and our values define how we do it.
-          </p>
-        </div>
-
-        {/* Our Mission - Unified Card Style */}
-        <div className="mb-16 flex justify-center">
-          <div className="w-full max-w-3xl bg-white rounded-xl shadow-lg border border-gray-100 p-8 text-center flex flex-col items-center">
-            <div className="flex h-16 w-16 items-center justify-center rounded-full bg-blue-100 text-blue-600 mb-6">
-              <FaBullseye className="h-8 w-8" /> 
+        <div className="w-full max-w-6xl mx-auto px-4 md:px-6">
+          {/* Section Header */}
+          <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12">
+            <div className="inline-block rounded-lg bg-gray-100 px-3 py-1 text-sm font-medium text-gray-700">
+              Our Purpose
             </div>
-            <h3 className="text-3xl font-bold text-gray-900 mb-4">Our Mission</h3>
-            <p className="text-xl text-gray-700 max-w-2xl leading-relaxed">
-              To provide peace of mind through innovative security solutions
-              that protect what matters most to our customers.
+            <h2 className="text-3xl font-bold tracking-tighter text-gray-900 sm:text-4xl">
+              Mission & Values
+            </h2>
+            <p className="mx-auto max-w-[700px] text-gray-600 md:text-lg">
+              Our mission guides everything we do, and our values define how we
+              do it.
             </p>
           </div>
-        </div>
 
-        {/* Our Values - Existing Card Grid (slightly refined for consistency) */}
-        <div className="text-center">
-          <h3 className="text-3xl font-bold text-gray-900 mb-8">Our Core Values</h3> {/* Changed heading */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {/* Value Card 1: Integrity */}
-            <Card className="rounded-xl shadow-md border border-gray-100 hover:shadow-lg transition-shadow duration-200">
-              <CardContent className="p-6 flex flex-col items-center text-center">
-                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-purple-100 text-purple-600 mb-4">
-                  <FaShieldAlt className="h-6 w-6" />
-                </div>
-                <h4 className="font-bold text-lg text-gray-900">Integrity</h4>
-                <p className="text-sm text-gray-600 mt-2">
-                  We operate with honesty and transparency in all our dealings.
-                </p>
-              </CardContent>
-            </Card>
+          {/* Our Mission - Unified Card Style */}
+          <div className="mb-16 flex justify-center">
+            <div className="w-full max-w-3xl bg-white rounded-xl shadow-lg border border-gray-100 p-8 text-center flex flex-col items-center">
+              <div className="flex h-16 w-16 items-center justify-center rounded-full bg-blue-100 text-blue-600 mb-6">
+                <FaBullseye className="h-8 w-8" />
+              </div>
+              <h3 className="text-3xl font-bold text-gray-900 mb-4">
+                Our Mission
+              </h3>
+              <p className="text-xl text-gray-700 max-w-2xl leading-relaxed">
+                To provide peace of mind through innovative security solutions
+                that protect what matters most to our customers.
+              </p>
+            </div>
+          </div>
 
-            {/* Value Card 2: Excellence */}
-            <Card className="rounded-xl shadow-md border border-gray-100 hover:shadow-lg transition-shadow duration-200">
-              <CardContent className="p-6 flex flex-col items-center text-center">
-                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-green-100 text-green-600 mb-4">
-                  <FaAward className="h-6 w-6" />
-                </div>
-                <h4 className="font-bold text-lg text-gray-900">Excellence</h4>
-                <p className="text-sm text-gray-600 mt-2">
-                  We strive for excellence in every product and service we provide.
-                </p>
-              </CardContent>
-            </Card>
+          {/* Our Values - Existing Card Grid (slightly refined for consistency) */}
+          <div className="text-center">
+            <h3 className="text-3xl font-bold text-gray-900 mb-8">
+              Our Core Values
+            </h3>{" "}
+            {/* Changed heading */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+              {/* Value Card 1: Integrity */}
+              <Card className="rounded-xl shadow-md border border-gray-100 hover:shadow-lg transition-shadow duration-200">
+                <CardContent className="p-6 flex flex-col items-center text-center">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-purple-100 text-purple-600 mb-4">
+                    <FaShieldAlt className="h-6 w-6" />
+                  </div>
+                  <h4 className="font-bold text-lg text-gray-900">Integrity</h4>
+                  <p className="text-sm text-gray-600 mt-2">
+                    We operate with honesty and transparency in all our
+                    dealings.
+                  </p>
+                </CardContent>
+              </Card>
 
-            {/* Value Card 3: Customer Focus */}
-            <Card className="rounded-xl shadow-md border border-gray-100 hover:shadow-lg transition-shadow duration-200">
-              <CardContent className="p-6 flex flex-col items-center text-center">
-                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-yellow-100 text-yellow-600 mb-4">
-                  <FaUsers className="h-6 w-6" />
-                </div>
-                <h4 className="font-bold text-lg text-gray-900">Customer Focus</h4>
-                <p className="text-sm text-gray-600 mt-2">
-                  Our customers&apos; needs drive our decisions and innovations.
-                </p>
-              </CardContent>
-            </Card>
+              {/* Value Card 2: Excellence */}
+              <Card className="rounded-xl shadow-md border border-gray-100 hover:shadow-lg transition-shadow duration-200">
+                <CardContent className="p-6 flex flex-col items-center text-center">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-green-100 text-green-600 mb-4">
+                    <FaAward className="h-6 w-6" />
+                  </div>
+                  <h4 className="font-bold text-lg text-gray-900">
+                    Excellence
+                  </h4>
+                  <p className="text-sm text-gray-600 mt-2">
+                    We strive for excellence in every product and service we
+                    provide.
+                  </p>
+                </CardContent>
+              </Card>
 
-            {/* Value Card 4: Reliability */}
-            <Card className="rounded-xl shadow-md border border-gray-100 hover:shadow-lg transition-shadow duration-200">
-              <CardContent className="p-6 flex flex-col items-center text-center">
-                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-red-100 text-red-600 mb-4">
-                  <FaClock className="h-6 w-6" />
-                </div>
-                <h4 className="font-bold text-lg text-gray-900">Reliability</h4>
-                <p className="text-sm text-gray-600 mt-2">
-                  We deliver on our promises and stand behind our products and services.
-                </p>
-              </CardContent>
-            </Card>
+              {/* Value Card 3: Customer Focus */}
+              <Card className="rounded-xl shadow-md border border-gray-100 hover:shadow-lg transition-shadow duration-200">
+                <CardContent className="p-6 flex flex-col items-center text-center">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-yellow-100 text-yellow-600 mb-4">
+                    <FaUsers className="h-6 w-6" />
+                  </div>
+                  <h4 className="font-bold text-lg text-gray-900">
+                    Customer Focus
+                  </h4>
+                  <p className="text-sm text-gray-600 mt-2">
+                    Our customers&apos; needs drive our decisions and
+                    innovations.
+                  </p>
+                </CardContent>
+              </Card>
+
+              {/* Value Card 4: Reliability */}
+              <Card className="rounded-xl shadow-md border border-gray-100 hover:shadow-lg transition-shadow duration-200">
+                <CardContent className="p-6 flex flex-col items-center text-center">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-red-100 text-red-600 mb-4">
+                    <FaClock className="h-6 w-6" />
+                  </div>
+                  <h4 className="font-bold text-lg text-gray-900">
+                    Reliability
+                  </h4>
+                  <p className="text-sm text-gray-600 mt-2">
+                    We deliver on our promises and stand behind our products and
+                    services.
+                  </p>
+                </CardContent>
+              </Card>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
       <section className="w-full min-h-screen flex items-center justify-center bg-white py-12 md:py-24">
         <div className="container max-w-4xl px-4 md:px-6">
@@ -232,24 +273,24 @@ const page = () => {
       </section>
 
       <section className="w-full min-h-screen flex items-center justify-center bg-gray-50 py-12 md:py-24">
-  <div className="container px-4 md:px-6">
-    {/* Header Section */}
-    <div className="flex flex-col items-center justify-center space-y-4 text-center">
-      <div className="space-y-2">
-        <div className="inline-block rounded-lg bg-gray-100 px-3 py-1 text-sm text-gray-700">
-          Testimonials
-        </div>
-        {/* <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">
+        <div className="container px-4 md:px-6">
+          {/* Header Section */}
+          <div className="flex flex-col items-center justify-center space-y-4 text-center">
+            <div className="space-y-2">
+              <div className="inline-block rounded-lg bg-gray-100 px-3 py-1 text-sm text-gray-700">
+                Testimonials
+              </div>
+              {/* <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">
           What Our Clients Say
         </h2>
         <p className="mx-auto max-w-[700px] text-gray-500 md:text-lg">
           Dont just take our word for it - hear from our satisfied customers
         </p> */}
-      </div>
-    </div>
+            </div>
+          </div>
 
-    {/* Testimonials Grid */}
-    {/* <div className="mx-auto grid max-w-5xl grid-cols-1 gap-6 md:grid-cols-2 mt-12">
+          {/* Testimonials Grid */}
+          {/* <div className="mx-auto grid max-w-5xl grid-cols-1 gap-6 md:grid-cols-2 mt-12">
       {[
         {
           quote: `"Exceptional professionalism from start to finish. The administrative staff, the owner, and the CCTV security camera engineers were courteous and knowledgeable. The engineers took the time to discuss optimal camera positioning, meticulously programmed our devices, and executed a clean installation with neatly concealed wires. The service provided by this team is not only top-notch but also offers great value for money when compared to other quotes. Highly recommended!"`,
@@ -284,10 +325,17 @@ const page = () => {
       ))}
     </div> */}
 
-     <script src="https://static.elfsight.com/platform/platform.js" data-use-service-core defer></script>
-                <div className="elfsight-app-13ffe455-64fd-42a5-8966-7153d87beb9a" data-elfsight-app-lazy></div>
-  </div>
-</section>
+          <script
+            src="https://static.elfsight.com/platform/platform.js"
+            data-use-service-core
+            defer
+          ></script>
+          <div
+            className="elfsight-app-13ffe455-64fd-42a5-8966-7153d87beb9a"
+            data-elfsight-app-lazy
+          ></div>
+        </div>
+      </section>
     </div>
   );
 };

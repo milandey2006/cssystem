@@ -55,12 +55,6 @@ export default function Header() {
             Home
           </Link>
           <Link
-            href="/products"
-            className="text-md font-medium transition-colors hover:text-primary"
-          >
-            Products
-          </Link>
-          <Link
             href="/services"
             className="text-md font-medium transition-colors hover:text-primary"
           >
@@ -71,6 +65,18 @@ export default function Header() {
             className="text-md font-medium transition-colors hover:text-primary"
           >
             About
+          </Link>
+          <Link
+            href="/products"
+            className="text-md font-medium transition-colors hover:text-primary"
+          >
+            Products
+          </Link>
+          <Link
+            href="/projects"
+            className="text-md font-medium transition-colors hover:text-primary"
+          >
+            Projects
           </Link>
           <Link
             href="/contact"
