@@ -154,6 +154,14 @@ export default function Header() {
             </Link>
           </li>
           <li>
+          <Link
+            href="/projects"
+            className="text-md font-medium transition-colors hover:text-primary"
+          >
+            Projects
+          </Link>
+          </li>
+          <li>
             <Link
               href="/contact"
               className="block text-md font-medium transition-colors hover:text-primary"

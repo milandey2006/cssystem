@@ -49,7 +49,7 @@ const Page = () => {
       title: "Email Us",
       content: [
         // "Sales: sales@securevision.com", // This line is commented out but if uncommented, make sure it's valid
-        "Support: cctvservices@gmail.com",
+        "Support: cctvservices.mumbai@gmail.com",
         "Info: info@championsecuritysystem.com",
       ],
     },

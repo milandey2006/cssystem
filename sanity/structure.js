@@ -1,5 +1,15 @@
-// https://www.sanity.io/docs/structure-builder-cheat-sheet
 export const structure = (S) =>
   S.list()
-    .title('Content')
-    .items(S.documentTypeListItems())
+    .title('Champion Security System')
+    .items([
+      // Projects - Simple list like Products
+      S.documentTypeListItem('project').title('Projects'),
+      
+      // Products - Your existing setup
+      S.documentTypeListItem('product').title('Product'),
+      
+      // Add other document types if you have any
+      ...S.documentTypeListItems().filter(
+        (listItem) => !['project', 'product'].includes(listItem.getId())
+      )
+    ])
