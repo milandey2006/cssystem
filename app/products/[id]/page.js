@@ -264,15 +264,15 @@ export default function ProductPageId() {
               {product.price && (
                 <div className="flex items-baseline gap-3">
                   <span className="text-2xl font-bold text-gray-900">
-                    ${product.price.toFixed(2)}
+                    ₹{product.price.toFixed(2)}
                   </span>
                   {product.oldPrice && (
                     <>
                       <span className="text-lg text-gray-500 line-through">
-                        ${product.oldPrice.toFixed(2)}
+                        ₹{product.oldPrice.toFixed(2)}
                       </span>
                       <Badge className="bg-green-100 text-green-800 border-green-200">
-                        Save ${(product.oldPrice - product.price).toFixed(2)}
+                        Save ₹{(product.oldPrice - product.price).toFixed(2)}
                       </Badge>
                     </>
                   )}
@@ -430,7 +430,7 @@ export default function ProductPageId() {
                 </p>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                  <div>
+                  {/* <div>
                     <h3 className="font-bold text-xl text-gray-900 mb-4">
                       Key Features
                     </h3>
@@ -442,9 +442,9 @@ export default function ProductPageId() {
                         </li>
                       ))}
                     </ul>
-                  </div>
+                  </div> */}
 
-                  <div>
+                  {/* <div>
                     <h3 className="font-bold text-xl text-gray-900 mb-4">
                       Whats in the Box
                     </h3>
@@ -456,7 +456,7 @@ export default function ProductPageId() {
                         </li>
                       ))}
                     </ul>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </TabsContent>

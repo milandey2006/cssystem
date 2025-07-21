@@ -1,7 +1,17 @@
-import React from 'react';
-import Link from 'next/link';
-import { Button } from '@/components/ui/button';
-import { Shield, Facebook, Twitter, Instagram, Linkedin, MapPin, Phone, Mail } from 'lucide-react';
+import React from "react";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import {
+  Shield,
+  Facebook,
+  Twitter,
+  Instagram,
+  Linkedin,
+  MapPin,
+  Phone,
+  Mail,
+} from "lucide-react";
+import { FileText } from "lucide-react";
 
 const Footer = () => {
   return (
@@ -16,10 +26,16 @@ const Footer = () => {
             Contact us today for a free consultation and quote
           </p>
           <div className="mt-8 flex flex-col sm:flex-row gap-4">
-            <Button variant="outline" className="bg-white text-gray-900 hover:bg-gray-200">
+            <Button
+              variant="outline"
+              className="bg-white text-gray-900 hover:bg-gray-200"
+            >
               Get a Quote
             </Button>
-            <Button variant="outline" className="bg-white text-gray-900 hover:bg-gray-200">
+            <Button
+              variant="outline"
+              className="bg-white text-gray-900 hover:bg-gray-200"
+            >
               Contact Sales
             </Button>
           </div>
@@ -35,31 +51,90 @@ const Footer = () => {
           {/* Column 1: Brand */}
           <div className="space-y-4">
             <Link href="/" className="flex items-center gap-2">
-              <span className="text-xl font-bold">Champion Security System</span>
+              <span className="text-xl font-bold">
+                Champion Security System
+              </span>
             </Link>
             <p className="text-gray-400">
-              Providing advanced security solutions for homes and businesses since 2008.
+              Providing advanced security solutions for homes and businesses
+              since 2008.
             </p>
             <div className="flex space-x-4">
-              <Link href="#" className="text-gray-400 hover:text-white"><Facebook /></Link>
-              <Link href="#" className="text-gray-400 hover:text-white"><Twitter /></Link>
-              <Link href="#" className="text-gray-400 hover:text-white"><Instagram /></Link>
-              <Link href="#" className="text-gray-400 hover:text-white"><Linkedin /></Link>
+              <Link
+                href="https://www.facebook.com/cssytem"
+                className="text-gray-400 hover:text-white"
+              >
+                <Facebook />
+              </Link>
+              <Link href="" className="text-gray-400 hover:text-white">
+                <Twitter />
+              </Link>
+              <Link
+                href="https://www.instagram.com/cctvcss.official"
+                className="text-gray-400 hover:text-white"
+              >
+                <Instagram />
+              </Link>
+              <Link
+                href="https://www.linkedin.com/in/rajesh-dey-148b9643/"
+                className="text-gray-400 hover:text-white"
+              >
+                <Linkedin />
+              </Link>
             </div>
           </div>
 
           {/* Column 2: Quick Links */}
           <div className="space-y-4">
-            <h3 className="font-semibold tracking-wider uppercase">Quick Links</h3>
+            <h3 className="font-semibold tracking-wider uppercase">
+              Quick Links
+            </h3>
             <ul className="space-y-2">
-              <li><Link href="#" className="text-gray-400 hover:text-white">Home</Link></li>
-              <li><Link href="#" className="text-gray-400 hover:text-white">Products</Link></li>
-              <li><Link href="#" className="text-gray-400 hover:text-white">Services</Link></li>
-              <li><Link href="#" className="text-gray-400 hover:text-white">About Us</Link></li>
-              <li><Link href="#" className="text-gray-400 hover:text-white">Contact</Link></li>
-              <li><a href='/public/documents/profile.pdf' target="_blank" rel="noopener noreferrer" download="profile.pdf" className="text-blue-500 hover:underline">
-          View My Profile (PDF)
-        </a></li>
+              <li>
+                <Link href="/" className="text-gray-400 hover:text-white">
+                  Home
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/products"
+                  className="text-gray-400 hover:text-white"
+                >
+                  Products
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/services"
+                  className="text-gray-400 hover:text-white"
+                >
+                  Services
+                </Link>
+              </li>
+              <li>
+                <Link href="/about" className="text-gray-400 hover:text-white">
+                  About Us
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/contact"
+                  className="text-gray-400 hover:text-white"
+                >
+                  Contact
+                </Link>
+              </li>
+              <li>
+                <a
+                  href="/documents/profile.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-500 hover:underline inline-flex items-center gap-2"
+                >
+                  <FileText className="h-4 w-4" />
+                  View Company Profile (PDF)
+                </a>
+              </li>
             </ul>
           </div>
 
@@ -67,22 +142,69 @@ const Footer = () => {
           <div className="space-y-4">
             <h3 className="font-semibold tracking-wider uppercase">Products</h3>
             <ul className="space-y-2">
-              <li><Link href="#" className="text-gray-400 hover:text-white">CCTV Cameras</Link></li>
-              <li><Link href="#" className="text-gray-400 hover:text-white">NVR & Server Systems</Link></li>
-              <li><Link href="#" className="text-gray-400 hover:text-white">Access Control</Link></li>
-              <li><Link href="#" className="text-gray-400 hover:text-white">Alarm Systems</Link></li>
-              <li><Link href="#" className="text-gray-400 hover:text-white">Accessories</Link></li>
-              <li><Link href="#" className="text-gray-400 hover:text-white">Video Door Phone</Link></li>
+              <li>
+                <Link
+                  href="/products"
+                  className="text-gray-400 hover:text-white"
+                >
+                  CCTV Cameras
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/products"
+                  className="text-gray-400 hover:text-white"
+                >
+                  NVR & Server Systems
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/products"
+                  className="text-gray-400 hover:text-white"
+                >
+                  Access Control
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/products"
+                  className="text-gray-400 hover:text-white"
+                >
+                  Alarm Systems
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/products"
+                  className="text-gray-400 hover:text-white"
+                >
+                  Accessories
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/products"
+                  className="text-gray-400 hover:text-white"
+                >
+                  Video Door Phone
+                </Link>
+              </li>
             </ul>
           </div>
 
           {/* Column 4: Contact Us */}
           <div className="space-y-4">
-            <h3 className="font-semibold tracking-wider uppercase">Contact Us</h3>
+            <h3 className="font-semibold tracking-wider uppercase">
+              Contact Us
+            </h3>
             <ul className="space-y-3">
               <li className="flex items-start gap-3">
                 <MapPin className="h-5 w-5 flex-shrink-0 mt-1" />
-                <span className="text-gray-400">6/338 Andheri Subway, Andheri West, Mumbai 400058, Maharashtra, India</span>
+                <span className="text-gray-400">
+                  6/338 Andheri Subway, Andheri West, Mumbai 400058,
+                  Maharashtra, India
+                </span>
               </li>
               <li className="flex items-center gap-3">
                 <Phone className="h-5 w-5 flex-shrink-0" />
@@ -90,7 +212,9 @@ const Footer = () => {
               </li>
               <li className="flex items-center gap-3">
                 <Mail className="h-5 w-5 flex-shrink-0" />
-                <span className="text-gray-400">info@championsecuritysystem.com</span>
+                <span className="text-gray-400">
+                  info@championsecuritysystem.com
+                </span>
               </li>
             </ul>
           </div>

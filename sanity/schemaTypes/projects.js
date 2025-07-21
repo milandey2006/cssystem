@@ -1,120 +1,128 @@
-// schemas/project.js
-export default {
+// sanity/schemaTypes/project.js
+import { defineField, defineType } from 'sanity'
+
+export default defineType({
   name: 'project',
-  title: 'Projects',
+  title: 'Project',
   type: 'document',
   fields: [
-    {
-      name: 'title',
-      title: 'Project Title',
+    defineField({
+      name: 'name',
+      title: 'Project Name',
       type: 'string',
-      validation: Rule => Rule.required().min(3).max(100)
-    },
-    {
-      name: 'slug',
-      title: 'Slug',
-      type: 'slug',
-      options: {
-        source: 'title',
-        maxLength: 90,
-      },
-      validation: Rule => Rule.required()
-    },
-    {
+      validation: Rule => Rule.required().error('Project name is required')
+    }),
+    defineField({
       name: 'description',
       title: 'Short Description',
       type: 'text',
       rows: 3,
-      validation: Rule => Rule.max(200)
-    },
-    {
-      name: 'image',
-      title: 'Project Image',
-      type: 'image',
-      options: {
-        hotspot: true
-      },
-      fields: [
-        {
-          name: 'alt',
-          type: 'string',
-          title: 'Alternative text',
-          description: 'Important for SEO and accessibility'
-        }
-      ],
-      validation: Rule => Rule.required()
-    },
-    {
+      validation: Rule => Rule.required().max(200).error('Description is required and should be under 200 characters')
+    }),
+    // UPDATED: Changed from single image to multiple images
+    defineField({
+      name: 'images',
+      title: 'Project Images',
+      type: 'array',
+      of: [{ 
+        type: 'image', 
+        options: { hotspot: true } 
+      }],
+      validation: Rule => Rule.required().min(1).max(4).error('Add between 1 and 4 images')
+    }),
+    defineField({
       name: 'category',
       title: 'Project Category',
       type: 'string',
       options: {
         list: [
-          { title: 'Residential Security', value: 'residential' },
           { title: 'Commercial Security', value: 'commercial' },
+          { title: 'Residential Security', value: 'residential' },
           { title: 'Industrial Security', value: 'industrial' },
-          { title: 'CCTV Installation', value: 'cctv' },
-          { title: 'Access Control', value: 'access-control' },
-          { title: 'Fire Safety', value: 'fire-safety' },
-          { title: 'Smart Home', value: 'smart-home' }
-        ]
+          { title: 'Institutional Security', value: 'institutional' }
+        ],
+        layout: 'radio'
       },
-      validation: Rule => Rule.required()
-    },
-    {
-      name: 'location',
-      title: 'Project Location',
-      type: 'string',
-      placeholder: 'e.g., Mumbai, Maharashtra'
-    },
-    {
-      name: 'completionDate',
-      title: 'Completion Date',
-      type: 'date'
-    },
-    {
+      validation: Rule => Rule.required().error('Project category is required')
+    }),
+    defineField({
       name: 'technologies',
       title: 'Technologies Used',
       type: 'array',
       of: [{ type: 'string' }],
       options: {
         list: [
-          'CCTV Cameras',
-          'NVR Systems', 
-          'Access Control',
-          'Biometric Systems',
-          'Fire Alarms',
-          'Motion Sensors',
-          'Smart Locks',
-          'Network Infrastructure',
-          'Mobile Apps',
-          'Cloud Storage'
+          { title: 'CCTV Cameras', value: 'cctv' },
+          { title: 'Digital Door Lock', value: 'digital-lock' },
+          { title: 'Network Camera', value: 'network-camera' },
+          { title: 'Network Video Recorder', value: 'nvr' },
+          { title: 'Video Door Phone', value: 'video-door-phone' },
+          { title: 'Wifi Camera', value: 'wifi-camera' },
+          { title: 'Biometrics', value: 'biometrics' },
+          { title: 'Night Vision', value: 'night-vision' },
+          { title: 'Motion Detection', value: 'motion-detection' },
+          { title: 'Weatherproof', value: 'weatherproof' },
+          { title: 'Two-way Audio', value: 'two-way-audio' },
+          { title: 'Remote Viewing', value: 'remote-viewing' },
+          { title: 'WiFi Enabled', value: 'wifi-enabled' },
+          { title: 'Cloud Storage', value: 'cloud-storage' },
+          { title: 'Mobile App', value: 'mobile-app' }
         ]
-      }
-    },
-    {
+      },
+      validation: Rule => Rule.required().min(1).error('At least one technology must be selected')
+    }),
+    defineField({
+      name: 'location',
+      title: 'Project Location',
+      type: 'string',
+      options: {
+        list: [
+          { title: 'Aurangabad', value: 'aurangabad' },
+          { title: 'Mumbai', value: 'mumbai' },
+          { title: 'Nashik', value: 'nashik' },
+          { title: 'Navi Mumbai', value: 'navi-mumbai' },
+          { title: 'Pune', value: 'pune' },
+          { title: 'Thane', value: 'thane' }
+        ],
+        layout: 'dropdown'
+      },
+      validation: Rule => Rule.required().error('Project location is required')
+    }),
+    defineField({
       name: 'featured',
       title: 'Featured Project',
       type: 'boolean',
-      description: 'Mark as featured to highlight on homepage',
+      description: 'Mark as featured to show on homepage',
       initialValue: false
-    }
+    }),
+    defineField({
+      name: 'completedDate',
+      title: 'Project Completion Date',
+      type: 'date'
+    })
   ],
   preview: {
     select: {
-      title: 'title',
-      subtitle: 'category',
-      media: 'image'
+      title: 'name',
+      subtitle: 'location',
+      media: 'images.0' // Show first image in preview
     }
   },
   orderings: [
     {
-      title: 'Featured First',
-      name: 'featuredFirst',
-      by: [
-        { field: 'featured', direction: 'desc' },
-        { field: 'completionDate', direction: 'desc' }
-      ]
+      title: 'Project Name A-Z',
+      name: 'nameAsc',
+      by: [{ field: 'name', direction: 'asc' }]
+    },
+    {
+      title: 'Project Name Z-A',
+      name: 'nameDesc',
+      by: [{ field: 'name', direction: 'desc' }]
+    },
+    {
+      title: 'Newest First',
+      name: 'completedDateDesc',
+      by: [{ field: 'completedDate', direction: 'desc' }]
     }
   ]
-}
+})

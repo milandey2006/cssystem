@@ -1,84 +1,47 @@
-
+"use client";
 import "./globals.css";
-import { Inter } from 'next/font/google'
-
+import { Inter } from "next/font/google";
+import Marquee from "@/component/Marquee"
 import Header from "../component/header";
 import Footer from "../component/footer";
 import WhatsAppButton from "@/component/WhatsAppButton";
-// import GlobalMouseFollower from "@/component/GlobalMouseFollower";
-const inter = Inter({ subsets: ["latin"] })
 
+const inter = Inter({ subsets: ["latin"] });
 
-export const metadata = {
+const metadata = {
   title: "Champion Security System",
   description:
     "Champion Security System is a leading provider of advanced security solutions, specializing in CCTV, access control, and alarm systems. We are committed to delivering top-notch security services to protect your home and business.",
   keywords: [
-    "ESSL Biometric",
-    "Access Control",
-    "CCTV Camera Installation",
-    "CCTV Camera Installation in Mumbai",
-    "CCTV Camera Installation Local Area",
-    "IP Network CCTV Camera Installation",
-    "Panasonic CCTV Camera Installation Services",
-    "Hanwha CCTV Camera Installation Services",
-    "Matrix CCTV Camera Installation Services",
-    "Home CCTV Camera Installation Services",
-    "Wifi CCTV Camera Installation Services",
-    "CCTV Camera Installation Services in Mumbai",
-    "CCTV Camera Installation Near Me",
-    "CCTV Camera Installation Home Office",
-    "Hanwha CCTV Camera",
-    "CCTV Camera Package",
-    "CCTV Camera Installation Andheri",
-    "CCTV Camera Installation HD IP Network Camera",
-    "Security System",
-    "CCTV Camera Dealer",
-    "Security System Services",
-    "Security System Service Near Me",
-    "Hanwha CCTV",
-    "Panasonic CCTV",
-    "ESSL Biometric Attendance System",
-    "Biomax Biometric Attendance System",
-    "Honeywell CCTV Camera Installation Services",
-    "Honeywell CCTV Camera Installation Services in Mumbai",
-    "Hanwha HD CCTV Camera",
-    "Hanwha IP Network CCTV Camera",
-    "Hanwha IP Network CCTV Camera Installation Services",
-    "CCTV Camera Installation and Services",
-    "CCTV Camera Installation Service",
-    "CCTV Camera",
-    "Hanwha",
-    "Panasonic",
-    "Matrix",
-    "Honeywell",
-    "Biometric Access Control",
-    "ESSL Biometric Access Control",
-    "Biometric Attendance System",
-    "CCTV Camera Installation Service Near Me"
+    /* ... your keywords ... */
   ],
 };
 
-
 export default function RootLayout({ children }) {
-  
   return (
     <html lang="en">
-      <head>
-      </head>
-      <body
-        className={inter.className}
-      >
+      <head />
+      <body className={inter.className}>
         <div className="relative flex min-h-screen flex-col">
-          {/* <GlobalMouseFollower /> */}
-            <Header />
-            <main className="flex-1">{children}</main>
-            <Footer />
-            <WhatsAppButton
-            phoneNumber="+918080806288" // Replace with your actual WhatsApp number
+
+          <Marquee 
+            speed={60}
+            backgroundColor="bg-[#1e3a8a]"
+            textColor="text-white"
+            className="py-2 text-sm font-medium"
+          >
+            🚨 Special Offer: 20% OFF on all CCTV installations this month! Call +91 8080806288 for immediate assistance 📞
+          </Marquee>
+          <Header />
+          <main className="flex-1">{children}</main>
+          <Footer />
+
+          {/* WhatsApp Button - Now handles its own office hours logic */}
+          <WhatsAppButton
+            phoneNumber="+918080806288"
             message="Hello! I'm interested in your services."
-            />
-          </div>
+          />
+        </div>
       </body>
     </html>
   );
