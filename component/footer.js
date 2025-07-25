@@ -224,7 +224,7 @@ const Footer = () => {
       {/* Part 3: Copyright Bar */}
       <div className="border-t border-gray-800 bg-gray-950">
         <div className="container mx-auto px-4 md:px-6 py-6 text-center text-sm text-gray-500">
-          © {new Date().getFullYear()} CSS. All rights reserved.
+          © {new Date().getFullYear()} CSS. All rights reserved. Made with <span className="text-gray-500">❤</span> by <a href="https://www.linkedin.com/in/milandey/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Milan.Dev</a>
         </div>
       </div>
     </footer>
