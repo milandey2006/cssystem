@@ -26,18 +26,24 @@ const Footer = () => {
             Contact us today for a free consultation and quote
           </p>
           <div className="mt-8 flex flex-col sm:flex-row gap-4">
+            <Link
+              href="/contact">
             <Button
               variant="outline"
               className="bg-white text-gray-900 hover:bg-gray-200"
             >
               Get a Quote
             </Button>
+            </Link>
+            <Link
+              href="/contact">
             <Button
               variant="outline"
               className="bg-white text-gray-900 hover:bg-gray-200"
             >
               Contact Sales
             </Button>
+            </Link>
           </div>
         </div>
       </div>
