@@ -40,7 +40,7 @@ const Page = () => {
       title: "Call Us",
       content: [
         "Sales: +91 8080806288",
-        // "Support: +91 8080808109",
+        "Enquiry: +91 8080808109",
         "Landline: 022-31476838",
       ],
     },
