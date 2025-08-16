@@ -26,7 +26,7 @@ const HeroHighlight = ({ children, className, containerClassName }) => {
         playsInline
         className="absolute inset-0 h-full w-full object-cover"
       >
-        <source src="/hero/hvideo.mp4" type="video/mp4" />
+        <source src="/video/hvideo.mp4" type="video/mp4" />
       </video>
 
       {/* --- DARK OVERLAY for readability --- */}
