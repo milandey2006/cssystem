@@ -63,6 +63,8 @@ export default {
           { title: 'Digital Door Lock', value: 'Digital Door Lock' },
           { title: 'SIP Phone', value: 'SIP Phone' },
           { title: 'Video Door Phone', value: 'Video Door Phone' },
+          { title: 'Network Switch', value: 'Network Switch' },
+          { title: 'CCTV Package', value: 'CCTV Package' },
         ],
       },
       validation: Rule => Rule.required()
