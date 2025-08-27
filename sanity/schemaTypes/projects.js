@@ -39,7 +39,8 @@ export default defineType({
           { title: 'Commercial Security', value: 'commercial' },
           { title: 'Residential Security', value: 'residential' },
           { title: 'Industrial Security', value: 'industrial' },
-          { title: 'Institutional Security', value: 'institutional' }
+          { title: 'Government Security', value: 'Government' },
+          { title: 'Institutional Security', value: 'institutional' }     
         ],
         layout: 'radio'
       },
