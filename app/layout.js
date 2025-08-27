@@ -5,6 +5,7 @@ import Marquee from "@/component/Marquee"
 import Header from "../component/header";
 import Footer from "../component/footer";
 import WhatsAppButton from "@/component/WhatsAppButton";
+import { Analytics } from "@vercel/analytics/next"
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,6 +23,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <head />
       <body className={inter.className}>
+        <Analytics />
         <div className="relative flex min-h-screen flex-col">
 
           <Marquee 
