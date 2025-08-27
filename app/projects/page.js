@@ -23,6 +23,7 @@ export default function ProjectsPage() {
     { id: 'commercial', title: 'Commercial Security', value: 'commercial' },
     { id: 'residential', title: 'Residential Security', value: 'residential' },
     { id: 'industrial', title: 'Industrial Security', value: 'industrial' },
+    { id: 'government', title: 'Government Security', value: 'government' },
     { id: 'institutional', title: 'Institutional Security', value: 'institutional' }
   ]
 
