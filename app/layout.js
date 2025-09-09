@@ -32,7 +32,7 @@ export default function RootLayout({ children }) {
             textColor="text-white"
             className="py-2 text-sm font-medium"
           >
-            🚨 Special Offer: 20% OFF on all CCTV installations this month! Call +91 8080806288 for immediate assistance 📞
+            🚨 Special Offer: 20% OFF on all CCTV installations this month! Call +91 8080808109 for immediate assistance 📞
           </Marquee>
           <Header />
           <main className="flex-1">{children}</main>
