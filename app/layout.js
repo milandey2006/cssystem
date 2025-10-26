@@ -32,7 +32,7 @@ export default function RootLayout({ children }) {
             textColor="text-white"
             className="py-2 text-sm font-medium"
           >
-            🚨 Special Offer: 20% OFF on all CCTV installations this month! Call +91 8080808109 for immediate assistance 📞
+            🚨 Special Offer: 20% OFF on all CCTV installations this month! Call +91 8080806288 for immediate assistance 📞
           </Marquee>
           <Header />
           <main className="flex-1">{children}</main>
@@ -40,7 +40,7 @@ export default function RootLayout({ children }) {
 
           {/* WhatsApp Button - Now handles its own office hours logic */}
           <WhatsAppButton
-            phoneNumber="+918080808109"
+            phoneNumber="+918080806288"
             message="Hello! I'm interested in your services."
           />
         </div>

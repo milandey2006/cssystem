@@ -30,9 +30,9 @@ const Page = () => {
       icon: FaMapMarkerAlt,
       title: "Visit Us",
       content: [
-        "6/338 Andheri Subway",
-        "Andheri West, Mumbai 400058",
-        "Maharashtra, India",
+        "Office-21 A GR FLoor, New Apollo Estate",
+        "Old Nagardas Road Near SBI Bank Andheri East",
+        "Mumbai 400069, Maharashtra, India",
       ],
     },
     {
