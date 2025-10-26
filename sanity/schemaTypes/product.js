@@ -65,6 +65,7 @@ export default {
           { title: 'Video Door Phone', value: 'Video Door Phone' },
           { title: 'Network Switch', value: 'Network Switch' },
           { title: 'CCTV Package', value: 'CCTV Package' },
+          { title: 'Walkie Talkie', value: 'Walkie Talkie' },
         ],
       },
       validation: Rule => Rule.required()
