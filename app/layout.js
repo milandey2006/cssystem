@@ -32,7 +32,7 @@ export default function RootLayout({ children }) {
             textColor="text-white"
             className="py-2 text-sm font-medium"
           >
-            Thank you for connecting Champion Security System. We are Partners with Hanwha, Honeywell, Matrix CCTV Camera & OneTouch Video Door Phone, Walkie Talkies in Mumbai.
+            Thank you for connecting CSS. We are Partners with Hanwha, Honeywell, Matrix CCTV & OneTouch Video Door Phone, Walkie Talkies in Mumbai.
           </Marquee>
           <Header />
           <main className="flex-1">{children}</main>
