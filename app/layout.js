@@ -32,7 +32,7 @@ export default function RootLayout({ children }) {
             textColor="text-white"
             className="py-2 text-sm font-medium"
           >
-            Thank you for connecting Champion Security System. We are Partners with Hanwha, Honeywell, Matrix CCTV Camera & OneTouch Video Door Phone, Walkie Talkies in Mumbai. 🚨 Special Offer: 20% OFF on all CCTV installations this month! Call +91 8080806288 for immediate assistance 📞
+            Thank you for connecting Champion Security System. We are Partners with Hanwha, Honeywell, Matrix CCTV Camera & OneTouch Video Door Phone, Walkie Talkies in Mumbai.
           </Marquee>
           <Header />
           <main className="flex-1">{children}</main>
