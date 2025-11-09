@@ -1,3 +1,5 @@
+// schema/product.js (or similar)
+
 export default {
   name: 'product',
   title: 'Product',
@@ -29,13 +31,11 @@ export default {
       name: 'longDescription',
       title: 'Long Description',
       type: 'text',
-      // validation: Rule => Rule.required()
     },
     {
       name: 'price',
       title: 'Price',
       type: 'number',
-      // validation: Rule => Rule.required().positive()
     },
     {
       name: 'oldPrice',
@@ -79,26 +79,23 @@ export default {
       name: 'stock',
       title: 'Stock',
       type: 'number',
-      // validation: Rule => Rule.required().min(0)
     },
     {
       name: 'sku',
       title: 'SKU',
       type: 'string',
-      // validation: Rule => Rule.required()
     },
     {
       name: 'rating',
       title: 'Rating',
       type: 'number',
-      // validation: Rule => Rule.required().min(0).max(5)
     },
     {
       name: 'reviewCount',
       title: 'Review Count',
       type: 'number',
-      // validation: Rule => Rule.required().min(0)
     },
+    // Keep this field for the Features filter
     {
       name: 'keyFeatures',
       title: 'Key Features',
@@ -106,12 +103,32 @@ export default {
       of: [{ type: 'string' }],
       validation: Rule => Rule.required()
     },
+    // Brand field with updated non-Chinese brand list
+    { 
+      name: 'brand', 
+      title: 'Brand Name', 
+      type: 'string',
+      options: {
+        list: [
+          'Hanwha Vision',
+          'Honeywell', 
+          'Falcon',
+          'eSSL',
+          'Axis Communications',
+          'Bosch Security',
+          'Matrix Comsec',
+          // You can add more brands here
+        ],
+        layout: 'dropdown'
+      },
+      // IMPORTANT: Validation ensures the field is always filled, preventing filter errors
+      validation: Rule => Rule.required().error('Brand is required for product filtering.')
+    },
     {
       name: 'whatsInTheBox',
       title: 'What\'s in the Box',
       type: 'array',
       of: [{ type: 'string' }],
-      // validation: Rule => Rule.required()
     },
     {
       name: 'specifications',
@@ -134,6 +151,8 @@ export default {
         }
       ]
     },
+    // Assuming 'image' here is the fallback/main image field, 
+    // though the image array is typically used for the main listing.
     { name: 'image', title: 'Image', type: 'image' }
   ]
 }
