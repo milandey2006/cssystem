@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 
 const Marquee = ({ 
   children, 
-  speed = 50, 
+  speed = 20, 
   direction = "left", 
   pauseOnHover = true,
   className = "",
