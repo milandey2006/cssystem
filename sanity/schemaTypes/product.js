@@ -118,7 +118,6 @@ export default {
           'TP Link',
           'OneTouch',
           'DLink',
-          'Hi-Focus',
           'NetGear',
           'BioMax',
           
