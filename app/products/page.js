@@ -41,11 +41,11 @@ export default function ProductsPage() {
     'Night Vision',
     'Motion Detection', 
     'Weatherproof',
-    'Two-way Audio',
-    'Remote Viewing',
-    'WiFi Enabled',
-    'Cloud Storage',
-    'Mobile App'
+    'Audio',
+    // 'Remote Viewing',
+    // 'WiFi Enabled',
+    // 'Cloud Storage',
+    // 'Mobile App'
   ]
 
   // UPDATED: New brand list

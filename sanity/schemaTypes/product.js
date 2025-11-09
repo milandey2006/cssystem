@@ -112,11 +112,16 @@ export default {
         list: [
           'Hanwha Vision',
           'Honeywell', 
-          'Falcon',
+          'Matrix Comsec',
           'eSSL',
           'Axis Communications',
-          'Bosch Security',
-          'Matrix Comsec',
+          'TP Link',
+          'OneTouch',
+          'DLink',
+          'Hi-Focus',
+          'NetGear',
+          'BioMax',
+          
           // You can add more brands here
         ],
         layout: 'dropdown'
