@@ -41,7 +41,7 @@ const Page = () => {
       content: [
         "Sales: +91 8080806288",
         "Enquiry: +91 8080808109",
-        "Landline: 022-31476838",
+        "Landline: 022-45717953",
       ],
     },
     {
