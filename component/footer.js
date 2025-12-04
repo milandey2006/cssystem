@@ -102,6 +102,11 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
+                <Link href="/about" className="text-gray-400 hover:text-white">
+                  About Us
+                </Link>
+              </li>
+              <li>
                 <Link
                   href="/products"
                   className="text-gray-400 hover:text-white"
@@ -117,11 +122,7 @@ const Footer = () => {
                   Services
                 </Link>
               </li>
-              <li>
-                <Link href="/about" className="text-gray-400 hover:text-white">
-                  About Us
-                </Link>
-              </li>
+              
               <li>
                 <Link
                   href="/contact"
@@ -224,6 +225,15 @@ const Footer = () => {
                 </span>
               </li>
             </ul>
+
+            <div className="pt-6">
+              <h4 className="font-semibold tracking-wider uppercase mb-3 text-sm">
+                Service Areas
+              </h4>
+              <p className="text-gray-400 text-sm leading-relaxed">
+                Mumbai, Andheri (East & West), Bandra, Juhu, Powai, Goregaon, Malad, Borivali, Navi Mumbai, Thane.
+              </p>
+            </div>
           </div>
         </div>
       </div>

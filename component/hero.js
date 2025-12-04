@@ -60,6 +60,8 @@ const Highlight = ({ children, className }) => (
   </motion.span>
 );
 
+import AboutSection from "./about-section";
+
 const HeroSection = () => {
   return (
     <div>
@@ -84,7 +86,7 @@ const HeroSection = () => {
           >
             Protect what matters most with our cutting-edge CCTV and
             surveillance systems. Professional installation and 24/7
-            monitoring services available.
+            monitoring services available across Mumbai and Andheri.
           </motion.p>
 
           <motion.div
@@ -112,6 +114,9 @@ const HeroSection = () => {
           </motion.div>
         </div>
       </HeroHighlight>
+
+      {/* --- ABOUT SECTION --- */}
+      <AboutSection />
 
       {/* --- WHY CHOOSE US (same as before) --- */}
       <section className="w-full bg-white py-12 md:py-24">

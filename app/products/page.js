@@ -10,10 +10,22 @@ import { Card, CardContent } from "@/components/ui/card"
 import Image from 'next/image'
 import banner from '@/public/products/banner.jpg'
 
+const normalizeCategory = (category) => {
+  if (!category) return ''
+  return category
+    .toLowerCase()
+    .trim()
+    .replace(/\s+/g, ' ') 
+    .split(' ')
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ')
+}
+
 // Main Products Page Component
 export default function ProductsPage() {
   const [products, setProducts] = useState([])
   const [allCategories, setAllCategories] = useState([])
+  const [allBrands, setAllBrands] = useState([])
   const [searchTerm, setSearchTerm] = useState('')
   const [filteredProducts, setFilteredProducts] = useState([])
   const [loading, setLoading] = useState(true)
@@ -44,32 +56,7 @@ export default function ProductsPage() {
     'Audio',
     // 'Remote Viewing',
     // 'WiFi Enabled',
-    // 'Cloud Storage',
-    // 'Mobile App'
   ]
-
-  // UPDATED: New brand list
-  const brands = [
-    'Hanwha Vision',
-    'Honeywell', 
-    'Falcon',
-    'eSSL',
-    'Axis Communications',
-    'Bosch Security',
-    'Matrix Comsec',
-  ]
-
-  // Function to normalize category names
-  const normalizeCategory = (category) => {
-    if (!category) return ''
-    return category
-      .toLowerCase()
-      .trim()
-      .replace(/\s+/g, ' ') 
-      .split(' ')
-      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-      .join(' ')
-  }
 
   // Fetch products and categories
   useEffect(() => {
@@ -103,9 +90,17 @@ export default function ProductsPage() {
             .map(product => product.normalizedCategory)
             .filter(Boolean)
         )].sort()
+
+        const uniqueBrands = [...new Set(
+          normalizedProducts
+            .map(product => product.brand)
+            .filter(Boolean)
+            .map(b => b.trim())
+        )].sort()
         
         setProducts(normalizedProducts)
         setAllCategories(uniqueCategories)
+        setAllBrands(uniqueBrands)
         setFilteredProducts(normalizedProducts)
         setLoading(false)
       } catch (error) {
@@ -303,7 +298,7 @@ export default function ProductsPage() {
       <div>
         <h3 className="text-lg font-semibold mb-4">Brands</h3>
         <div className="space-y-3">
-          {brands.map(brand => (
+          {allBrands.map(brand => (
             <div key={brand} className="flex items-center space-x-2">
               <Checkbox
                 id={`brand-${brand}`}

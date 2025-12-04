@@ -66,6 +66,7 @@ export default {
           { title: 'Network Switch', value: 'Network Switch' },
           { title: 'CCTV Package', value: 'CCTV Package' },
           { title: 'Walkie Talkie', value: 'Walkie Talkie' },
+          { title: 'Intruder Alarm', value: 'Intruder Alarm' },
         ],
       },
       validation: Rule => Rule.required()
@@ -117,10 +118,9 @@ export default {
           'Axis Communications',
           'TP Link',
           'OneTouch',
-          'DLink',
-          'NetGear',
           'BioMax',
-          
+          'Panasonic i-Pro',
+          'Prama',         
           // You can add more brands here
         ],
         layout: 'dropdown'

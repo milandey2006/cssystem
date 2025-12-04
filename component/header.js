@@ -55,12 +55,6 @@ export default function Header() {
             Home
           </Link>
           <Link
-            href="/services"
-            className="text-md font-medium transition-colors hover:text-primary"
-          >
-            Services
-          </Link>
-          <Link
             href="/about"
             className="text-md font-medium transition-colors hover:text-primary"
           >
@@ -71,6 +65,12 @@ export default function Header() {
             className="text-md font-medium transition-colors hover:text-primary"
           >
             Products
+          </Link>
+          <Link
+            href="/services"
+            className="text-md font-medium transition-colors hover:text-primary"
+          >
+            Services
           </Link>
           <Link
             href="/projects"
@@ -126,6 +126,13 @@ export default function Header() {
               Home
             </Link>
           </li>
+          <Link
+              href="/about"
+              className="block text-md font-medium transition-colors hover:text-primary"
+              onClick={() => setMenuOpen(false)}
+            >
+              About
+            </Link>
           <li>
             <Link
               href="/products"
@@ -145,13 +152,7 @@ export default function Header() {
             </Link>
           </li>
           <li>
-            <Link
-              href="/about"
-              className="block text-md font-medium transition-colors hover:text-primary"
-              onClick={() => setMenuOpen(false)}
-            >
-              About
-            </Link>
+            
           </li>
           <li>
           <Link

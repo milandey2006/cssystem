@@ -424,48 +424,17 @@ export default function ProductPageId() {
             </TabsList>
 
             <TabsContent value="overview" className="pt-8">
-              <div className="prose prose-gray max-w-none">
-                <p className="text-gray-700 leading-relaxed mb-8">
-                  {product.longDescription}
-                </p>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                  {/* <div>
-                    <h3 className="font-bold text-xl text-gray-900 mb-4">
-                      Key Features
-                    </h3>
-                    <ul className="space-y-2">
-                      {product.keyFeatures?.map((feature, i) => (
-                        <li key={i} className="flex items-start gap-2">
-                          <Check className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
-                          <span className="text-gray-700">{feature}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div> */}
-
-                  {/* <div>
-                    <h3 className="font-bold text-xl text-gray-900 mb-4">
-                      Whats in the Box
-                    </h3>
-                    <ul className="space-y-2">
-                      {product.whatsInTheBox?.map((item, i) => (
-                        <li key={i} className="flex items-start gap-2">
-                          <Check className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
-                          <span className="text-gray-700">{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div> */}
-                </div>
-              </div>
+              <div
+                className="prose max-w-none"
+                dangerouslySetInnerHTML={{ __html: product.longDescription }}
+              />
             </TabsContent>
 
             <TabsContent value="specifications" className="pt-8">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
-                {product.specifications?.specs?.map((spec) => (
+              <div className="space-y-4">
+                {product.specifications?.map((spec, index) => (
                   <div
-                    key={spec.key}
+                    key={index}
                     className="flex justify-between py-3 border-b border-gray-200"
                   >
                     <span className="font-medium text-gray-700">
