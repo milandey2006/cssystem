@@ -126,7 +126,7 @@ export default {
         layout: 'dropdown'
       },
       // IMPORTANT: Validation ensures the field is always filled, preventing filter errors
-      validation: Rule => Rule.required().error('Brand is required for product filtering.')
+      //validation: Rule => Rule.required().error('Brand is required for product filtering.')
     },
     {
       name: 'whatsInTheBox',
