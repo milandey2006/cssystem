@@ -13,6 +13,7 @@ import {
   Bell,
   Wifi
 } from "lucide-react";
+import Link from "next/link";
 
 const AboutSection = () => {
   const expertise = [
@@ -215,18 +216,18 @@ const AboutSection = () => {
           viewport={{ once: true }}
           className="text-center border-t border-gray-100 pt-16"
         >
-          <p className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-8">
+          <p className="text-md font-[900] text-gray-500 uppercase tracking-wider mb-8">
             Trusted by Industry Leaders
           </p>
           
-          <div className="flex flex-wrap justify-center gap-x-12 gap-y-8 opacity-70 grayscale hover:grayscale-0 transition-all duration-500">
+          <div className="flex flex-wrap justify-center gap-x-12 gap-y-8 opacity-70 transition-all duration-500">
             {partners.map((partner, index) => (
               <span
                 key={index}
-                className="text-xl font-bold text-gray-400 hover:text-blue-600 transition-colors cursor-default"
-              >
+                className="text-xl font-bold text-blue-600 transition-colors cursor-default"
+              ><Link href="/products">
                 {partner}
-              </span>
+              </Link></span>
             ))}
           </div>
         </motion.div>
