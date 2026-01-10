@@ -227,14 +227,14 @@ const Footer = () => {
             </ul>
 
           </div>
-            <div className="space-y-4">
-              <h4 className="font-semibold tracking-wider uppercase mb-3 text-sm">
-                Service Areas
-              </h4>
-              <p className="text-gray-400 text-sm leading-relaxed">
-                Mumbai, Andheri (East & West), Bandra, Juhu, Powai, Goregaon, Malad, Borivali, Navi Mumbai, Thane.
-              </p>
-            </div>
+              <div className="space-y-4">
+                <h4 className="font-semibold tracking-wider uppercase mb-3 text-sm">
+                  Service Areas
+                </h4>
+                <p className="text-gray-400 text-sm leading-relaxed">
+                  Mumbai, Andheri (East & West), Bandra, Juhu, Powai, Goregaon, Malad, Borivali, Navi Mumbai, Thane.
+                </p>
+              </div>
         </div>
       </div>
 

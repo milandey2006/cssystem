@@ -28,7 +28,7 @@ export default defineType({
         type: 'image', 
         options: { hotspot: true } 
       }],
-      validation: Rule => Rule.required().min(1).max(4).error('Add between 1 and 4 images')
+      validation: Rule => Rule.required().min(1).max(20).error('Add between 1 and 20 images')
     }),
     defineField({
       name: 'category',
