@@ -209,7 +209,7 @@ const Footer = () => {
               <li className="flex items-start gap-3">
                 <MapPin className="h-5 w-5 flex-shrink-0 mt-1" />
                 <span className="text-gray-400">
-                  Office-21 A GR FLoor, New Apollo Estate
+                  Office-21 A GR Floor, New Apollo Estate
                   Old Nagardas Road Near SBI Bank Andheri East
                   Mumbai 400069, Maharashtra, India
                 </span>
