@@ -20,12 +20,12 @@ export default function RootLayout({ children }) {
         <div className="relative flex min-h-screen flex-col">
 
           <Marquee 
-            speed={60}
+            speed={90}
             backgroundColor="bg-[#1e3a8a]"
             textColor="text-white"
             className="py-2 text-sm font-medium"
           >
-            Thank you for connecting CSS. We are Partners with Hanwha, Honeywell, Matrix, Panasonic i-Pro, Axis Communications CCTV Installation and Services in Mumbai.
+           We are Authorised Partners with Hanwha, Honeywell, Matrix, Panasonic i-Pro, and Axis Communications. We have STQC and BIS certification for all our cameras. CCTV Installation and Services in Mumbai.
           </Marquee>
           <Header />
           <main className="flex-1">{children}</main>

@@ -16,21 +16,9 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      {/* <div className="overflow-hidden whitespace-nowrap bg-black text-white py-2">
-        <div className="inline-block animate-marquee text-xl font-bold px-4">
-          Welcome to Champion Security System &nbsp; 🚨 &nbsp; Protecting What
-          Matters Most &nbsp; | &nbsp;
-        </div>
-      </div> */}
+
       <div className="container flex h-16 items-center justify-between px-4 md:px-0">
-        {/* Logo */}
-        {/* <Image
-          src={Logo}
-          alt="Champion Security System Logo"
-          width={50}
-          height={50}
-          className="h-10 w-10 rounded-full"
-        /> */}
+
         <div className="flex items-center gap-2">
     <Link href="/" className="flex items-center gap-2 md:pl-7">
       <Image
