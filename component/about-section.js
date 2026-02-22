@@ -104,7 +104,7 @@ const AboutSection = () => {
             </div> */}
             
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight">
-              We Don't Just Install Cameras. <br />
+              We Don't Just Install Cameras.<br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">
                 We Engineer Safety.
               </span>
