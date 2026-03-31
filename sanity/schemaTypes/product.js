@@ -66,6 +66,7 @@ export default {
           { title: 'Network Switch', value: 'Network Switch' },
           { title: 'CCTV Package', value: 'CCTV Package' },
           { title: 'Walkie Talkie', value: 'Walkie Talkie' },
+          { title: 'Accessories', value: 'Accessories' },
           { title: 'Intruder Alarm', value: 'Intruder Alarm' },
         ],
       },
