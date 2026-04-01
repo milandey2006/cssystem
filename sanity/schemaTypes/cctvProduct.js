@@ -1,8 +1,7 @@
-// Rental Product schema for the Champion Walkie Talkie Rental Website
-
+// CCTV Product schema for the Champion CCTV Rental Website
 export default {
-  name: 'rentalProduct',
-  title: 'Rental Product',
+  name: 'cctvProduct',
+  title: 'CCTV Product',
   type: 'document',
   fields: [
     {
@@ -10,7 +9,7 @@ export default {
       title: 'Product Name',
       type: 'string',
       validation: Rule => Rule.required(),
-      description: 'e.g. CS-Omega Tactical'
+      description: 'e.g. 4K Outdoor Bullet Camera'
     },
     {
       name: 'slug',
@@ -21,7 +20,6 @@ export default {
         maxLength: 96,
       },
       validation: Rule => Rule.required(),
-      description: 'Auto-generated from name. Click "Generate".'
     },
     {
       name: 'description',
@@ -29,14 +27,12 @@ export default {
       type: 'text',
       rows: 3,
       validation: Rule => Rule.required(),
-      description: 'Shown on the product card in the catalog.'
     },
     {
       name: 'pricePerDay',
       title: 'Price Per Day (₹)',
       type: 'number',
       validation: Rule => Rule.required().positive(),
-      description: 'Daily rental rate in Indian Rupees'
     },
     {
       name: 'category',
@@ -44,8 +40,11 @@ export default {
       type: 'string',
       options: {
         list: [
-          { title: 'Handheld', value: 'Handheld' },
-          { title: 'Base Station', value: 'Base Station' },
+          { title: 'CCTV Camera', value: 'CCTV Camera' },
+          { title: 'NVR / Recording', value: 'NVR / Recording' },
+          { title: 'POE Switch', value: 'POE Switch' },
+          { title: 'Storage (HDD)', value: 'Storage (HDD)' },
+          { title: 'Cables & Wiring', value: 'Cables & Wiring' },
           { title: 'Accessories', value: 'Accessories' },
         ],
         layout: 'radio'
@@ -53,31 +52,33 @@ export default {
       validation: Rule => Rule.required()
     },
     {
-      name: 'range',
-      title: 'Range / Coverage',
+      name: 'resolution',
+      title: 'Resolution',
       type: 'string',
-      options: {
-        list: [
-          { title: '1-3 KM', value: '1-3 KM' },
-          { title: '5-10 KM', value: '5-10 KM' },
-          { title: '15-20+ KM', value: '15-20+ KM' },
-          { title: '500-1000 Meters', value: '500-1000 Meters' },
-          { title: 'N/A (Accessory)', value: 'N/A' },
-        ],
-        layout: 'dropdown'
-      },
+      description: 'e.g. 4K Ultra HD, 5MP, 1080p (Only for Cameras)',
+    },
+    {
+      name: 'channels',
+      title: 'Channels / Ports',
+      type: 'string',
+      description: 'e.g. 4 Channel, 8 Port, 16 Channel (For NVR/POE)',
+    },
+    {
+      name: 'storageCapacity',
+      title: 'Storage Capacity',
+      type: 'string',
+      description: 'e.g. 1TB, 2TB, 4TB (For HDDs)',
     },
     {
       name: 'durability',
       title: 'Durability Rating',
       type: 'string',
-      description: 'e.g. IP68 Mil-Spec, IP67, IP65, Indoor/Vehicle, IP54',
+      description: 'e.g. IP67 Weatherproof, Indoor Use',
     },
     {
       name: 'badge',
       title: 'Badge Label',
       type: 'string',
-      description: 'Optional label shown on the product card. e.g. "Most Popular", "New", "Add-on". Leave empty for none.'
     },
     {
       name: 'image',
@@ -87,20 +88,17 @@ export default {
         hotspot: true,
       },
       validation: Rule => Rule.required(),
-      description: 'Main product image shown in the catalog.'
     },
     {
       name: 'inStock',
       title: 'In Stock?',
       type: 'boolean',
       initialValue: true,
-      description: 'Uncheck to hide this product from the catalog.'
     },
     {
       name: 'order',
       title: 'Display Order',
       type: 'number',
-      description: 'Lower number = shown first. Use 1, 2, 3... to control the order.'
     }
   ],
   preview: {
@@ -112,7 +110,7 @@ export default {
     prepare({ title, subtitle, media }) {
       return {
         title,
-        subtitle: `${subtitle || 'No category'} · Rental Product`,
+        subtitle: `${subtitle || 'No category'} · CCTV Rental`,
         media
       }
     }
