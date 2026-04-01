@@ -122,7 +122,15 @@ const Footer = () => {
                   Services
                 </Link>
               </li>
-              
+              <li>
+                <Link
+                  href="https://walkie-talkie-cctv-rentals.championsecuritysystem.com/"
+                  className="text-gray-400 hover:text-white"
+                  target="_blank"
+                >
+                  Rentals
+                </Link>
+              </li>
               <li>
                 <Link
                   href="/contact"

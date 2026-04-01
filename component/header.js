@@ -61,6 +61,13 @@ export default function Header() {
             Services
           </Link>
           <Link
+            href="https://walkie-talkie-cctv-rentals.championsecuritysystem.com/"
+            target="_blank"
+            className="text-md font-medium transition-colors hover:text-primary"
+          >
+            Rentals
+          </Link>
+          <Link
             href="/projects"
             className="text-md font-medium transition-colors hover:text-primary"
           >
@@ -140,7 +147,14 @@ export default function Header() {
             </Link>
           </li>
           <li>
-            
+            <Link
+              href="https://walkie-talkie-cctv-rentals.championsecuritysystem.com/"
+              target="_blank"
+              className="block text-md font-medium transition-colors hover:text-primary"
+              onClick={() => setMenuOpen(false)}
+            >
+              Rentals
+            </Link>
           </li>
           <li>
           <Link
