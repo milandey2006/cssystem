@@ -2,6 +2,8 @@ import React from 'react';
 import { ChevronDown } from 'lucide-react';
 import { client } from "@/sanity/lib/client";
 
+export const revalidate = 0; // Disable caching so Sanity edits show up immediately
+
 export const metadata = {
   title: "Frequently Asked Questions | Champion Security System",
   description: "Find answers to common questions about CCTV installation, biometric systems, access control, and our partner brands in Mumbai.",

@@ -53,6 +53,9 @@ const brandData = [
 ];
 
 async function seedData() {
+  console.log('Clearing existing General FAQs...');
+  await client.delete({ query: '*[_type == "generalFaq"]' });
+
   console.log('Seeding General FAQs...');
   for (let i = 0; i < generalFaqs.length; i++) {
     const doc = {
@@ -65,14 +68,15 @@ async function seedData() {
     console.log(`Created FAQ: ${generalFaqs[i].question}`);
   }
 
-  console.log('Seeding Brand Partners...');
+  console.log('Clearing existing Brand FAQs and old Brand Partners...');
+  await client.delete({ query: '*[_type in ["brandFaq", "brandPartner"]]' });
+
+  console.log('Seeding Brand FAQs...');
   for (let i = 0; i < brandData.length; i++) {
     const doc = {
-      _type: 'brandPartner',
-      name: brandData[i].name,
-      description: brandData[i].desc,
-      faqQuestion: brandData[i].faqQuestion,
-      faqAnswer: brandData[i].desc, // the answer is the same as the description for now
+      _type: 'brandFaq',
+      question: brandData[i].faqQuestion,
+      answer: brandData[i].desc,
       order: i,
     };
     await client.create(doc);
