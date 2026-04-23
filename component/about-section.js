@@ -79,6 +79,7 @@ const AboutSection = () => {
     "TP-Link",
     "Netgear",
     "Mivanta",
+    "Mantra",
     "CommScope",
     "Delton",
   ];
@@ -116,7 +117,7 @@ const AboutSection = () => {
               </p>
               <p className="text-gray-600 pl-6">
                 Proudly serving <strong>Mumbai, Andheri and Near By Areas,</strong> with professional CCTV installation and support.
-                Mumbai's premier enterprise CCTV installers. We provide 2026-compliant, STQC and BIS-certified surveillance systems from Matrix, Honeywell, and Hanwha Vision.
+                Mumbai's premier enterprise CCTV installers. We provide 2026-compliant, STQC and BIS-certified surveillance systems from Matrix, Honeywell, Hanwha Vision, Mivanta, and Mantra.
               </p>
             </div>
             

@@ -1,6 +1,7 @@
 import Image from "next/image"
 import Link from "next/link"
 import { client } from "@/sanity/lib/client"
+import BrandCard from "./brand-card"
 
 const fallbackBrandSeoCards = [
   { name: "Hanwha", desc: "Hanwha Vision (formerly Samsung Techwin) provides high-end AI-based CCTV cameras for commercial and high-security projects. Hanwha cameras are known for advanced video analytics, strong cybersecurity, and excellent image clarity." },
@@ -20,6 +21,7 @@ const fallbackBrandSeoCards = [
   { name: "TP-Link", desc: "TP-Link is a global leader in networking and WiFi infrastructure. Their enterprise Omada switches and routers ensure uninterrupted, high-speed connectivity for massive IP camera networks." },
   { name: "Netgear", desc: "Netgear provides business-class networking switches and secure storage solutions. Their ProAV and PoE+ switches deliver the exact power and reliability required for intensive surveillance video streaming." },
   { name: "Mivanta", desc: "Mivanta provides expert access control and security automation solutions. Their comprehensive product line helps businesses implement secure physical entry points with sophisticated logic." },
+  { name: "Mantra", desc: "Mantra Softech is a global leader in biometric and security solutions. Their innovative products including fingerprint scanners, facial recognition systems, and integrated security platforms are trusted by governments and enterprises for identity management and secure access control." },
   { name: "CommScope", desc: "CommScope excels in enterprise cabling and structured networking infrastructure. Their premium CAT6 and optical fiber cables guarantee lossless data transmission for mission-critical security networks." },
   { name: "Delton", desc: "Delton Cables are highly trusted for CCTV and communication wiring. Their durable co-axial and networking cables ensure long-lasting, interference-free connectivity for all security hardware." }
 ];
@@ -48,12 +50,9 @@ export default async function CSSClientsSlider() {
           </p>
         </div>
         
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6 items-stretch">
           {displayCards.map((brand, index) => (
-            <Link href={`/faq`} key={index} className="bg-white border border-gray-200 p-6 rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group block cursor-pointer">
-              <h3 className="text-blue-600 font-bold text-xl mb-3 group-hover:text-blue-800 transition-colors">{brand.name}</h3>
-              <p className="text-sm text-gray-600 leading-relaxed">{brand.desc}</p>
-            </Link>
+            <BrandCard key={index} brand={brand} />
           ))}
         </div>
       </div>
