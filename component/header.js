@@ -75,6 +75,12 @@ export default function Header() {
             Projects
           </Link>
           <Link
+            href="/blog"
+            className="text-md font-medium transition-colors hover:text-primary"
+          >
+            Blog
+          </Link>
+          <Link
             href="/contact"
             className="text-md font-medium transition-colors hover:text-primary"
           >
@@ -165,6 +171,15 @@ export default function Header() {
           >
             Projects
           </Link>
+          </li>
+          <li>
+            <Link
+              href="/blog"
+              className="block text-md font-medium transition-colors hover:text-primary"
+              onClick={() => setMenuOpen(false)}
+            >
+              Blog
+            </Link>
           </li>
           <li>
             <Link

@@ -1,5 +1,6 @@
 import { client } from "@/sanity/lib/client";
 import { SITE_URL } from "@/lib/seo";
+import { getAllPosts } from "@/lib/blog/posts";
 
 export default async function sitemap() {
   const staticRoutes = [
@@ -8,6 +9,7 @@ export default async function sitemap() {
     { url: "/services", changeFrequency: "monthly", priority: 0.8 },
     { url: "/products", changeFrequency: "daily", priority: 0.9 },
     { url: "/projects", changeFrequency: "weekly", priority: 0.7 },
+    { url: "/blog", changeFrequency: "weekly", priority: 0.8 },
     { url: "/faq", changeFrequency: "monthly", priority: 0.6 },
     { url: "/contact", changeFrequency: "monthly", priority: 0.7 },
   ].map((route) => ({
@@ -32,5 +34,12 @@ export default async function sitemap() {
     console.error("sitemap: failed to fetch products", error);
   }
 
-  return [...staticRoutes, ...productRoutes];
+  const blogRoutes = getAllPosts().map((post) => ({
+    url: `${SITE_URL}/blog/${post.slug}`,
+    lastModified: new Date(post.updatedAt || post.publishedAt),
+    changeFrequency: "monthly",
+    priority: 0.6,
+  }));
+
+  return [...staticRoutes, ...productRoutes, ...blogRoutes];
 }
