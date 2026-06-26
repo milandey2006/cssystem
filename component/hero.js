@@ -30,7 +30,7 @@ const HeroHighlight = ({ children, className, containerClassName }) => {
       </video>
 
       {/* --- DARK OVERLAY for readability --- */}
-      <div class="absolute inset-0 bg-black/80"></div>
+      <div className="absolute inset-0 bg-black/80"></div>
 
       {/* --- FOREGROUND CONTENT (your old text) --- */}
       <motion.div

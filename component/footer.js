@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/button";
 import {
   Shield,
   Facebook,
-  Twitter,
   Instagram,
   Linkedin,
   MapPin,
@@ -72,9 +71,6 @@ const Footer = () => {
               >
                 <Facebook />
               </Link>
-              <Link href="" className="text-gray-400 hover:text-white">
-                <Twitter />
-              </Link>
               <Link
                 href="https://www.instagram.com/cctvcss.official"
                 className="text-gray-400 hover:text-white"
@@ -127,6 +123,7 @@ const Footer = () => {
                   href="https://walkie-talkie-cctv-rentals.championsecuritysystem.com/"
                   className="text-gray-400 hover:text-white"
                   target="_blank"
+                  rel="noopener noreferrer"
                 >
                   Rentals
                 </Link>

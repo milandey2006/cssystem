@@ -5,8 +5,11 @@ import { client } from "@/sanity/lib/client";
 export const revalidate = 0; // Disable caching so Sanity edits show up immediately
 
 export const metadata = {
-  title: "Frequently Asked Questions | Champion Security System",
+  title: "Frequently Asked Questions",
   description: "Find answers to common questions about CCTV installation, biometric systems, access control, and our partner brands in Mumbai.",
+  alternates: {
+    canonical: "/faq",
+  },
 };
 
 const fallbackGeneralFaqs = [
@@ -55,8 +58,25 @@ export default async function FAQPage() {
   const displayGeneralFaqs = sanityGeneralFaqs && sanityGeneralFaqs.length > 0 ? sanityGeneralFaqs : fallbackGeneralFaqs;
   const displayBrandFaqs = sanityBrandFaqs && sanityBrandFaqs.length > 0 ? sanityBrandFaqs : fallbackBrandFaqs;
 
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [...displayGeneralFaqs, ...displayBrandFaqs].map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.answer,
+      },
+    })),
+  };
+
   return (
     <div className="bg-gray-50 min-h-screen py-16">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       <div className="max-w-5xl mx-auto px-4">
         <div className="text-center mb-16">
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">Frequently Asked Questions</h1>
