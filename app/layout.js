@@ -148,7 +148,7 @@ export default function RootLayout({ children }) {
         <Analytics />
         <div className="relative flex min-h-screen flex-col">
           <Marquee
-            speed={90}
+            speed={70}
             backgroundColor="bg-[#1e3a8a]"
             textColor="text-white"
             className="py-2 text-sm font-medium"

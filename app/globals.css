@@ -243,25 +243,19 @@ body {
 }
 
 /* Marquee Animation */
-/* Immediate Marquee Animation - Starts right away */
+/* Seamless scroll: content is duplicated exactly once and the track moves
+   by 50% (one copy's width) so it loops with no gap and no off-screen wait. */
 @keyframes marquee-immediate {
   0% {
-    transform: translate3d(100%, 0, 0);
+    transform: translate3d(0, 0, 0);
   }
   100% {
-    transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-50%, 0, 0);
   }
 }
 
 .animate-marquee-immediate {
   animation: marquee-immediate linear infinite;
-  animation-duration: var(--marquee-duration, 50s);
-  animation-delay: 0s;
-  animation-fill-mode: both;
+  animation-duration: var(--marquee-duration, 40s);
   will-change: transform;
-}
-
-/* Preload animation to prevent FOUC (Flash of Unstyled Content) */
-.animate-marquee-immediate {
-  transform: translate3d(100%, 0, 0);
 }
