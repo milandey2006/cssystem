@@ -345,10 +345,7 @@ export default function ProductDetailClient({ product }) {
             </TabsList>
 
             <TabsContent value="overview" className="pt-8">
-              <div
-                className="prose max-w-none"
-                dangerouslySetInnerHTML={{ __html: product.longDescription }}
-              />
+              <OverviewContent text={product.longDescription} />
             </TabsContent>
 
             <TabsContent value="specifications" className="pt-8">
@@ -374,6 +371,38 @@ export default function ProductDetailClient({ product }) {
           </Tabs>
         </div>
       </div>
+    </div>
+  );
+}
+
+// longDescription is plain text with newline-separated lines (sometimes a
+// *Heading* line followed by bullet points) — render each line on its own
+// line instead of letting the browser collapse them into one paragraph.
+function OverviewContent({ text }) {
+  if (!text) return null;
+
+  const lines = text
+    .split("\n")
+    .map((line) => line.trim())
+    .filter(Boolean);
+
+  return (
+    <div className="space-y-3">
+      {lines.map((line, i) => {
+        const heading = line.match(/^\*(.+)\*$/);
+        if (heading) {
+          return (
+            <h3 key={i} className="text-lg font-semibold text-gray-900 pt-2">
+              {heading[1]}
+            </h3>
+          );
+        }
+        return (
+          <p key={i} className="text-gray-700 leading-relaxed">
+            {line}
+          </p>
+        );
+      })}
     </div>
   );
 }
