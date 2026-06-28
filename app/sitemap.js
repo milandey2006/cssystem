@@ -22,10 +22,10 @@ export default async function sitemap() {
   let productRoutes = [];
   try {
     const products = await client.fetch(
-      `*[_type == "product"]{ _id, _updatedAt }`
+      `*[_type == "product"]{ _id, "slug": slug.current, _updatedAt }`
     );
     productRoutes = products.map((product) => ({
-      url: `${SITE_URL}/products/${product._id}`,
+      url: `${SITE_URL}/products/${product.slug || product._id}`,
       lastModified: product._updatedAt ? new Date(product._updatedAt) : new Date(),
       changeFrequency: "weekly",
       priority: 0.6,

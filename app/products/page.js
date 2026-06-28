@@ -36,6 +36,7 @@ export default async function ProductsPage() {
       *[_type == "product"]{
         _id,
         name,
+        "slug": slug.current,
         description,
         price,
         oldPrice,
