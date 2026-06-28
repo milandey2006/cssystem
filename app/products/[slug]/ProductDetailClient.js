@@ -376,8 +376,9 @@ export default function ProductDetailClient({ product }) {
 }
 
 // longDescription is plain text with newline-separated lines (sometimes a
-// *Heading* line followed by bullet points) — render each line on its own
-// line instead of letting the browser collapse them into one paragraph.
+// *Heading* line followed by bullet points). Lines before any heading are
+// rendered as intro paragraphs; lines after a heading are grouped into a
+// bulleted list instead of letting the browser collapse them into one blob.
 function OverviewContent({ text }) {
   if (!text) return null;
 
@@ -386,20 +387,52 @@ function OverviewContent({ text }) {
     .map((line) => line.trim())
     .filter(Boolean);
 
+  const blocks = [];
+  let currentList = null;
+
+  for (const line of lines) {
+    const heading = line.match(/^\*(.+)\*$/);
+    if (heading) {
+      currentList = null;
+      blocks.push({ type: "heading", text: heading[1] });
+      continue;
+    }
+
+    if (currentList) {
+      currentList.items.push(line);
+    } else if (blocks[blocks.length - 1]?.type === "heading") {
+      currentList = { type: "list", items: [line] };
+      blocks.push(currentList);
+    } else {
+      blocks.push({ type: "paragraph", text: line });
+    }
+  }
+
   return (
     <div className="space-y-3">
-      {lines.map((line, i) => {
-        const heading = line.match(/^\*(.+)\*$/);
-        if (heading) {
+      {blocks.map((block, i) => {
+        if (block.type === "heading") {
           return (
             <h3 key={i} className="text-lg font-semibold text-gray-900 pt-2">
-              {heading[1]}
+              {block.text}
             </h3>
+          );
+        }
+        if (block.type === "list") {
+          return (
+            <ul key={i} className="space-y-2">
+              {block.items.map((item, j) => (
+                <li key={j} className="flex items-start gap-3 text-gray-700 leading-relaxed">
+                  <span className="mt-2 h-1.5 w-1.5 rounded-full bg-gray-900 flex-shrink-0" />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
           );
         }
         return (
           <p key={i} className="text-gray-700 leading-relaxed">
-            {line}
+            {block.text}
           </p>
         );
       })}
