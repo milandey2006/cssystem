@@ -375,10 +375,11 @@ export default function ProductDetailClient({ product }) {
   );
 }
 
-// longDescription is plain text with newline-separated lines (sometimes a
-// *Heading* line followed by bullet points). Lines before any heading are
-// rendered as intro paragraphs; lines after a heading are grouped into a
-// bulleted list instead of letting the browser collapse them into one blob.
+// longDescription is plain text with newline-separated lines. Only ~28% of
+// products use an explicit *Heading* marker — most are a flat dump of spec/
+// feature lines with no marker at all. Rather than guess at structure we
+// don't have, every line is bulleted by default; *Text* stays the one
+// unambiguous heading signal (it's a marker someone deliberately typed).
 function OverviewContent({ text }) {
   if (!text) return null;
 
@@ -398,14 +399,11 @@ function OverviewContent({ text }) {
       continue;
     }
 
-    if (currentList) {
-      currentList.items.push(line);
-    } else if (blocks[blocks.length - 1]?.type === "heading") {
-      currentList = { type: "list", items: [line] };
+    if (!currentList) {
+      currentList = { type: "list", items: [] };
       blocks.push(currentList);
-    } else {
-      blocks.push({ type: "paragraph", text: line });
     }
+    currentList.items.push(line);
   }
 
   return (
@@ -418,22 +416,15 @@ function OverviewContent({ text }) {
             </h3>
           );
         }
-        if (block.type === "list") {
-          return (
-            <ul key={i} className="space-y-2">
-              {block.items.map((item, j) => (
-                <li key={j} className="flex items-start gap-3 text-gray-700 leading-relaxed">
-                  <span className="mt-2 h-1.5 w-1.5 rounded-full bg-gray-900 flex-shrink-0" />
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
-          );
-        }
         return (
-          <p key={i} className="text-gray-700 leading-relaxed">
-            {block.text}
-          </p>
+          <ul key={i} className="space-y-2">
+            {block.items.map((item, j) => (
+              <li key={j} className="flex items-start gap-3 text-gray-700 leading-relaxed">
+                <span className="mt-2 h-1.5 w-1.5 rounded-full bg-gray-900 flex-shrink-0" />
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
         );
       })}
     </div>
