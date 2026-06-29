@@ -8,6 +8,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Card, CardContent } from "@/components/ui/card";
 import Image from "next/image";
 import banner from "@/public/products/banner.jpg";
+import { normalizeSlug } from "@/lib/slug";
 
 // Main Products Page Component — receives data fetched server-side so the
 // product grid is present in the initial HTML for crawlers, with filtering
@@ -449,7 +450,10 @@ export default function ProductsClient({
               <>
                 <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-5">
                   {currentProducts.map((product) => (
-                    <Link href={`/products/${product.slug || product._id}`} key={product._id}>
+                    <Link
+                      href={`/products/${normalizeSlug(product.slug) || product._id}`}
+                      key={product._id}
+                    >
                       <Card className="group hover:shadow-lg transition-all duration-200 hover:-translate-y-1 overflow-hidden h-90">
                         {/* Product Badge */}
                         {product.badge && (

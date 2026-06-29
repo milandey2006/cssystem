@@ -1,6 +1,7 @@
 import { client } from "@/sanity/lib/client";
 import { SITE_URL } from "@/lib/seo";
 import { getAllPosts } from "@/lib/blog/posts";
+import { normalizeSlug } from "@/lib/slug";
 
 export default async function sitemap() {
   const staticRoutes = [
@@ -25,7 +26,7 @@ export default async function sitemap() {
       `*[_type == "product"]{ _id, "slug": slug.current, _updatedAt }`
     );
     productRoutes = products.map((product) => ({
-      url: `${SITE_URL}/products/${product.slug || product._id}`,
+      url: `${SITE_URL}/products/${normalizeSlug(product.slug) || product._id}`,
       lastModified: product._updatedAt ? new Date(product._updatedAt) : new Date(),
       changeFrequency: "weekly",
       priority: 0.6,

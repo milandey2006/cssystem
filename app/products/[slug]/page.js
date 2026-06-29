@@ -1,9 +1,10 @@
 import { notFound, permanentRedirect } from "next/navigation";
 import { client, urlFor } from "@/lib/sanity";
 import { SITE_URL } from "@/lib/seo";
+import { normalizeSlug } from "@/lib/slug";
 import ProductDetailClient from "./ProductDetailClient";
 
-const PRODUCT_QUERY = `*[_type == "product" && (slug.current == $param || _id == $param)][0]{
+const PRODUCT_FIELDS = `
   _id,
   "slug": slug.current,
   name,
@@ -21,15 +22,38 @@ const PRODUCT_QUERY = `*[_type == "product" && (slug.current == $param || _id ==
   specifications,
   brand,
   category
-}`;
+`;
 
+const EXACT_QUERY = `*[_type == "product" && (slug.current == $param || _id == $param)][0]{${PRODUCT_FIELDS}}`;
+const ALL_SLUGS_QUERY = `*[_type == "product"]{_id, "slug": slug.current}`;
+const BY_ID_QUERY = `*[_type == "product" && _id == $id][0]{${PRODUCT_FIELDS}}`;
+
+// A few product slugs in Sanity have data-entry mistakes (raw spaces,
+// commas, pasted keyword lists instead of a clean slug) that the hosting
+// platform doesn't reliably route. Exact match covers the normal case;
+// when that misses, fall back to matching against every product's slug
+// normalized the same way the listing page generates links, so those
+// products are still reachable instead of 404ing.
 async function getProduct(param) {
   try {
-    return await client.fetch(PRODUCT_QUERY, { param });
+    const exact = await client.fetch(EXACT_QUERY, { param });
+    if (exact) return exact;
+
+    const all = await client.fetch(ALL_SLUGS_QUERY);
+    const match = all.find(
+      (p) => normalizeSlug(p.slug) === param || p._id === param
+    );
+    if (!match) return null;
+
+    return await client.fetch(BY_ID_QUERY, { id: match._id });
   } catch (error) {
     console.error("Error fetching product:", error);
     return null;
   }
+}
+
+function canonicalSlugFor(product) {
+  return normalizeSlug(product.slug) || product._id;
 }
 
 export async function generateMetadata({ params }) {
@@ -40,7 +64,7 @@ export async function generateMetadata({ params }) {
     return { title: "Product Not Found" };
   }
 
-  const canonicalSlug = product.slug || product._id;
+  const canonicalSlug = canonicalSlugFor(product);
   const imageUrl = product.images?.[0] ? urlFor(product.images[0]).width(1200).height(630).url() : undefined;
 
   return {
@@ -61,7 +85,7 @@ export async function generateMetadata({ params }) {
 }
 
 const productJsonLd = (product) => {
-  const canonicalSlug = product.slug || product._id;
+  const canonicalSlug = canonicalSlugFor(product);
   const imageUrl = product.images?.[0] ? urlFor(product.images[0]).url() : undefined;
   return {
     "@context": "https://schema.org",
@@ -104,10 +128,12 @@ export default async function ProductDetailPage({ params }) {
     notFound();
   }
 
-  // Old links may still point at the raw Sanity _id — send them to the
-  // canonical slug URL permanently instead of serving duplicate content.
-  if (product.slug && slug !== product.slug) {
-    permanentRedirect(`/products/${product.slug}`);
+  // Send anything that isn't already the canonical, normalized slug URL
+  // (raw _id, an old/malformed slug with spaces or commas, etc.) to the
+  // clean URL permanently instead of serving duplicate content.
+  const canonicalSlug = canonicalSlugFor(product);
+  if (slug !== canonicalSlug) {
+    permanentRedirect(`/products/${canonicalSlug}`);
   }
 
   return (
