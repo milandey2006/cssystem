@@ -242,6 +242,49 @@ body {
   }
 }
 
+/* CCTV Calculator: scoped white/blue theme (matches brand blue used across the
+   site) so it doesn't affect the neutral shadcn tokens used elsewhere. */
+.cctv-theme {
+  --primary: oklch(0.546 0.245 262.881); /* blue-600 */
+  --primary-foreground: oklch(0.985 0 0);
+  --ring: oklch(0.546 0.245 262.881);
+  --accent: oklch(0.932 0.032 255.585); /* blue-100 */
+  --accent-foreground: oklch(0.379 0.146 265.522); /* blue-900 */
+  --secondary: oklch(0.97 0.014 254.604); /* blue-50 */
+  --secondary-foreground: oklch(0.379 0.146 265.522);
+}
+
+@media print {
+  @page {
+    size: A4;
+    margin: 14mm 12mm;
+  }
+
+  html,
+  body {
+    background: white !important;
+    color: black !important;
+  }
+
+  /* Printing the calculator page shouldn't also print the sticky marquee,
+     nav, footer CTA, or the floating WhatsApp button -- only the report. */
+  body:has(.cctv-theme) > div > :not(main) {
+    display: none !important;
+  }
+
+  .cctv-theme * {
+    box-shadow: none !important;
+  }
+
+  .cctv-theme table {
+    break-inside: auto;
+  }
+
+  .cctv-theme tr {
+    break-inside: avoid;
+  }
+}
+
 /* Marquee Animation */
 /* Seamless scroll: content is duplicated exactly once and the track moves
    by 50% (one copy's width) so it loops with no gap and no off-screen wait. */

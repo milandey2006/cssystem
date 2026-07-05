@@ -69,6 +69,12 @@ export default function Header() {
             Rentals
           </Link>
           <Link
+            href="/cctv-calculator"
+            className="text-md font-medium transition-colors hover:text-primary"
+          >
+            Calculator
+          </Link>
+          <Link
             href="/projects"
             className="text-md font-medium transition-colors hover:text-primary"
           >
@@ -162,6 +168,15 @@ export default function Header() {
               onClick={() => setMenuOpen(false)}
             >
               Rentals
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/cctv-calculator"
+              className="block text-md font-medium transition-colors hover:text-primary"
+              onClick={() => setMenuOpen(false)}
+            >
+              Calculator
             </Link>
           </li>
           <li>
