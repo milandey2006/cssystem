@@ -16,6 +16,7 @@ import { Watermark } from "@/components/cctv/Watermark";
 import { useCalculatorStore } from "@/lib/cctv/store";
 import { readStateFromUrl, writeStateToUrl, buildShareUrl } from "@/lib/cctv/url-state";
 import { calculateAggregate, calculateReverseRetention, tbToBytes } from "@/lib/cctv/calc";
+import { STANDARD_DRIVE_SIZES_TB } from "@/lib/cctv/data/drives";
 import { RETENTION_QUICK_CHIPS } from "@/lib/cctv/labels";
 import { cn } from "@/lib/utils";
 
@@ -171,6 +172,30 @@ export function Calculator() {
                 onCommit={(overheadMarginPercent) => updateSettings({ overheadMarginPercent })}
               />
             </div>
+
+            {mode === "forward" && (
+              <div className="flex flex-col gap-1.5">
+                <Label>HDD size</Label>
+                <Select
+                  value={String(settings.preferredDriveSizeTB ?? "auto")}
+                  onValueChange={(v) =>
+                    updateSettings({ preferredDriveSizeTB: v === "auto" ? "auto" : Number(v) })
+                  }
+                >
+                  <SelectTrigger className="w-full">
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="auto">Auto (fewest drives)</SelectItem>
+                    {STANDARD_DRIVE_SIZES_TB.map((s) => (
+                      <SelectItem key={s} value={String(s)}>
+                        {s} TB drives
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+            )}
           </CardContent>
         </Card>
 
