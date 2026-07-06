@@ -24,9 +24,20 @@ import { Label } from "@/components/ui/label";
 export default function ProductDetailClient({ product, relatedProducts = [] }) {
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [isZoomed, setIsZoomed] = useState(false);
-  const relatedScrollRef = useRef(null);
-  const scrollRelated = (dir) =>
-    relatedScrollRef.current?.scrollBy({ left: dir * 220, behavior: "smooth" });
+  const carouselContainerRef = useRef(null);
+  const [carouselOffset, setCarouselOffset] = useState(0);
+  const scrollRelated = (dir) => {
+    const container = carouselContainerRef.current;
+    if (!container) return;
+    const track = container.firstElementChild;
+    if (!track) return;
+    // offsetWidth matches container (block fill) — measure children instead:
+    // each card is w-48 (192px) + gap-4 (16px), last card has no gap
+    const cardCount = track.children.length;
+    const totalTrackWidth = cardCount * 208 - 16;
+    const max = Math.max(0, totalTrackWidth - container.clientWidth);
+    setCarouselOffset((prev) => Math.min(Math.max(prev + dir * 208, 0), max));
+  };
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [dialogOpen, setDialogOpen] = useState(false);
   const [formSubmitting, setFormSubmitting] = useState(false);
@@ -388,6 +399,7 @@ export default function ProductDetailClient({ product, relatedProducts = [] }) {
               </div>
               <div className="flex gap-2 flex-shrink-0">
                 <button
+                  type="button"
                   onClick={() => scrollRelated(-1)}
                   aria-label="Scroll left"
                   className="p-2 rounded-full border border-gray-200 hover:border-blue-400 hover:bg-blue-50 transition-colors"
@@ -395,6 +407,7 @@ export default function ProductDetailClient({ product, relatedProducts = [] }) {
                   <ChevronLeft className="h-5 w-5 text-gray-600" />
                 </button>
                 <button
+                  type="button"
                   onClick={() => scrollRelated(1)}
                   aria-label="Scroll right"
                   className="p-2 rounded-full border border-gray-200 hover:border-blue-400 hover:bg-blue-50 transition-colors"
@@ -404,15 +417,16 @@ export default function ProductDetailClient({ product, relatedProducts = [] }) {
               </div>
             </div>
 
-            {/* Carousel */}
-            <div
-              ref={relatedScrollRef}
-              className="flex gap-4 overflow-x-auto scroll-smooth pb-3 snap-x snap-mandatory"
-              style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
-            >
-              {relatedProducts.map((related) => (
-                <RelatedProductCard key={related._id} product={related} />
-              ))}
+            {/* Carousel — translateX avoids browser scrollLeft quirks */}
+            <div ref={carouselContainerRef} className="overflow-hidden pb-3">
+              <div
+                className="flex gap-4"
+                style={{ transform: `translateX(-${carouselOffset}px)`, transition: "transform 0.35s ease" }}
+              >
+                {relatedProducts.map((related) => (
+                  <RelatedProductCard key={related._id} product={related} />
+                ))}
+              </div>
             </div>
           </div>
         )}
