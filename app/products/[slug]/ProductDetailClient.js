@@ -1,9 +1,9 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Check, ChevronRight } from "lucide-react";
+import { Check, ChevronLeft, ChevronRight } from "lucide-react";
 import { urlFor } from "@/lib/sanity";
 import { normalizeSlug } from "@/lib/slug";
 
@@ -24,6 +24,9 @@ import { Label } from "@/components/ui/label";
 export default function ProductDetailClient({ product, relatedProducts = [] }) {
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [isZoomed, setIsZoomed] = useState(false);
+  const relatedScrollRef = useRef(null);
+  const scrollRelated = (dir) =>
+    relatedScrollRef.current?.scrollBy({ left: dir * 220, behavior: "smooth" });
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [dialogOpen, setDialogOpen] = useState(false);
   const [formSubmitting, setFormSubmitting] = useState(false);
@@ -374,13 +377,39 @@ export default function ProductDetailClient({ product, relatedProducts = [] }) {
         {/* Same-brand recommendations */}
         {relatedProducts.length > 0 && (
           <div className="mt-16 border-t border-gray-100 pt-12">
-            <h2 className="text-2xl font-bold text-gray-900 mb-2">
-              More from {product.brand}
-            </h2>
-            <p className="text-gray-500 text-sm mb-8">
-              Other {product.brand} products available from Champion Security System
-            </p>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
+            <div className="flex items-start justify-between mb-6 gap-4">
+              <div>
+                <h2 className="text-2xl font-bold text-gray-900">
+                  More from {product.brand}
+                </h2>
+                <p className="text-gray-500 text-sm mt-1">
+                  Other {product.brand} products available from Champion Security System
+                </p>
+              </div>
+              <div className="flex gap-2 flex-shrink-0">
+                <button
+                  onClick={() => scrollRelated(-1)}
+                  aria-label="Scroll left"
+                  className="p-2 rounded-full border border-gray-200 hover:border-blue-400 hover:bg-blue-50 transition-colors"
+                >
+                  <ChevronLeft className="h-5 w-5 text-gray-600" />
+                </button>
+                <button
+                  onClick={() => scrollRelated(1)}
+                  aria-label="Scroll right"
+                  className="p-2 rounded-full border border-gray-200 hover:border-blue-400 hover:bg-blue-50 transition-colors"
+                >
+                  <ChevronRight className="h-5 w-5 text-gray-600" />
+                </button>
+              </div>
+            </div>
+
+            {/* Carousel */}
+            <div
+              ref={relatedScrollRef}
+              className="flex gap-4 overflow-x-auto scroll-smooth pb-3 snap-x snap-mandatory"
+              style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+            >
               {relatedProducts.map((related) => (
                 <RelatedProductCard key={related._id} product={related} />
               ))}
@@ -399,7 +428,7 @@ function RelatedProductCard({ product }) {
   return (
     <Link
       href={`/products/${slug}`}
-      className="group flex flex-col rounded-xl border border-gray-200 overflow-hidden hover:border-blue-300 hover:shadow-md transition-all duration-200 bg-white"
+      className="group flex-shrink-0 w-48 flex flex-col rounded-xl border border-gray-200 overflow-hidden hover:border-blue-300 hover:shadow-md transition-all duration-200 bg-white snap-start"
     >
       <div className="relative aspect-square bg-gray-50 overflow-hidden">
         {imageUrl ? (
