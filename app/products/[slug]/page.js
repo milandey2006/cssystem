@@ -27,6 +27,14 @@ const PRODUCT_FIELDS = `
 const EXACT_QUERY = `*[_type == "product" && (slug.current == $param || _id == $param)][0]{${PRODUCT_FIELDS}}`;
 const ALL_SLUGS_QUERY = `*[_type == "product"]{_id, "slug": slug.current}`;
 const BY_ID_QUERY = `*[_type == "product" && _id == $id][0]{${PRODUCT_FIELDS}}`;
+const RELATED_QUERY = `*[_type == "product" && brand == $brand && _id != $id][0...6]{
+  _id,
+  "slug": slug.current,
+  name,
+  description,
+  images,
+  badge
+}`;
 
 // A few product slugs in Sanity have data-entry mistakes (raw spaces,
 // commas, pasted keyword lists instead of a clean slug) that the hosting
@@ -136,13 +144,25 @@ export default async function ProductDetailPage({ params }) {
     permanentRedirect(`/products/${canonicalSlug}`);
   }
 
+  let relatedProducts = [];
+  if (product.brand) {
+    try {
+      relatedProducts = await client.fetch(RELATED_QUERY, {
+        brand: product.brand,
+        id: product._id,
+      });
+    } catch {
+      // non-critical — page still renders without recommendations
+    }
+  }
+
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd(product)) }}
       />
-      <ProductDetailClient product={product} />
+      <ProductDetailClient product={product} relatedProducts={relatedProducts} />
     </>
   );
 }

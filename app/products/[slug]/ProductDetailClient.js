@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Check, ChevronRight } from "lucide-react";
 import { urlFor } from "@/lib/sanity";
+import { normalizeSlug } from "@/lib/slug";
 
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -20,7 +21,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
-export default function ProductDetailClient({ product }) {
+export default function ProductDetailClient({ product, relatedProducts = [] }) {
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [isZoomed, setIsZoomed] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -321,7 +322,7 @@ export default function ProductDetailClient({ product }) {
         </div>
 
         {/* Tabs Section */}
-        <div className="mt-16">
+        <div className="mt-16" id="product-tabs">
           <Tabs defaultValue="overview" className="w-full">
             <TabsList className="flex border-b border-gray-200 bg-transparent p-0 h-auto">
               <TabsTrigger
@@ -370,8 +371,70 @@ export default function ProductDetailClient({ product }) {
             </TabsContent>
           </Tabs>
         </div>
+        {/* Same-brand recommendations */}
+        {relatedProducts.length > 0 && (
+          <div className="mt-16 border-t border-gray-100 pt-12">
+            <h2 className="text-2xl font-bold text-gray-900 mb-2">
+              More from {product.brand}
+            </h2>
+            <p className="text-gray-500 text-sm mb-8">
+              Other {product.brand} products available from Champion Security System
+            </p>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
+              {relatedProducts.map((related) => (
+                <RelatedProductCard key={related._id} product={related} />
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </div>
+  );
+}
+
+function RelatedProductCard({ product }) {
+  const slug = normalizeSlug(product.slug) || product._id;
+  const imageUrl = product.images?.[0] ? urlFor(product.images[0]).width(400).height(300).url() : null;
+
+  return (
+    <Link
+      href={`/products/${slug}`}
+      className="group flex flex-col rounded-xl border border-gray-200 overflow-hidden hover:border-blue-300 hover:shadow-md transition-all duration-200 bg-white"
+    >
+      <div className="relative aspect-square bg-gray-50 overflow-hidden">
+        {imageUrl ? (
+          <Image
+            src={imageUrl}
+            alt={product.name}
+            fill
+            className="object-contain p-3 group-hover:scale-105 transition-transform duration-300"
+            sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 16vw"
+          />
+        ) : (
+          <div className="w-full h-full flex items-center justify-center text-gray-300 text-xs">
+            No image
+          </div>
+        )}
+        {product.badge && (
+          <Badge className="absolute top-2 left-2 text-xs bg-blue-600 text-white px-1.5 py-0.5">
+            {product.badge}
+          </Badge>
+        )}
+      </div>
+      <div className="p-3 flex flex-col gap-1 flex-1">
+        <p className="text-xs font-semibold text-gray-900 leading-tight line-clamp-2 group-hover:text-blue-700 transition-colors">
+          {product.name}
+        </p>
+        {product.description && (
+          <p className="text-xs text-gray-500 leading-snug line-clamp-2">
+            {product.description}
+          </p>
+        )}
+        <span className="mt-auto pt-2 text-xs font-medium text-blue-600 group-hover:underline">
+          View details →
+        </span>
+      </div>
+    </Link>
   );
 }
 
