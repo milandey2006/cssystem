@@ -26,17 +26,21 @@ export default function ProductDetailClient({ product, relatedProducts = [] }) {
   const [isZoomed, setIsZoomed] = useState(false);
   const carouselContainerRef = useRef(null);
   const [carouselOffset, setCarouselOffset] = useState(0);
-  const scrollRelated = (dir) => {
+  const [maxOffset, setMaxOffset] = useState(0);
+
+  // Calculate max scroll after mount (needs real DOM widths)
+  React.useEffect(() => {
     const container = carouselContainerRef.current;
     if (!container) return;
     const track = container.firstElementChild;
     if (!track) return;
-    // offsetWidth matches container (block fill) — measure children instead:
-    // each card is w-48 (192px) + gap-4 (16px), last card has no gap
     const cardCount = track.children.length;
     const totalTrackWidth = cardCount * 208 - 16;
-    const max = Math.max(0, totalTrackWidth - container.clientWidth);
-    setCarouselOffset((prev) => Math.min(Math.max(prev + dir * 208, 0), max));
+    setMaxOffset(Math.max(0, totalTrackWidth - container.clientWidth));
+  }, [relatedProducts]);
+
+  const scrollRelated = (dir) => {
+    setCarouselOffset((prev) => Math.min(Math.max(prev + dir * 208, 0), maxOffset));
   };
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [dialogOpen, setDialogOpen] = useState(false);
@@ -401,16 +405,18 @@ export default function ProductDetailClient({ product, relatedProducts = [] }) {
                 <button
                   type="button"
                   onClick={() => scrollRelated(-1)}
+                  disabled={carouselOffset <= 0}
                   aria-label="Scroll left"
-                  className="p-2 rounded-full border border-gray-200 hover:border-blue-400 hover:bg-blue-50 transition-colors"
+                  className="p-2 rounded-full border border-gray-200 hover:border-blue-400 hover:bg-blue-50 transition-colors disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:border-gray-200 disabled:hover:bg-transparent"
                 >
                   <ChevronLeft className="h-5 w-5 text-gray-600" />
                 </button>
                 <button
                   type="button"
                   onClick={() => scrollRelated(1)}
+                  disabled={carouselOffset >= maxOffset}
                   aria-label="Scroll right"
-                  className="p-2 rounded-full border border-gray-200 hover:border-blue-400 hover:bg-blue-50 transition-colors"
+                  className="p-2 rounded-full border border-gray-200 hover:border-blue-400 hover:bg-blue-50 transition-colors disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:border-gray-200 disabled:hover:bg-transparent"
                 >
                   <ChevronRight className="h-5 w-5 text-gray-600" />
                 </button>
