@@ -35,7 +35,14 @@ const HeroHighlight = ({ children, className, containerClassName }) => {
         poster="/hero/hero.jpg"
         className="absolute inset-0 h-full w-full object-contain object-top md:object-cover md:object-center"
       >
-        <source src="/hero/hero.mp4" type="video/mp4" />
+        {/* Served through Cloudinary's transform pipeline rather than the raw
+            upload: f_auto picks the best codec per browser, q_auto:eco and
+            w_1280 take the 19.9MB master down to ~3.2MB. Behind the overlay
+            the difference is invisible, and it starts playing immediately. */}
+        <source
+          src="https://res.cloudinary.com/dupzli6db/video/upload/f_auto,q_auto:eco,w_1280/v1786473367/hero_dspken.mp4"
+          type="video/mp4"
+        />
       </video>
 
       {/* --- OVERLAY ---
