@@ -66,6 +66,8 @@ const AboutSection = () => {
     "Honeywell",
     "Matrix CCTV",
     "Axis Communications",
+    "Bosch",
+    "Pelco",
     "Panasonic i-Pro",
     "Trassir",
     "Milesight",
@@ -115,10 +117,35 @@ const AboutSection = () => {
               <p className="text-lg text-gray-600 leading-relaxed border-l-4 border-blue-500 pl-6 italic">
                 "At Champion Security System, we believe true security isn't about gadgets it's about the peace of mind that comes from knowing your world is protected by us."
               </p>
-              <p className="text-gray-600 pl-6">
-                Proudly serving <strong>Mumbai, Andheri and Near By Areas,</strong> with professional CCTV installation and support.
-                Mumbai's premier enterprise CCTV installers. We provide 2026-compliant, STQC and BIS-certified surveillance systems from Matrix, Honeywell, Hanwha Vision, Mivanta, and Mantra.
-              </p>
+              <div className="space-y-4 pl-6 text-gray-600">
+                <p>
+                  Proudly serving <strong>Mumbai, Andheri and nearby areas</strong> with
+                  professional CCTV installation, AMC and on-site support. As one of
+                  Mumbai&apos;s leading enterprise CCTV installers, we supply and
+                  commission 2026-compliant, STQC and BIS-certified IP camera and
+                  surveillance systems from <strong>Bosch, Axis Communications,
+                  Hanwha Vision, Honeywell, Matrix, Panasonic i-PRO, Pelco, Milesight,
+                  Trassir, Prama, Mivanta and Mantra</strong>.
+                </p>
+                <p>
+                  Our systems do far more than record. We design and deploy{" "}
+                  <strong>AI video analytics</strong> and generative AI-powered footage
+                  search across enterprise <strong>VMS (video management software)</strong>{" "}
+                  platforms &mdash; ANPR and licence plate recognition cameras, face
+                  detection and facial recognition, people counting and crowd density,
+                  heat mapping, loitering and perimeter intrusion alerts, PPE and safety
+                  compliance detection, and vehicle and object classification with
+                  instant mobile notifications.
+                </p>
+                <p>
+                  Alongside CCTV we handle <strong>NVR and server storage</strong>,
+                  biometric access control and attendance systems, video door phones,
+                  smart locks, alarm and fire panels, boom barriers and structured
+                  network cabling &mdash; for offices, factories, warehouses, retail
+                  chains, schools, hospitals and housing societies across Mumbai,
+                  Andheri, Bandra, Powai, Navi Mumbai and Thane.
+                </p>
+              </div>
             </div>
             
             <div className="flex flex-col sm:flex-row gap-8 py-6 border-y border-gray-100">

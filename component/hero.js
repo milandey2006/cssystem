@@ -11,54 +11,131 @@ const HeroHighlight = ({ children, className, containerClassName }) => {
   return (
     <motion.div
       className={cn(
-        "relative flex h-screen w-full items-center justify-center overflow-hidden bg-gray-900",
+        // The announcement bar (36px) and sticky header (65px) sit above the
+        // hero in flow, so a full 100svh would push the bottom of the copy
+        // under the fold. Subtract them.
+        "relative flex min-h-[calc(100svh-101px)] w-full items-start overflow-hidden bg-gray-900 md:items-center md:py-14",
         containerClassName
       )}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1.5, ease: "easeOut" }}
     >
-      {/* --- VIDEO BACKGROUND --- */}
+      {/* --- VIDEO BACKGROUND ---
+          The clip is 16:9. On a portrait phone `object-cover` would crop most
+          of the frame away at the sides, so there it sits uncropped as a band
+          across the top and the copy runs underneath it. Desktop is wide
+          enough to fill edge-to-edge without losing anything worth seeing. */}
       <video
         autoPlay
         loop
         muted
         playsInline
-        className="absolute inset-0 h-full w-full object-cover"
+        preload="auto"
+        poster="/hero/hero.jpg"
+        className="absolute inset-0 h-full w-full object-contain object-top md:object-cover md:object-center"
       >
-        <source src="https://res.cloudinary.com/dupzli6db/video/upload/v1757270346/css_video_1_yxebrj.mp4" type="video/mp4" />
+        <source src="/hero/hero.mp4" type="video/mp4" />
       </video>
 
-      {/* --- DARK OVERLAY for readability --- */}
-      <div className="absolute inset-0 bg-black/80"></div>
+      {/* --- OVERLAY ---
+          Phone: darkens downward so the copy below the video band stays
+          readable while the band itself is left fairly clear.
+          Desktop: heaviest on the left behind the copy, light on the right
+          so the footage stays visible. */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/75 to-black/90 md:bg-gradient-to-r md:from-black/90 md:via-black/70 md:to-black/30"></div>
+      <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-black/70 to-transparent"></div>
 
-      {/* --- FOREGROUND CONTENT (your old text) --- */}
-      <motion.div
-        className={cn("relative z-20 text-center text-white", className)}
-        initial={{ y: 50, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.8, delay: 0.5 }}
-        whileHover={{ scale: 1.02 }}
-      >
+      {/* Brand-blue wash over the darkening, so the hero reads as Champion
+          navy rather than a neutral grey video. */}
+      <div className="absolute inset-0 bg-gradient-to-t from-[#1e3a8a]/55 via-[#1e3a8a]/15 to-transparent md:bg-gradient-to-r md:from-[#1e3a8a]/55 md:via-[#1e3a8a]/15 md:to-transparent"></div>
+
+      {/* Thin brand rule along the bottom edge. */}
+      <div className="absolute inset-x-0 bottom-0 z-10 h-[3px] bg-gradient-to-r from-blue-500 via-blue-500/40 to-transparent"></div>
+
+      {/* --- FOREGROUND CONTENT --- */}
+      <div className={cn("relative z-20 w-full text-white", className)}>
         {children}
-      </motion.div>
+      </div>
     </motion.div>
   );
 };
 
-const Highlight = ({ children, className }) => (
-  <motion.span
-    initial={{ opacity: 0, y: 20 }}
-    animate={{ opacity: 1, y: 0 }}
-    transition={{ duration: 1, delay: 0.5 }}
-    className={cn(
-      "relative inline-block rounded-lg bg-gradient-to-r from-indigo-400 to-purple-400 px-1 pb-1",
-      className
-    )}
-  >
-    {children}
-  </motion.span>
-);
+// Shared entrance animation — everything in the hero rises in on the same
+// curve, just offset, so the block reads as one movement instead of six.
+const riseIn = (delay) => ({
+  initial: { opacity: 0, y: 24 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] },
+});
+
+const PARTNERS = [
+  "Hanwha Vision",
+  "Honeywell",
+  "Matrix",
+  "Axis Communications",
+  "Panasonic i-PRO",
+];
+
+const CAPABILITIES = [
+  "AI analytics cameras",
+  "licence plate recognition",
+  "people counting systems",
+  "face detection",
+  "video management systems",
+  "biometric access control",
+  "perimeter intrusion alerts",
+];
+
+// Types a term out, holds it, deletes it, moves to the next one.
+// Starts already showing the first term so the server-rendered HTML has real
+// text in the <h1> (blank would cost us the heading for search engines) and
+// the client hydrates onto an identical string.
+function Typewriter({ words, className }) {
+  const [index, setIndex] = React.useState(0);
+  const [text, setText] = React.useState(words[0]);
+  const [deleting, setDeleting] = React.useState(false);
+
+  React.useEffect(() => {
+    const word = words[index];
+
+    if (!deleting && text === word) {
+      const hold = setTimeout(() => setDeleting(true), 1900);
+      return () => clearTimeout(hold);
+    }
+
+    if (deleting && text === "") {
+      setDeleting(false);
+      setIndex((i) => (i + 1) % words.length);
+      return;
+    }
+
+    const step = setTimeout(
+      () =>
+        setText(
+          deleting ? word.slice(0, text.length - 1) : word.slice(0, text.length + 1)
+        ),
+      deleting ? 30 : 70
+    );
+    return () => clearTimeout(step);
+  }, [text, deleting, index, words]);
+
+  // The longest term is rendered invisibly underneath to reserve its exact
+  // height, so the paragraph below never jumps as terms change length.
+  const longest = words.reduce((a, b) => (b.length > a.length ? b : a));
+
+  return (
+    <span className={cn("relative block", className)}>
+      <span aria-hidden="true" className="invisible">
+        {longest}
+      </span>
+      <span className="absolute inset-0">
+        {text}
+        <span className="ml-1 inline-block h-[0.8em] w-[3px] animate-pulse bg-blue-400 align-middle" />
+      </span>
+    </span>
+  );
+}
 
 import AboutSection from "./about-section";
 
@@ -67,51 +144,63 @@ const HeroSection = () => {
     <div>
       {/* --- HERO SECTION WITH VIDEO BG --- */}
       <HeroHighlight>
-        <div className="container relative z-20 mx-auto px-4 text-center text-white">
-          <motion.h1
-            className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl mb-6"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
-            Advanced Security Solutions for Your{" "}
-            <Highlight>Peace of Mind</Highlight>
-          </motion.h1>
-
-          <motion.p
-            className="mx-auto mt-4 max-w-[600px] text-gray-200 md:text-xl"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-          >
-            Protect what matters most with our cutting-edge CCTV and
-            surveillance systems. Professional installation and 24/7
-            monitoring services available across Mumbai and Andheri.
-          </motion.p>
-
-          <motion.div
-            className="mt-6 flex flex-col gap-4 sm:flex-row sm:justify-center"
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5, delay: 0.6 }}
-          >
-            <motion.a
-              href="/products"
-              className="inline-block rounded-md bg-gradient-to-r from-blue-500 to-purple-500 px-6 py-3 font-semibold text-white shadow-lg"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+        {/* On mobile the copy is pushed below the video band (56.25vw is the
+            16:9 height of a full-width clip). Desktop centres normally. */}
+        <div className="container mx-auto px-6 pb-12 pt-[calc(56.25vw+2rem)] md:px-10 md:py-0">
+          <div className="max-w-3xl">
+            <motion.div
+              className="flex items-center gap-3 text-[11px] font-medium uppercase tracking-[0.22em] text-blue-300"
+              {...riseIn(0.15)}
             >
-              Browse Products
-            </motion.a>
-            <motion.a
-              href="/contact"
-              className="inline-block rounded-md border border-white px-6 py-3 font-semibold text-white hover:bg-white hover:text-gray-900 transition-colors"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+              <span className="h-px w-8 bg-blue-500" />
+              Andheri East, Mumbai &middot; Since 2008
+            </motion.div>
+
+            <motion.h1
+              className="mt-5 text-[2rem] font-semibold leading-[1.12] tracking-tight sm:text-4xl md:text-[2.75rem] lg:text-5xl"
+              {...riseIn(0.25)}
             >
-              Request Consultation
-            </motion.a>
-          </motion.div>
+              Advanced Security Solutions for Your{" "}
+              <span className="text-blue-400">Peace of Mind</span>
+            </motion.h1>
+
+            <motion.div className="mt-6" {...riseIn(0.35)}>
+              <span className="block text-sm font-medium uppercase tracking-[0.14em] text-white/45 md:text-base md:tracking-[0.1em]">
+                We design, install and maintain
+              </span>
+              <Typewriter
+                words={CAPABILITIES}
+                className="mt-1.5 text-xl font-semibold leading-[1.25] tracking-tight text-blue-400 sm:text-2xl md:text-[1.75rem]"
+              />
+            </motion.div>
+
+            <motion.p
+              className="mt-6 max-w-xl text-base leading-relaxed text-white/70 md:text-lg"
+              {...riseIn(0.45)}
+            >
+              Mumbai and Andheri since 2008 &mdash; over 2,000 projects
+              completed, every camera STQC and BIS certified.
+            </motion.p>
+
+            <motion.div
+              className="mt-8 border-t border-blue-400/20 pt-5 md:mt-10"
+              {...riseIn(0.6)}
+            >
+              <p className="mb-3 text-[10px] font-medium uppercase tracking-[0.22em] text-blue-300/70">
+                Authorised partner
+              </p>
+              <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm font-medium text-white/70">
+                {PARTNERS.map((partner, i) => (
+                  <React.Fragment key={partner}>
+                    {i > 0 && (
+                      <span aria-hidden="true" className="h-1 w-1 rounded-full bg-blue-500" />
+                    )}
+                    <span>{partner}</span>
+                  </React.Fragment>
+                ))}
+              </div>
+            </motion.div>
+          </div>
         </div>
       </HeroHighlight>
 
