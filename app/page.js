@@ -6,6 +6,7 @@ import FeaturedProducts from '@/component/featured-products';
 import Testimonials from '@/component/testimonials';
 import HeroSection from '@/component/hero';
 import CSSClientsSlider from '@/component/client-slider';
+import CallButton from '@/component/CallButton';
 
 
 
@@ -32,6 +33,8 @@ export const metadata = {
 export default function Home() {
   return (
     <div>
+
+      <CallButton />
 
       <HeroSection />
       

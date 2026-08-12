@@ -231,10 +231,11 @@ const Footer = () => {
                 <Phone className="h-5 w-5 flex-shrink-0" />
                 <span className="text-gray-400">022-45717953</span>
               </li>
-              <li className="flex items-center gap-3">
-                <Mail className="h-5 w-5 flex-shrink-0" />
-                <span className="text-gray-400">
-                  info@championsecuritysystem.com
+              <li className="flex items-start gap-3">
+                <Mail className="h-5 w-5 flex-shrink-0 mt-0.5" />
+                <span className="flex flex-col text-gray-400">
+                  <span>info@championsecuritysystem.com</span>
+                  <span>admin@championsecuritysystem.com</span>
                 </span>
               </li>
             </ul>

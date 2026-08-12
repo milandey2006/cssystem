@@ -8,6 +8,9 @@ export const structure = (S) =>
       // Products - Ecommerce products (security equipment)
       S.documentTypeListItem('product').title('Product'),
 
+      // Certificates - STQC / BIS / brand authorisation certificates
+      S.documentTypeListItem('certificate').title('🏅 Certificates'),
+
       // Divider
       S.divider(),
 
@@ -16,7 +19,8 @@ export const structure = (S) =>
       
       // Add other document types if you have any
       ...S.documentTypeListItems().filter(
-        (listItem) => !['project', 'product', 'rentalProduct'].includes(listItem.getId())
+        (listItem) =>
+          !['project', 'product', 'rentalProduct', 'certificate'].includes(listItem.getId())
       )
     ])
 

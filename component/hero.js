@@ -77,12 +77,20 @@ const riseIn = (delay) => ({
 });
 
 const PARTNERS = [
+  "Bosch",
   "Hanwha Vision",
   "Honeywell",
-  "Matrix",
   "Axis Communications",
+  "Pelco",
+  "Matrix",
   "Panasonic i-PRO",
+  "Milesight",
+  "Trassir",
 ];
+
+const PartnerDot = () => (
+  <span aria-hidden="true" className="h-1 w-1 rounded-full bg-blue-500" />
+);
 
 const CAPABILITIES = [
   "AI analytics cameras",
@@ -153,7 +161,7 @@ const HeroSection = () => {
       <HeroHighlight>
         {/* On mobile the copy is pushed below the video band (56.25vw is the
             16:9 height of a full-width clip). Desktop centres normally. */}
-        <div className="container mx-auto px-6 pb-12 pt-[calc(56.25vw+2rem)] md:px-10 md:py-0">
+        <div className="container mx-auto px-6 pb-10 pt-[calc(56.25vw+1rem)] md:px-10 md:py-0">
           <div className="max-w-3xl">
             <motion.div
               className="flex items-center gap-3 text-[11px] font-medium uppercase tracking-[0.22em] text-blue-300"
@@ -190,21 +198,31 @@ const HeroSection = () => {
             </motion.p>
 
             <motion.div
-              className="mt-8 border-t border-blue-400/20 pt-5 md:mt-10"
+              className="mt-6 border-t border-blue-400/20 pt-5 md:mt-10"
               {...riseIn(0.6)}
             >
               <p className="mb-3 text-[10px] font-medium uppercase tracking-[0.22em] text-blue-300/70">
                 Authorised partner
               </p>
+              {/* The full list wraps to four lines on a phone and pushes the
+                  hero past the fold, so the tail is held back until sm.
+                  `contents` lets the wrapper vanish from the flex layout so
+                  the dots and names still flow as one row. */}
               <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm font-medium text-white/70">
-                {PARTNERS.map((partner, i) => (
+                {PARTNERS.slice(0, 5).map((partner, i) => (
                   <React.Fragment key={partner}>
-                    {i > 0 && (
-                      <span aria-hidden="true" className="h-1 w-1 rounded-full bg-blue-500" />
-                    )}
+                    {i > 0 && <PartnerDot />}
                     <span>{partner}</span>
                   </React.Fragment>
                 ))}
+                <span className="hidden sm:contents">
+                  {PARTNERS.slice(5).map((partner) => (
+                    <React.Fragment key={partner}>
+                      <PartnerDot />
+                      <span>{partner}</span>
+                    </React.Fragment>
+                  ))}
+                </span>
               </div>
             </motion.div>
           </div>

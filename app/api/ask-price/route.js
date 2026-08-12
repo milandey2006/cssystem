@@ -37,7 +37,7 @@ const adminEmail = await resend.emails.send({
         <hr>
         <h3>Need Help?</h3>
         <p>📞 Sales: +91 8080806288<br>
-        // 🛠️ Support: +91 8080808109<br>
+        ☎️ Landline: 022-45717953<br>
         📧 Email: info@championsecuritysystem.com</p>
         <p>Best regards,<br>The Champion Security Team</p>
       `,

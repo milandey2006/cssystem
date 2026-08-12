@@ -17,9 +17,9 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
 
-      <div className="container flex h-16 items-center justify-between px-4 md:px-0">
+      <div className="container flex h-16 items-center justify-between gap-4 px-4 md:px-0">
 
-        <div className="flex items-center gap-2">
+        <div className="flex shrink-0 items-center gap-2">
     <Link href="/" className="flex items-center gap-2 md:pl-7">
       <Image
         src={Logo}
@@ -28,35 +28,37 @@ export default function Header() {
         height={40}
         className="rounded"
       />
-      <span className="font-bold text-xl">
+      <span className="font-bold text-base lg:text-xl">
         Champion Security System
       </span>
     </Link>
   </div>
 
-        {/* Desktop Nav */}
-        <nav className="hidden md:flex gap-6 absolute left-1/2 -translate-x-1/2">
+        {/* Desktop Nav — centred in the space left over by the logo rather
+            than absolutely centred on the viewport, which was overlapping
+            the brand name once the link list grew. */}
+        <nav className="hidden flex-1 items-center justify-center gap-4 md:flex lg:gap-6">
           <Link
             href="/"
-            className="text-md font-medium transition-colors hover:text-primary"
+            className="whitespace-nowrap text-sm font-medium transition-colors hover:text-primary lg:text-base"
           >
             Home
           </Link>
           <Link
             href="/about"
-            className="text-md font-medium transition-colors hover:text-primary"
+            className="whitespace-nowrap text-sm font-medium transition-colors hover:text-primary lg:text-base"
           >
             About
           </Link>
           <Link
             href="/products"
-            className="text-md font-medium transition-colors hover:text-primary"
+            className="whitespace-nowrap text-sm font-medium transition-colors hover:text-primary lg:text-base"
           >
             Products
           </Link>
           <Link
             href="/services"
-            className="text-md font-medium transition-colors hover:text-primary"
+            className="whitespace-nowrap text-sm font-medium transition-colors hover:text-primary lg:text-base"
           >
             Services
           </Link>
@@ -64,31 +66,37 @@ export default function Header() {
             href="https://walkie-talkie-cctv-rentals.championsecuritysystem.com/"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-md font-medium transition-colors hover:text-primary"
+            className="whitespace-nowrap text-sm font-medium transition-colors hover:text-primary lg:text-base"
           >
             Rentals
           </Link>
           <Link
             href="/cctv-calculator"
-            className="text-md font-medium transition-colors hover:text-primary"
+            className="whitespace-nowrap text-sm font-medium transition-colors hover:text-primary lg:text-base"
           >
             Calculator
           </Link>
           <Link
             href="/projects"
-            className="text-md font-medium transition-colors hover:text-primary"
+            className="whitespace-nowrap text-sm font-medium transition-colors hover:text-primary lg:text-base"
           >
             Projects
           </Link>
           <Link
+            href="/certificates"
+            className="whitespace-nowrap text-sm font-medium transition-colors hover:text-primary lg:text-base"
+          >
+            Certificates
+          </Link>
+          <Link
             href="/blog"
-            className="text-md font-medium transition-colors hover:text-primary"
+            className="whitespace-nowrap text-sm font-medium transition-colors hover:text-primary lg:text-base"
           >
             Blog
           </Link>
           <Link
             href="/contact"
-            className="text-md font-medium transition-colors hover:text-primary"
+            className="whitespace-nowrap text-sm font-medium transition-colors hover:text-primary lg:text-base"
           >
             Contact
           </Link>
@@ -121,7 +129,7 @@ export default function Header() {
       {/* Mobile Menu */}
       <nav
         className={`md:hidden bg-background border-t border-gray-700 transition-max-height duration-300 ease-in-out overflow-hidden ${
-          menuOpen ? "max-h-96" : "max-h-0"
+          menuOpen ? "max-h-[34rem]" : "max-h-0"
         }`}
       >
         <ul className="flex flex-col gap-4 p-4">
@@ -186,6 +194,15 @@ export default function Header() {
           >
             Projects
           </Link>
+          </li>
+          <li>
+            <Link
+              href="/certificates"
+              className="block text-md font-medium transition-colors hover:text-primary"
+              onClick={() => setMenuOpen(false)}
+            >
+              Certificates
+            </Link>
           </li>
           <li>
             <Link
