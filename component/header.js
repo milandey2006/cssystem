@@ -63,7 +63,7 @@ export default function Header() {
             Services
           </Link>
           <Link
-            href="https://walkie-talkie-cctv-rentals.championsecuritysystem.com/"
+            href="https://cctv-rentals.championsecuritysystem.com/"
             target="_blank"
             rel="noopener noreferrer"
             className="whitespace-nowrap text-sm font-medium transition-colors hover:text-primary lg:text-base"
@@ -169,7 +169,7 @@ export default function Header() {
           </li>
           <li>
             <Link
-              href="https://walkie-talkie-cctv-rentals.championsecuritysystem.com/"
+              href="https://cctv-rentals.championsecuritysystem.com/"
               target="_blank"
               rel="noopener noreferrer"
               className="block text-md font-medium transition-colors hover:text-primary"

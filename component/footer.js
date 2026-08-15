@@ -120,7 +120,7 @@ const Footer = () => {
               </li>
               <li>
                 <Link
-                  href="https://walkie-talkie-cctv-rentals.championsecuritysystem.com/"
+                  href="https://cctv-rentals.championsecuritysystem.com/"
                   className="text-gray-400 hover:text-white"
                   target="_blank"
                   rel="noopener noreferrer"
