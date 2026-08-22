@@ -46,7 +46,7 @@ export default async function ProductsPage() {
         rating,
         reviewCount,
         keyFeatures,
-        brand,
+        "brand": coalesce(brandRef->filterValue, brand),
         "imageUrl": images[0].asset->url
       }
     `);

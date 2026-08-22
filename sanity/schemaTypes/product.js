@@ -105,15 +105,31 @@ export default {
       of: [{ type: 'string' }],
       validation: Rule => Rule.required()
     },
-    // Brand field with updated non-Chinese brand list
-    { 
-      name: 'brand', 
-      title: 'Brand Name', 
+    // NEW — pick the brand from your Studio "Brands" list. This is the
+    // preferred way to tag a product's brand: any brand you create appears
+    // here automatically, and the product shows under that brand on the
+    // /brands page and in the brand filter. Takes priority over the old
+    // "Brand Name (text)" field below.
+    {
+      name: 'brandRef',
+      title: 'Brand',
+      type: 'reference',
+      to: [{ type: 'brand' }],
+      description:
+        'Pick the brand from your Brands list. Create new brands under 🔰 Brands (logos). This drives the Brands page and the product filter.',
+    },
+    // OLD text field — kept so existing products keep working. New products
+    // should use the "Brand" picker above instead of this.
+    {
+      name: 'brand',
+      title: 'Brand Name (text — legacy)',
       type: 'string',
+      description:
+        'Legacy free-text brand. Prefer the "Brand" picker above. Only used if the picker is empty.',
       options: {
         list: [
           'Hanwha Vision',
-          'Honeywell', 
+          'Honeywell',
           'Matrix Comsec',
           'eSSL',
           'Axis Communications',
@@ -121,13 +137,10 @@ export default {
           'OneTouch',
           'BioMax',
           'Panasonic i-Pro',
-          'Prama',         
-          // You can add more brands here
+          'Prama',
         ],
-        layout: 'dropdown'
+        layout: 'dropdown',
       },
-      // IMPORTANT: Validation ensures the field is always filled, preventing filter errors
-      //validation: Rule => Rule.required().error('Brand is required for product filtering.')
     },
     {
       name: 'whatsInTheBox',

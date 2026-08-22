@@ -20,14 +20,14 @@ const PRODUCT_FIELDS = `
   keyFeatures,
   whatsInTheBox,
   specifications,
-  brand,
+  "brand": coalesce(brandRef->filterValue, brand),
   category
 `;
 
 const EXACT_QUERY = `*[_type == "product" && (slug.current == $param || _id == $param)][0]{${PRODUCT_FIELDS}}`;
 const ALL_SLUGS_QUERY = `*[_type == "product"]{_id, "slug": slug.current}`;
 const BY_ID_QUERY = `*[_type == "product" && _id == $id][0]{${PRODUCT_FIELDS}}`;
-const RELATED_QUERY = `*[_type == "product" && brand == $brand && _id != $id][0...12]{
+const RELATED_QUERY = `*[_type == "product" && coalesce(brandRef->filterValue, brand) == $brand && _id != $id][0...12]{
   _id,
   "slug": slug.current,
   name,

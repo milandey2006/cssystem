@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import { Search, X, Filter, ChevronLeft, ChevronRight } from "lucide-react";
+import { Search, ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -34,6 +34,15 @@ export default function ProductsClient({
   const [selectedPriceRanges, setSelectedPriceRanges] = useState([]);
   const [selectedFeatures, setSelectedFeatures] = useState([]);
   const [selectedBrands, setSelectedBrands] = useState([]);
+
+  // Pre-select the brand filter when arriving from the header mega-menu
+  // (e.g. /products?brand=Hanwha%20Vision). Read once on mount from the URL —
+  // useSearchParams() is deliberately avoided here because wrapping this page
+  // in the Suspense boundary it needs was breaking hydration of the filters.
+  useEffect(() => {
+    const brand = new URLSearchParams(window.location.search).get("brand");
+    if (brand) setSelectedBrands([brand]);
+  }, []);
 
   // Static filter options
   const priceRanges = [
@@ -375,52 +384,10 @@ export default function ProductsClient({
         </div>
       </section>
       <div className="container mx-auto py-6 lg:py-12 px-4">
-        <div className="flex flex-col lg:flex-row gap-8">
-          {/* Mobile Filter Button */}
-          <div className="lg:hidden">
-            <Button
-              onClick={() => setIsMobileFilterOpen(true)}
-              variant="outline"
-              className="flex items-center gap-2 mb-4"
-            >
-              <Filter size={16} />
-              Filters{" "}
-              {hasActiveFilters &&
-                `(${selectedCategories.length + selectedBrands.length + selectedFeatures.length + selectedPriceRanges.length})`}
-            </Button>
-          </div>
-
-          {/* Desktop Sidebar */}
-          <div className="hidden lg:block w-64 flex-shrink-0">
-            <div className="sticky top-4">
-              <FilterSidebar />
-            </div>
-          </div>
-
-          {/* Mobile Sidebar Overlay */}
-          {isMobileFilterOpen && (
-            <div className="fixed inset-0 z-50 lg:hidden">
-              <div
-                className="fixed inset-0 bg-black/50"
-                onClick={() => setIsMobileFilterOpen(false)}
-              />
-              <div className="fixed left-0 top-0 h-full w-80 max-w-[80vw] bg-white p-6 overflow-y-auto">
-                <div className="flex items-center justify-between mb-6">
-                  <h2 className="text-xl font-semibold">Filters</h2>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={() => setIsMobileFilterOpen(false)}
-                  >
-                    <X size={20} />
-                  </Button>
-                </div>
-                <FilterSidebar />
-              </div>
-            </div>
-          )}
-
-          {/* Main Content */}
+        <div>
+          {/* Category / Feature / Brand filter sidebar removed — the brands
+              landing page (/brands) handles brand navigation now. Search is
+              retained. Brand filtering still applies via the ?brand= param. */}
           <div className="flex-1">
             {/* Search Bar */}
             <div className="relative mb-6">
