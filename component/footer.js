@@ -42,7 +42,7 @@ const Footer = () => {
                 <Instagram />
               </Link>
               <Link
-                href="https://www.linkedin.com/in/rajesh-dey-148b9643/"
+                href="https://www.linkedin.com/company/champion-security-system/"
                 className="text-gray-400 hover:text-white"
               >
                 <Linkedin />
