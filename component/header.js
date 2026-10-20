@@ -21,6 +21,7 @@ const NAV_LINKS = [
   },
   { href: "/projects", label: "Projects" },
   { href: "/certificates", label: "Certificates" },
+  { href: "/software", label: "Software" },
   { href: "/contact", label: "Contact" },
 ];
 
