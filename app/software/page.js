@@ -21,7 +21,7 @@ import {
 import { BUSINESS } from "@/lib/seo";
 import Pricing from "./Pricing";
 import { InvoiceMock, StockMock, TeamMock } from "./Mockups";
-import { PRODUCT, PLANS, YEARLY_DISCOUNT } from "./plans";
+import { PRODUCT, PLANS, YEARLY_DISCOUNT, SALES_CONTACT, salesTel, salesWhatsApp } from "./plans";
 
 // Landing page for the business software made inside Champion Security System.
 // Name, prices and plan contents are in ./plans.js. Every button leads to the contact
@@ -334,7 +334,21 @@ export default function SoftwarePage() {
             <PrimaryCta href="/contact?plan=Pro&billing=yearly">Start with Pro</PrimaryCta>
             <SecondaryCta />
           </div>
-          <p className="text-sm text-gray-400 mt-6">Or call us on <a href={`tel:${BUSINESS.telephone}`} className="underline">{BUSINESS.telephone}</a>.</p>
+          <div className="mt-10 inline-flex flex-col sm:flex-row items-center gap-3 sm:gap-5 rounded-2xl bg-white/5 ring-1 ring-white/15 px-6 py-4 text-left">
+            <span className="w-12 h-12 rounded-full bg-blue-600 text-white font-bold text-lg flex items-center justify-center shrink-0" aria-hidden="true">
+              {SALES_CONTACT.name.split(" ").map((w) => w[0]).join("")}
+            </span>
+            <div className="text-center sm:text-left">
+              <p className="font-semibold">Questions? Talk to {SALES_CONTACT.name}</p>
+              <p className="text-gray-300 text-sm">
+                <a href={salesTel} className="underline">{SALES_CONTACT.phone}</a>
+                {" · "}
+                <a href={salesWhatsApp(`Hello ${SALES_CONTACT.name}, I have a question about ${PRODUCT.name}.`)} target="_blank" rel="noopener noreferrer" className="underline">WhatsApp</a>
+                {" · "}
+                <a href={`mailto:${SALES_CONTACT.email}`} className="underline">{SALES_CONTACT.email}</a>
+              </p>
+            </div>
+          </div>
         </div>
       </section>
     </div>

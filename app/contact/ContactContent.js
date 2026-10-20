@@ -22,7 +22,7 @@ import { Label } from "@/components/ui/label";
 import { useForm } from "react-hook-form";
 import Image from "next/image";
 import banner from "@/public/contact/banner.jpg"
-import { PRODUCT, YEARLY_DISCOUNT } from "@/app/software/plans";
+import { PRODUCT, YEARLY_DISCOUNT, SALES_CONTACT, salesTel, salesWhatsApp } from "@/app/software/plans";
 
 const INQUIRY_LABELS = {
   sales: "Sales Inquiry",
@@ -117,7 +117,9 @@ const ContactContent = () => {
   const { register, handleSubmit, reset, setValue, watch } = useForm();
   // The inquiry type is kept here too, so the dropdown shows what is chosen.
   const [inquiryType, setInquiryType] = useState("");
+  const [softwarePlan, setSoftwarePlan] = useState(null); // set when the visitor came from /software
   const chooseInquiry = (val) => {
+    if (!val) return; // the dropdown can report an empty value on its own; keep the choice
     setInquiryType(val);
     setValue("inquiryType", val);
   };
@@ -129,8 +131,12 @@ const ContactContent = () => {
     const plan = params.get("plan");
     if (!plan) return;
     const yearly = params.get("billing") !== "monthly";
+    setSoftwarePlan(plan);
     setInquiryType("sales");
     setValue("inquiryType", "sales");
+    // Sent with the form so the e-mail also goes to the person who sells the software.
+    setValue("topic", "software");
+    setValue("plan", plan === "Free demo" ? plan : `${plan} (${yearly ? "yearly" : "monthly"})`);
     setValue(
       "message",
       plan === "Free demo"
@@ -224,6 +230,25 @@ const ContactContent = () => {
                   get back to you as soon as possible.
                 </p>
               </div>
+              {softwarePlan && (
+                <div className="rounded-lg border-2 border-blue-600 bg-blue-50 p-4">
+                  <p className="font-semibold text-gray-900">
+                    Asking about the {PRODUCT.name} software? Talk to {SALES_CONTACT.name} directly:
+                  </p>
+                  <div className="mt-3 flex flex-wrap gap-2">
+                    <a href={salesTel} className="inline-flex items-center rounded-md bg-gray-900 px-4 py-2 text-sm font-semibold text-white hover:bg-gray-800">
+                      Call {SALES_CONTACT.phone}
+                    </a>
+                    <a href={salesWhatsApp(`Hello ${SALES_CONTACT.name}, I am interested in the ${softwarePlan} plan of ${PRODUCT.name}.`)} target="_blank" rel="noopener noreferrer" className="inline-flex items-center rounded-md bg-green-600 px-4 py-2 text-sm font-semibold text-white hover:bg-green-700">
+                      WhatsApp
+                    </a>
+                    <a href={`mailto:${SALES_CONTACT.email}`} className="inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-semibold text-gray-900 hover:bg-gray-50">
+                      {SALES_CONTACT.email}
+                    </a>
+                  </div>
+                  <p className="mt-2 text-sm text-gray-600">Or send the form below; it reaches {SALES_CONTACT.name.split(" ")[0]} too.</p>
+                </div>
+              )}
               <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
                 <div className="grid gap-4 sm:grid-cols-2">
                   <div className="space-y-2">
