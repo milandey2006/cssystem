@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   FaMapMarkerAlt,
   FaPhone,
@@ -22,6 +22,15 @@ import { Label } from "@/components/ui/label";
 import { useForm } from "react-hook-form";
 import Image from "next/image";
 import banner from "@/public/contact/banner.jpg"
+import { PRODUCT, YEARLY_DISCOUNT } from "@/app/software/plans";
+
+const INQUIRY_LABELS = {
+  sales: "Sales Inquiry",
+  support: "Technical Support",
+  installation: "Installation Services",
+  quote: "Request a Quote",
+  other: "Other",
+};
 
 // Change 'page' to 'Page'
 const ContactContent = () => {
@@ -106,6 +115,29 @@ const ContactContent = () => {
 
   const [loading, setLoading] = useState(false);
   const { register, handleSubmit, reset, setValue, watch } = useForm();
+  // The inquiry type is kept here too, so the dropdown shows what is chosen.
+  const [inquiryType, setInquiryType] = useState("");
+  const chooseInquiry = (val) => {
+    setInquiryType(val);
+    setValue("inquiryType", val);
+  };
+
+  // Coming from the software page (/contact?plan=Pro&billing=yearly): the plan is written
+  // into the message, so the caller knows what was chosen.
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const plan = params.get("plan");
+    if (!plan) return;
+    const yearly = params.get("billing") !== "monthly";
+    setInquiryType("sales");
+    setValue("inquiryType", "sales");
+    setValue(
+      "message",
+      plan === "Free demo"
+        ? `I would like a free demo of the ${PRODUCT.name} software. Please call me.`
+        : `I would like the ${plan} plan of the ${PRODUCT.name} software, paid ${yearly ? `yearly (${Math.round(YEARLY_DISCOUNT * 100)}% off)` : "monthly"}. Please call me.`
+    );
+  }, [setValue]);
 
   const onSubmit = async (data) => {
     setLoading(true);
@@ -119,6 +151,7 @@ const ContactContent = () => {
       if (result.success) {
         alert("Form submitted successfully!");
         reset();
+        setInquiryType("");
       } else {
         alert("Failed to send message.");
       }
@@ -235,10 +268,11 @@ const ContactContent = () => {
                   <div className="space-y-2">
                     <Label htmlFor="inquiryType">Inquiry Type</Label>
                     <Select
-                      onValueChange={(val) => setValue("inquiryType", val)}
+                      value={inquiryType}
+                      onValueChange={chooseInquiry}
                     >
                       <SelectTrigger id="inquiryType">
-                        <SelectValue placeholder="Select an inquiry type" />
+                        <SelectValue placeholder="Select an inquiry type">{INQUIRY_LABELS[inquiryType]}</SelectValue>
                       </SelectTrigger>
                       <SelectContent>
                         <SelectItem value="sales">Sales Inquiry</SelectItem>
