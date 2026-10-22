@@ -22,7 +22,7 @@ import { Label } from "@/components/ui/label";
 import { useForm } from "react-hook-form";
 import Image from "next/image";
 import banner from "@/public/contact/banner.jpg"
-import { PRODUCT, YEARLY_DISCOUNT, SALES_CONTACT, salesTel, salesWhatsApp } from "@/app/software/plans";
+import { PRODUCT, YEARLY_DISCOUNT, SALES_CONTACT } from "@/app/software/plans";
 
 const INQUIRY_LABELS = {
   sales: "Sales Inquiry",
@@ -236,12 +236,6 @@ const ContactContent = () => {
                     Asking about the {PRODUCT.name} software? Talk to {SALES_CONTACT.name} directly:
                   </p>
                   <div className="mt-3 flex flex-wrap gap-2">
-                    <a href={salesTel} className="inline-flex items-center rounded-md bg-gray-900 px-4 py-2 text-sm font-semibold text-white hover:bg-gray-800">
-                      Call {SALES_CONTACT.phone}
-                    </a>
-                    <a href={salesWhatsApp(`Hello ${SALES_CONTACT.name}, I am interested in the ${softwarePlan} plan of ${PRODUCT.name}.`)} target="_blank" rel="noopener noreferrer" className="inline-flex items-center rounded-md bg-green-600 px-4 py-2 text-sm font-semibold text-white hover:bg-green-700">
-                      WhatsApp
-                    </a>
                     <a href={`mailto:${SALES_CONTACT.email}`} className="inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-semibold text-gray-900 hover:bg-gray-50">
                       {SALES_CONTACT.email}
                     </a>

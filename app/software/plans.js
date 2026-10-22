@@ -81,9 +81,5 @@ export const COMPARE_ROWS = [
 // visitor comes from it; software enquiries from the contact form are e-mailed here too).
 export const SALES_CONTACT = {
   name: "Milan Dey",
-  phone: "+91 99877 03344",
   email: "deymilan066@gmail.com",
 };
-export const salesTel = `tel:${SALES_CONTACT.phone.replace(/\s/g, "")}`;
-export const salesWhatsApp = (text) =>
-  `https://wa.me/${SALES_CONTACT.phone.replace(/[^\d]/g, "")}?text=${encodeURIComponent(text)}`;
