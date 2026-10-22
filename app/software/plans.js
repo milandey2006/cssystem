@@ -2,7 +2,7 @@
 // Basic is kept small on purpose (no stock, no staff) so Pro reads as the obvious choice.
 
 export const PRODUCT = {
-  name: "SiteDesk",
+  name: "Munshi",
   trialDays: 14,
 };
 
@@ -24,14 +24,14 @@ export const PLANS = [
       "Stock with serial numbers",
       "Barcode scanning",
       "Staff attendance and salary",
-      "Jobs for technicians",
+      "Tasks for your staff",
     ],
   },
   {
     name: "Pro",
     monthly: 1000,
     highlight: true,
-    forWho: "Everything a growing installer needs",
+    forWho: "Everything a growing business needs",
     users: "3 office logins and up to 15 staff",
     features: [
       "Everything in Basic",
@@ -40,7 +40,7 @@ export const PLANS = [
       "Barcode scanning with the phone camera",
       "Staff punch in / out from their phone",
       "Attendance and salary slips",
-      "Jobs for technicians",
+      "Tasks for your staff",
       "Expenses and daily work log",
     ],
   },
@@ -53,7 +53,7 @@ export const PLANS = [
       "Everything in Pro",
       "Many branches on one stock",
       "Live team location",
-      "Site visits",
+      "Client visit tracking",
       "Design every part of your quotation",
       "Your own terms and conditions templates",
       "Priority support on WhatsApp",
@@ -64,14 +64,14 @@ export const PLANS = [
 // [feature, Basic, Pro, Business] - true / false / text
 export const COMPARE_ROWS = [
   ["Office logins", "1", "3", "Unlimited"],
-  ["Field staff", false, "Up to 15", "Unlimited"],
+  ["Staff on the app", false, "Up to 15", "Unlimited"],
   ["Quotations, estimates, proforma", true, true, true],
   ["GST tax invoices", true, true, true],
   ["Quotation formats", "3", "20", "20 + full editor"],
   ["Stock with serial numbers", false, true, true],
   ["Barcode scanning", false, true, true],
   ["Attendance and salary slips", false, true, true],
-  ["Jobs and expenses", false, true, true],
+  ["Tasks and expenses", false, true, true],
   ["Branches", false, "1", "Many"],
   ["Live team location", false, false, true],
   ["Priority support", false, false, true],

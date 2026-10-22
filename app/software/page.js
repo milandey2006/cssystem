@@ -18,7 +18,6 @@ import {
   ShieldCheck,
   IndianRupee,
 } from "lucide-react";
-import { BUSINESS } from "@/lib/seo";
 import Pricing from "./Pricing";
 import { InvoiceMock, StockMock, TeamMock } from "./Mockups";
 import { PRODUCT, PLANS, YEARLY_DISCOUNT, SALES_CONTACT } from "./plans";
@@ -32,16 +31,16 @@ const lowest = Math.round(Math.min(...PLANS.map((p) => p.monthly)) * (1 - YEARLY
 const BEFORE = [
   "Quotations typed again and again in Word or Excel",
   "GST worked out on a calculator, mistakes on the bill",
-  "Nobody knows how many cameras are really in stock",
+  "Nobody knows what is really in stock",
   "Attendance in a register, salary worked out by hand",
-  "Technicians' location and jobs lost in WhatsApp chats",
+  "Staff tasks and updates lost in WhatsApp chats",
 ];
 const AFTER = [
   "A quotation in two minutes, on your own letterhead",
   "GST invoice in one click, CGST + SGST or IGST worked out",
   "Live stock, with every serial number traced to the customer",
   "Staff punch in from their phone, salary slips from attendance",
-  "Jobs, team and payments in one place, on any phone",
+  "Tasks, team and payments in one place, on any phone",
 ];
 
 const BIG_FEATURES = [
@@ -61,7 +60,7 @@ const BIG_FEATURES = [
     title: "Know exactly what you have, and where every piece went",
     points: [
       "Stock goes down when you save an invoice (you see the list first)",
-      "Every camera's serial number: when it came in, which customer has it",
+      "Every item's serial number: when it came in, which customer has it",
       "Scan barcodes with the phone camera or a barcode gun",
       "Two branches billing the same last piece? Only one gets it; stock never goes below zero",
     ],
@@ -69,11 +68,11 @@ const BIG_FEATURES = [
     flip: true,
   },
   {
-    eyebrow: "Your field team",
-    title: "Attendance, jobs and salary without the register",
+    eyebrow: "Your team",
+    title: "Attendance, tasks and salary without the register",
     points: [
       "Staff punch in and out from their phone, with the place",
-      "Give jobs to technicians and see what is pending",
+      "Give tasks to your staff and see what is pending",
       "Salary slips made from the attendance",
       "Expenses and payments noted the same day",
     ],
@@ -87,18 +86,18 @@ const MORE_FEATURES = [
   { icon: LayoutTemplate, title: "AMC, GST, bill-book and more formats" },
   { icon: Building2, title: "Many branches, one stock" },
   { icon: MapPinned, title: "Live team location" },
-  { icon: Briefcase, title: "Site visits and daily work log" },
+  { icon: Briefcase, title: "Client visits and daily work log" },
   { icon: Wallet, title: "Expenses with photos" },
   { icon: Share2, title: "Share links with no login" },
 ];
 
 const FOR_WHO = [
-  "CCTV and security installers",
-  "Electrical and networking contractors",
-  "AC and appliance service",
-  "Solar installers",
-  "Security guard agencies",
-  "Interior, painting and fabrication",
+  "Traders and distributors",
+  "Shops and showrooms",
+  "Contractors and installers",
+  "Service and repair businesses",
+  "Agencies and consultants",
+  "Small manufacturers",
 ];
 
 const FAQ = [
@@ -130,10 +129,10 @@ const FAQ = [
 
 export const metadata = {
   title: `${PRODUCT.name}: Quotation, GST Invoice, Stock & Staff Software from ₹${lowest}/month`,
-  description: `${PRODUCT.name} by Champion Security System: quotations and GST invoices in minutes, stock with serial numbers and barcode scanning, staff attendance and salary. Plans from ₹${lowest} a month. Built by an installer, for installers.`,
+  description: `${PRODUCT.name}: quotations and GST invoices in minutes, stock with serial numbers and barcode scanning, staff attendance and salary. Plans from ₹${lowest} a month. Made for small and growing businesses.`,
   alternates: { canonical: "/software" },
   openGraph: {
-    title: `${PRODUCT.name} | Business software for installers and service businesses`,
+    title: `${PRODUCT.name} | Business software for small and growing businesses`,
     description: "Quotations, GST invoices, stock with serial numbers, staff attendance and salary in one place.",
     url: "/software",
   },
@@ -164,14 +163,14 @@ export default function SoftwarePage() {
         <div className="relative max-w-7xl mx-auto px-4 py-16 md:py-24 grid lg:grid-cols-2 gap-12 items-center">
           <div>
             <p className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-sm font-semibold text-green-300">
-              <ShieldCheck className="w-4 h-4" /> Built by Champion Security System, installers since {BUSINESS.foundingDate}
+              <ShieldCheck className="w-4 h-4" /> Used every day in our own business
             </p>
             <h1 className="mt-5 text-4xl md:text-5xl xl:text-6xl font-extrabold leading-[1.1] tracking-tight">
               Quotations, GST invoices, stock and your team. <span className="text-blue-400">One simple app.</span>
             </h1>
             <p className="mt-5 text-lg md:text-xl text-gray-300 max-w-xl">
-              {PRODUCT.name} replaces Excel, paper registers and WhatsApp forwards for installers and service
-              businesses. Make a quotation in two minutes and know where every camera and every technician is.
+              {PRODUCT.name} replaces Excel, paper registers and WhatsApp forwards for traders, shops, contractors
+              and service businesses. Make a quotation in two minutes and know where every item and every person on your team is.
             </p>
             <div className="mt-8 flex flex-col sm:flex-row gap-3">
               <PrimaryCta />
@@ -187,8 +186,8 @@ export default function SoftwarePage() {
             <InvoiceMock className="lg:rotate-1" />
             <div className="hidden sm:block absolute -bottom-10 -left-6 w-64 rounded-xl bg-white text-gray-900 shadow-2xl ring-1 ring-black/5 p-4">
               <p className="text-xs font-bold text-gray-500">Stock after this invoice</p>
-              <p className="mt-1 flex justify-between text-sm"><span>4MP bullet camera</span><strong>16 left</strong></p>
-              <p className="flex justify-between text-sm"><span>16-ch NVR</span><strong className="text-amber-700">1 left · Low</strong></p>
+              <p className="mt-1 flex justify-between text-sm"><span>Office chair</span><strong>16 left</strong></p>
+              <p className="flex justify-between text-sm"><span>Laser printer</span><strong className="text-amber-700">1 left · Low</strong></p>
             </div>
           </div>
         </div>
@@ -277,7 +276,7 @@ export default function SoftwarePage() {
       <section id="plans" className="py-16 md:py-24 bg-white scroll-mt-24">
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-10">
-            <h2 className="text-3xl md:text-4xl font-bold mb-3">Simple prices. Less than one site visit a month.</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-3">Simple prices. No hidden charges.</h2>
             <p className="text-gray-600 text-lg">Pay monthly, or pay for the year and save {Math.round(YEARLY_DISCOUNT * 100)}%.</p>
           </div>
           <Pricing />
@@ -328,7 +327,7 @@ export default function SoftwarePage() {
         <div className="relative max-w-3xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Run your business from one screen</h2>
           <p className="text-gray-300 text-lg mb-8">
-            Pro has what most installers need: stock, barcode, staff and salary, for ₹{Math.round(PLANS[1].monthly * (1 - YEARLY_DISCOUNT))} a month on the yearly plan.
+            Pro has what most growing businesses need: stock, barcode, staff and salary, for ₹{Math.round(PLANS[1].monthly * (1 - YEARLY_DISCOUNT))} a month on the yearly plan.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-3">
             <PrimaryCta href="/contact?plan=Pro&billing=yearly">Start with Pro</PrimaryCta>

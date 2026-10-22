@@ -16,16 +16,16 @@ const Frame = ({ title, children, className = "" }) => (
 
 export function InvoiceMock({ className = "" }) {
   const lines = [
-    ["4MP IP bullet camera", "8", "3,800", "30,400.00"],
-    ["16-channel NVR, 4TB", "1", "24,500", "24,500.00"],
-    ["Installation and setup", "1", "12,000", "12,000.00"],
+    ["Office chair, ergonomic", "8", "3,800", "30,400.00"],
+    ["Laser printer", "1", "24,500", "24,500.00"],
+    ["Annual service contract", "1", "12,000", "12,000.00"],
   ];
   return (
-    <Frame title="Invoice SSS/26-27/015" className={className}>
+    <Frame title="Invoice SE/26-27/015" className={className}>
       <div className="p-5 text-[13px]">
         <div className="flex items-start justify-between gap-4">
           <div>
-            <p className="font-bold text-blue-900 text-base">Sharma Security Systems</p>
+            <p className="font-bold text-blue-900 text-base">Sharma Enterprises</p>
             <p className="text-gray-500">GSTIN 27ABCDE1234F1Z5</p>
           </div>
           <p className="font-extrabold text-blue-900 tracking-wide text-lg">TAX INVOICE</p>
@@ -33,7 +33,7 @@ export function InvoiceMock({ className = "" }) {
         <div className="mt-3 grid grid-cols-2 gap-2">
           <div className="rounded-md border border-gray-200 p-2">
             <p className="text-[11px] font-bold text-gray-500">Bill to</p>
-            <p className="font-semibold">Sunrise Apartments</p>
+            <p className="font-semibold">Mehta Traders</p>
           </div>
           <div className="rounded-md border border-gray-200 p-2">
             <p className="text-[11px] font-bold text-gray-500">Place of supply</p>
@@ -73,10 +73,10 @@ export function InvoiceMock({ className = "" }) {
 
 export function StockMock({ className = "" }) {
   const rows = [
-    ["4MP IP bullet camera", "Hikvision", "24", "Nos", null],
-    ["16-channel NVR", "Hikvision", "2", "Nos", "Low"],
-    ["Cat6 cable", "D-Link", "305", "Mtr", null],
-    ["Smoke detector", "Honeywell", "0", "Nos", "None left"],
+    ["Office chair, ergonomic", "Furniture", "24", "Nos", null],
+    ["Laser printer", "Electronics", "2", "Nos", "Low"],
+    ["Copper wire, 2.5 sq mm", "Electrical", "305", "Mtr", null],
+    ["A4 paper, 500 sheets", "Stationery", "0", "Box", "None left"],
   ];
   return (
     <Frame title="Stock" className={className}>
@@ -102,8 +102,8 @@ export function StockMock({ className = "" }) {
           ))}
         </ul>
         <div className="mt-3 rounded-lg bg-gray-50 border border-gray-200 p-3">
-          <p className="text-xs font-bold text-gray-500 mb-1">Serial HK2410A006</p>
-          <p className="text-xs text-gray-700"><strong>Went out</strong> · Invoice SSS/26-27/014 · Acme Pharma · Thane branch · by Priya</p>
+          <p className="text-xs font-bold text-gray-500 mb-1">Serial LP2410A006</p>
+          <p className="text-xs text-gray-700"><strong>Went out</strong> · Invoice SE/26-27/014 · Acme Pharma · Thane branch · by Priya</p>
           <p className="text-xs text-gray-700 mt-0.5"><strong>Came in</strong> · Bought, bill 4471 · Andheri branch · by Milan</p>
         </div>
       </div>
@@ -113,7 +113,7 @@ export function StockMock({ className = "" }) {
 
 export function TeamMock({ className = "" }) {
   const team = [
-    ["Rahul Sharma", "In at 9:52 am", "Powai site", true],
+    ["Rahul Sharma", "In at 9:52 am", "Client visit, Powai", true],
     ["Priya Nair", "In at 10:05 am", "Office", true],
     ["Imran Qureshi", "In at 10:31 am", "Andheri East", true],
     ["Suresh Patil", "Not in yet", null, false],
