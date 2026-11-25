@@ -81,5 +81,5 @@ export const COMPARE_ROWS = [
 // visitor comes from it; software enquiries from the contact form are e-mailed here too).
 export const SALES_CONTACT = {
   name: "Milan Dey",
-  email: "deymilan066@gmail.com",
+  email: "cloud@championsecuritysystem.com",
 };

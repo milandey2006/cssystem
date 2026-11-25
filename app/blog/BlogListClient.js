@@ -55,11 +55,9 @@ export default function BlogListClient({ posts, categories }) {
                   className="object-cover group-hover:scale-105 transition-transform duration-300"
                   sizes="(max-width: 768px) 100vw, 33vw"
                 />
-                <span className="absolute top-4 left-4 bg-blue-600 text-white px-3 py-1 rounded-full text-xs font-semibold">
-                  {post.category}
-                </span>
               </div>
               <div className="p-6 flex flex-col flex-1">
+                <p className="text-xs font-semibold uppercase tracking-wide text-blue-700 mb-2">{post.category}</p>
                 <h2 className="text-lg font-semibold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors line-clamp-2">
                   {post.title}
                 </h2>

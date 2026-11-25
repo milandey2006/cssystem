@@ -9,6 +9,10 @@ export default async function sitemap() {
     { url: "/about", changeFrequency: "monthly", priority: 0.8 },
     { url: "/services", changeFrequency: "monthly", priority: 0.8 },
     { url: "/software", changeFrequency: "monthly", priority: 0.7 },
+    { url: "/software/attenza", changeFrequency: "weekly", priority: 0.9 },
+    { url: "/software/attenza/attendance-payroll-software", changeFrequency: "monthly", priority: 0.8 },
+    { url: "/software/attenza/society-visitor-management", changeFrequency: "monthly", priority: 0.8 },
+    { url: "/software/attenza/gym-management-software", changeFrequency: "monthly", priority: 0.8 },
     { url: "/products", changeFrequency: "daily", priority: 0.9 },
     { url: "/brands", changeFrequency: "weekly", priority: 0.8 },
     { url: "/projects", changeFrequency: "weekly", priority: 0.7 },
@@ -42,7 +46,7 @@ export default async function sitemap() {
     url: `${SITE_URL}/blog/${post.slug}`,
     lastModified: new Date(post.updatedAt || post.publishedAt),
     changeFrequency: "monthly",
-    priority: 0.6,
+    priority: post.product ? 0.7 : 0.6,
   }));
 
   return [...staticRoutes, ...productRoutes, ...blogRoutes];

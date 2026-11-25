@@ -175,6 +175,22 @@ const Footer = () => {
                 </Link>
               </li>
             </ul>
+            <h3 className="font-semibold tracking-wider uppercase pt-2">Software</h3>
+            <ul className="space-y-2">
+              {[
+                ["Munshi billing software", "/software"],
+                ["Attenza cloud attendance", "/software/attenza"],
+                ["Attendance & payroll software", "/software/attenza/attendance-payroll-software"],
+                ["Society visitor management", "/software/attenza/society-visitor-management"],
+                ["Gym management software", "/software/attenza/gym-management-software"],
+              ].map(([label, href]) => (
+                <li key={href}>
+                  <Link href={href} className="text-gray-400 hover:text-white">
+                    {label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </div>
 
           {/* Column 4: Contact Us */}
