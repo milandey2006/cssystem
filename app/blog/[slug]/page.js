@@ -53,10 +53,9 @@ const articleJsonLd = (post) => ({
   image: `${SITE_URL}${post.coverImage}`,
   datePublished: post.publishedAt,
   dateModified: post.updatedAt || post.publishedAt,
-  author: {
-    "@type": "Person",
-    name: post.author,
-  },
+  author: post.author.startsWith("Champion")
+    ? { "@type": "Organization", name: BUSINESS.name, url: SITE_URL }
+    : { "@type": "Person", name: post.author },
   publisher: {
     "@type": "Organization",
     name: BUSINESS.name,

@@ -84,7 +84,6 @@ const PARTNERS = [
   "Pelco",
   "Matrix",
   "Panasonic i-PRO",
-  "Milesight",
   "Trassir",
 ];
 

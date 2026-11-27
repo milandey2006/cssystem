@@ -70,8 +70,6 @@ const AboutSection = () => {
     "Pelco",
     "Panasonic i-Pro",
     "Trassir",
-    "Milesight",
-    "Prama",
     "ESSL Security",
     "Biomax",
     "OneTouch",
@@ -124,8 +122,8 @@ const AboutSection = () => {
                   Mumbai&apos;s leading enterprise CCTV installers, we supply and
                   commission 2026-compliant, STQC and BIS-certified IP camera and
                   surveillance systems from <strong>Bosch, Axis Communications,
-                  Hanwha Vision, Honeywell, Matrix, Panasonic i-PRO, Pelco, Milesight,
-                  Trassir, Prama, Mivanta and Mantra</strong>.
+                  Hanwha Vision, Honeywell, Matrix, Panasonic i-PRO, Pelco,
+                  Trassir, Mivanta and Mantra</strong>.
                 </p>
                 <p>
                   Our systems do far more than record. We design and deploy{" "}

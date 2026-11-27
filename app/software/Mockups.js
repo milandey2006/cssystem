@@ -104,7 +104,7 @@ export function StockMock({ className = "" }) {
         <div className="mt-3 rounded-lg bg-gray-50 border border-gray-200 p-3">
           <p className="text-xs font-bold text-gray-500 mb-1">Serial LP2410A006</p>
           <p className="text-xs text-gray-700"><strong>Went out</strong> · Invoice SE/26-27/014 · Acme Pharma · Thane branch · by Priya</p>
-          <p className="text-xs text-gray-700 mt-0.5"><strong>Came in</strong> · Bought, bill 4471 · Andheri branch · by Milan</p>
+          <p className="text-xs text-gray-700 mt-0.5"><strong>Came in</strong> · Bought, bill 4471 · Andheri branch · by Suresh</p>
         </div>
       </div>
     </Frame>

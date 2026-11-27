@@ -2,6 +2,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { client } from "@/sanity/lib/client"
 import BrandCard from "./brand-card"
+import { mentionsBlockedBrand } from "@/lib/blocked-brands"
 
 const fallbackBrandSeoCards = [
   { name: "Hanwha", desc: "Hanwha Vision (formerly Samsung Techwin) provides high-end AI-based CCTV cameras for commercial and high-security projects. Hanwha cameras are known for advanced video analytics, strong cybersecurity, and excellent image clarity." },
@@ -10,8 +11,6 @@ const fallbackBrandSeoCards = [
   { name: "Axis Communications", desc: "Axis Communications pioneers intelligent network video solutions. Their IP cameras offer unparalleled low-light performance, smart AI analytics, and scalable architectures for future-proof security." },
   { name: "Panasonic i-Pro", desc: "Panasonic i-Pro brings professional-grade intelligent surveillance sensing. Known for extreme reliability and edge AI capabilities, i-Pro cameras ensure crystal-clear video evidence in the toughest environments." },
   { name: "Trassir", desc: "Trassir offers powerful Video Management System (VMS) software and dedicated servers. Their intelligent video analytics help businesses automate security monitoring and achieve deep situational awareness." },
-  { name: "Milesight", desc: "Milesight specializes in innovative AIoT and video surveillance products. Their 5G and AI-powered smart cameras offer cutting-edge connectivity and superior video processing for modern smart buildings." },
-  { name: "Prama", desc: "Prama is India's leading indigenous security brand, offering high-quality CCTV solutions. Designed for local requirements, Prama delivers cost-effective and highly reliable video surveillance systems." },
   { name: "ESSL Security", desc: "eSSL Security is India's premier brand for biometric attendance and access control. Their fingerprint and face recognition systems integrate seamlessly to streamline workforce management." },
   { name: "Biomax", desc: "Biomax provides advanced facial recognition and fingerprint biometric devices. Their cloud-based time attendance systems are perfect for centralized corporate and warehouse monitoring." },
   { name: "OneTouch", desc: "OneTouch specializes in smart video door phones and advanced home automation systems. Their IP intercoms deliver secure, app-based remote access for premium residential complexes." },
@@ -35,9 +34,10 @@ export default async function CSSClientsSlider() {
   }
 
   // Fallback to hardcoded array if Sanity data is empty
-  const displayCards = sanityBrandCards && sanityBrandCards.length > 0 
-    ? sanityBrandCards.map(b => ({ name: b.name, desc: b.description })) 
-    : fallbackBrandSeoCards;
+  const displayCards = (sanityBrandCards && sanityBrandCards.length > 0
+    ? sanityBrandCards.map(b => ({ name: b.name, desc: b.description }))
+    : fallbackBrandSeoCards
+  ).filter((b) => !mentionsBlockedBrand(b.name, b.desc));
 
   return (
     <div className="mt-12">

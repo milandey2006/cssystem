@@ -17,6 +17,7 @@ import {
   ArrowRight,
   ShieldCheck,
   IndianRupee,
+  Headset,
 } from "lucide-react";
 import Pricing from "./Pricing";
 import { InvoiceMock, StockMock, TeamMock } from "./Mockups";
@@ -334,11 +335,11 @@ export default function SoftwarePage() {
             <SecondaryCta />
           </div>
           <div className="mt-10 inline-flex flex-col sm:flex-row items-center gap-3 sm:gap-5 rounded-2xl bg-white/5 ring-1 ring-white/15 px-6 py-4 text-left">
-            <span className="w-12 h-12 rounded-full bg-blue-600 text-white font-bold text-lg flex items-center justify-center shrink-0" aria-hidden="true">
-              {SALES_CONTACT.name.split(" ").map((w) => w[0]).join("")}
+            <span className="w-12 h-12 rounded-full bg-blue-600 text-white flex items-center justify-center shrink-0" aria-hidden="true">
+              <Headset className="w-6 h-6" />
             </span>
             <div className="text-center sm:text-left">
-              <p className="font-semibold">Questions? Talk to {SALES_CONTACT.name}</p>
+              <p className="font-semibold">Questions? Write to our software team</p>
               <p className="text-gray-300 text-sm">
                 <a href={`mailto:${SALES_CONTACT.email}`} className="underline">{SALES_CONTACT.email}</a>
               </p>

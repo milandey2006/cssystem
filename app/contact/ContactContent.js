@@ -233,14 +233,14 @@ const ContactContent = () => {
               {softwarePlan && (
                 <div className="rounded-lg border-2 border-blue-600 bg-blue-50 p-4">
                   <p className="font-semibold text-gray-900">
-                    Asking about the {PRODUCT.name} software? Talk to {SALES_CONTACT.name} directly:
+                    Asking about the {PRODUCT.name} software? Write to our software team directly:
                   </p>
                   <div className="mt-3 flex flex-wrap gap-2">
                     <a href={`mailto:${SALES_CONTACT.email}`} className="inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-semibold text-gray-900 hover:bg-gray-50">
                       {SALES_CONTACT.email}
                     </a>
                   </div>
-                  <p className="mt-2 text-sm text-gray-600">Or send the form below; it reaches {SALES_CONTACT.name.split(" ")[0]} too.</p>
+                  <p className="mt-2 text-sm text-gray-600">Or send the form below; it reaches the software team too.</p>
                 </div>
               )}
               <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { ChevronDown } from 'lucide-react';
 import { client } from "@/sanity/lib/client";
+import { mentionsBlockedBrand } from "@/lib/blocked-brands";
 
 export const revalidate = 0; // Disable caching so Sanity edits show up immediately
 
@@ -27,8 +28,6 @@ const fallbackBrandFaqs = [
   { question: "Why use Axis Communications?", answer: "Axis Communications pioneers intelligent network video solutions. Their IP cameras offer unparalleled low-light performance, smart AI analytics, and scalable architectures for future-proof security." },
   { question: "What is special about Panasonic i-Pro?", answer: "Panasonic i-Pro brings professional-grade intelligent surveillance sensing. Known for extreme reliability and edge AI capabilities, i-Pro cameras ensure crystal-clear video evidence in the toughest environments." },
   { question: "How does Trassir help my business?", answer: "Trassir offers powerful Video Management System (VMS) software and dedicated servers. Their intelligent video analytics help businesses automate security monitoring and achieve deep situational awareness." },
-  { question: "What makes Milesight cameras unique?", answer: "Milesight specializes in innovative AIoT and video surveillance products. Their 5G and AI-powered smart cameras offer cutting-edge connectivity and superior video processing for modern smart buildings." },
-  { question: "Is Prama a good CCTV brand?", answer: "Prama is India's leading indigenous security brand, offering high-quality CCTV solutions. Designed for local requirements, Prama delivers cost-effective and highly reliable video surveillance systems." },
   { question: "Why use eSSL Security for biometrics?", answer: "eSSL Security is India's premier brand for biometric attendance and access control. Their fingerprint and face recognition systems integrate seamlessly to streamline workforce management." },
   { question: "What does Biomax specialize in?", answer: "Biomax provides advanced facial recognition and fingerprint biometric devices. Their cloud-based time attendance systems are perfect for centralized corporate and warehouse monitoring." },
   { question: "What products does OneTouch provide?", answer: "OneTouch specializes in smart video door phones and advanced home automation systems. Their IP intercoms deliver secure, app-based remote access for premium residential complexes." },
@@ -55,8 +54,9 @@ export default async function FAQPage() {
     console.error("Error fetching FAQs from Sanity:", error);
   }
 
-  const displayGeneralFaqs = sanityGeneralFaqs && sanityGeneralFaqs.length > 0 ? sanityGeneralFaqs : fallbackGeneralFaqs;
-  const displayBrandFaqs = sanityBrandFaqs && sanityBrandFaqs.length > 0 ? sanityBrandFaqs : fallbackBrandFaqs;
+  const allowed = (faq) => !mentionsBlockedBrand(faq.question, faq.answer);
+  const displayGeneralFaqs = (sanityGeneralFaqs && sanityGeneralFaqs.length > 0 ? sanityGeneralFaqs : fallbackGeneralFaqs).filter(allowed);
+  const displayBrandFaqs = (sanityBrandFaqs && sanityBrandFaqs.length > 0 ? sanityBrandFaqs : fallbackBrandFaqs).filter(allowed);
 
   const faqJsonLd = {
     "@context": "https://schema.org",

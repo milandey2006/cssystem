@@ -80,6 +80,6 @@ export const COMPARE_ROWS = [
 // Who answers questions about the software (shown on /software and on /contact when a
 // visitor comes from it; software enquiries from the contact form are e-mailed here too).
 export const SALES_CONTACT = {
-  name: "Milan Dey",
+  name: "Software team",
   email: "cloud@championsecuritysystem.com",
 };

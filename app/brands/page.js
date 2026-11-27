@@ -22,7 +22,7 @@ export const metadata = {
 // Brands to keep OFF the Brands page even though products for them exist in
 // the catalogue. Their products stay browsable at /products; they just
 // aren't featured here. Compared case-insensitively against the brand value.
-const HIDE_BRANDS = new Set(["prama", "onetouch"]);
+const HIDE_BRANDS = new Set(["prama", "onetouch", "milesight", "hikvision", "dahua", "cp plus", "uniview"]);
 
 // Which product category falls under which section on the Brands page. Every
 // brand is placed automatically into the section of the category most of its

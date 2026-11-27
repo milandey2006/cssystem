@@ -15,6 +15,6 @@ export const MACHINE_BRANDS_TEXT = "eSSL, ZKTeco, Mivanta, Morx and Matrix Comse
 
 // Who answers questions about the software.
 export const SALES_CONTACT = {
-  name: "Milan Dey",
+  name: "Software team",
   email: "cloud@championsecuritysystem.com",
 };

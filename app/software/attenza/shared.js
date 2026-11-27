@@ -2,7 +2,7 @@
 // calls to action, FAQ, "how it works", guides list and structured data.
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, Server, Cloud, Smartphone, ChevronRight } from "lucide-react";
+import { ArrowRight, Server, Cloud, Smartphone, ChevronRight, Headset } from "lucide-react";
 import { PRODUCT, SALES_CONTACT } from "./plans";
 import { SITE_URL, BUSINESS } from "@/lib/seo";
 import { getAllPosts } from "@/lib/blog/posts";
@@ -222,15 +222,13 @@ export function FinalCta({ title = "Put your biometric machine on the cloud", bo
           <SecondaryCta />
         </div>
         <div className="mt-10 inline-flex flex-col sm:flex-row items-center gap-3 sm:gap-5 rounded-2xl bg-white/5 ring-1 ring-white/15 px-6 py-4 text-left">
-          <span className="w-12 h-12 rounded-full bg-blue-600 text-white font-bold text-lg flex items-center justify-center shrink-0" aria-hidden="true">
-            {SALES_CONTACT.name.split(" ").map((w) => w[0]).join("")}
+          <span className="w-12 h-12 rounded-full bg-blue-600 text-white flex items-center justify-center shrink-0" aria-hidden="true">
+            <Headset className="w-6 h-6" />
           </span>
           <div className="text-center sm:text-left">
-            <p className="font-semibold">Questions? Talk to {SALES_CONTACT.name}</p>
+            <p className="font-semibold">Questions? Write to our software team</p>
             <p className="text-gray-300 text-sm">
               <a href={`mailto:${SALES_CONTACT.email}`} className="underline">{SALES_CONTACT.email}</a>
-              {" · "}
-              <a href={`tel:${BUSINESS.telephone}`} className="underline">{BUSINESS.telephone}</a>
             </p>
           </div>
         </div>
